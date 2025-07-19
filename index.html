@@ -9,19 +9,25 @@
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
-    <nav id="desktop-nav">
-      <div class="logo">Jacob Beckey</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#research">Research</a></li>
-          <li><a href="#experience">Teaching</a></li>
-          <li><a href="#projects">Outreach</a></li>
-          <li><a href="#contact">Resources</a></li>
-        </ul>
-      </div>
-    </nav>
+  <nav id="desktop-nav" class="sticky-nav">
+  <div class="logo-container">
+    <img src="./assets/jlb-logo.svg" alt="Logo" />
+    <span class="logo-text">Jacob Beckey</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#experience">Teaching</a></li>
+    <li><a href="#projects">Outreach</a></li>
+    <li><a href="#contact">Resources</a></li>
+  </ul>
+</nav>
+
+
     <nav id="hamburger-nav">
-      <div class="logo">John Doe</div>
+     <div class="logo-container">
+        <img src="./assets/jlb-logo.svg" alt="Logo" />
+        <span class="logo-text">Jacob Beckey</span>
+     </div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
           <span></span>
@@ -43,7 +49,7 @@
       <div class="section__text">
         <p class="section__text__p1">Hello, I'm</p>
         <h1 class="title">Jacob Beckey</h1>
-        <p class="section__text__p2">NSF and IQUIST Postdoctoral Fellow</p>
+        <p class="section__text__p2">Postdoctoral Fellow @ UIUC</p>
         <div class="btn-container">
           <button
             class="btn btn-color-2"
@@ -57,10 +63,10 @@
         </div>
         <div id="socials-container">
           <img
-            src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
+            src="./assets/google-scholar.png"
+            alt="My Google scholar page"
             class="icon"
-            onclick="location.href='https://linkedin.com/'"
+            onclick="location.href='https://scholar.google.com/citations?user=OoGGmYwAAAAJ&hl=en'"
           />
           <img
             src="./assets/linkedin.png"
@@ -69,16 +75,10 @@
             onclick="location.href='https://linkedin.com/'"
           />
           <img
-            src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
+            src="./assets/isi-logo.png"
+            alt="My non-profit's website"
             class="icon"
-            onclick="location.href='https://linkedin.com/'"
-          />
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/'"
+            onclick="location.href='https://www.idealizedscience.org/'"
           />
         </div>
       </div>
