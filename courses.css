@@ -107,6 +107,13 @@ p a:hover{
   text-decoration-color: rgb(255, 95, 5);
 }
 
+li a:hover{
+  color: rgb(255,95,5);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  text-decoration-color: rgb(255, 95, 5);
+}
+
 .logo {
   font-size: 2rem;
 }
@@ -198,16 +205,49 @@ p a:hover{
 /* SECTIONS */
 
 section {
-  padding-top: 2vh;
-  height: 96vh;
-  margin: 0 10rem;
-  box-sizing: border-box;
-  min-height: fit-content;
+  padding: 2rem 1rem; /* smaller padding */
+  margin: 1rem 0;     /* tighter vertical spacing */
+  min-height: auto !important;  /* override global heights */
+  height: auto !important;      /* override #profile, #contact, etc. */
 }
+
 
 .section-container {
   display: flex;
 }
+
+/* Welcome Banner */
+.course-welcome {
+  text-align: center;
+  margin: 2rem auto 3rem auto;
+  padding: 1rem;
+}
+
+.welcome-line {
+  font-size: 1.5rem;        /* smaller than main title */
+  font-weight: 400;         /* normal weight */
+  color: rgb(85, 85, 85);
+  margin: 0;
+}
+
+.course-title {
+  font-size: 3.5rem;        /* larger */
+  font-weight: 300;         /* lighter weight */
+  color: rgb(53, 53, 53);
+  margin: 0.2rem 0 0.5rem 0;
+}
+
+/* Divider style */
+.divider {
+  width: 10%;
+  border: 0;
+  height: 4px;
+  background: rgb(255, 95, 5);
+  border-radius: 2px;
+  margin: 0.5rem auto;
+}
+
+
 
 /* PROFILE SECTION */
 
@@ -447,7 +487,7 @@ article .icon {
 }
 
 /* CONTACT */
-
+/*
 #contact {
   display: flex;
   justify-content: center;
@@ -485,7 +525,7 @@ article .icon {
 .email-icon {
   height: 2.5rem;
 }
-
+*/
 /* FOOTER SECTION */
 
 footer {
@@ -503,15 +543,14 @@ footer p {
 
 /* General section styling */
 main section {
-  padding: 2rem 10rem;
-  margin: 0 auto;
-  min-height: fit-content;
+  padding: 0 1rem;
+  margin: 2rem auto;
   max-width: 1000px;
 }
 
 main section h1 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: rgb(53, 53, 53);
   text-align: left;
   border-bottom: 2px solid rgb(255, 95, 5);
@@ -520,7 +559,7 @@ main section h1 {
 
 main section h2 {
   font-size: 1.75rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 2rem;
   color: rgb(53, 53, 53);
 }
@@ -545,13 +584,18 @@ main section li {
 }
 
 /* Schedule / Grading */
+#schedule h2 {
+  margin-bottom: 0.5rem; /* smaller space below h2 */
+}
+
 #schedule ul {
-  margin: 1rem 0;
-  padding-left: 1.2rem;
+  padding-left: 3rem;
+  margin-top: 0.3rem;
 }
 
 #schedule li {
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
+  font-size: 1.05rem;
 }
 
 /* Lectures & Assignments */
@@ -574,24 +618,30 @@ main section li {
 }
 
 /* Materials */
+#materials h2 {
+  margin-bottom: 0.5rem; /* smaller space below h2 */
+}
+
 #materials ul {
-  margin-top: 1rem;
-  padding-left: 1.2rem;
+  margin-top: 0.3rem;
+  padding-left: 3rem;
 }
 
 #materials li {
-  margin-bottom: 0.6rem;
-}
-
-/* Contact */
-#contact p {
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
   font-size: 1.05rem;
 }
 
-#contact a {
-  font-weight: 500;
-  color: rgb(53, 53, 53);
+/* Contact */
+#contact ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+#contact li {
+  margin: 0.3rem 0;
+  font-size: 1.05rem;
 }
 
 #contact a:hover {
@@ -672,7 +722,6 @@ footer p {
 
 .outline-table a:hover {
   color: #FF552E; /* Illinois orange hover */
-  text-decoration: underline;
 }
 
 

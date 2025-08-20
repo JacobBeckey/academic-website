@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear Algebra Course – Jacob Beckey</title>
+    <link rel="stylesheet" href="courses.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <!-- Desktop Navigation (unchanged from your original) -->
+    <nav id="desktop-nav" class="sticky-nav">
+      <div class="logo-container">
+        <img src="./assets/jlb-logo.svg" alt="Logo" />
+        <span class="logo-text">Jacob Beckey</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#research">Research</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="#projects">Outreach</a></li>
+        <li><a href="#contact">Resources</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Navigation (unchanged from your original) -->
+    <nav id="hamburger-nav">
+      <div class="logo-container">
+        <img src="./assets/jlb-logo.svg" alt="Logo" />
+        <span class="logo-text">Jacob Beckey</span>
+      </div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">Research</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Teaching</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Outreach</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Resources</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Course Page Content -->
+    <main>
+    <div class="course-welcome">
+        <h2 class="welcome-line">Welcome to</h2>
+        <h1 class="course-title">MATH 416: Abstract Linear Algebra</h1>
+        <h2 class="welcome-line">Fall 2025 &mdash; University of Illinois, Urbana-Champaign</h2><br />
+        <hr class="divider" />
+    </div>
+
+
+      <section id="course-info">
+        <h1>Course Information</h1>
+        <p>
+          Welcome to Linear Algebra — an exploration of vector spaces, linear transformations,
+          matrices, eigenvalues, and more.
+        </p>
+        <ul>
+          <li><strong>Instructor:</strong> Jacob Beckey</li>
+          <li><strong>Grader:</strong> Hyun Tark</li>
+          <li><strong>Meeting times:</strong> Mon, Wed, Fri — 1:00–1:50 PM, 136 Davenport Hall</li>
+          <li><strong>Office Hours:</strong> Mon, Wed 2–3 PM, Room TBD (or by appointment)</li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h1>Contact & Communication</h1>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:jbeckey@example.edu">jbeckey@illinois.edu</a></li>
+          <li><strong>Office:</strong> 72 Computing Applications Building</li>
+        </ul>
+        <p>
+          Please reach out if you have questions about course content, assignments, or logistics.
+        </p>
+      </section>
+
+      <section id="schedule">
+        <h1>Schedule & Grading</h1>
+        <h2>Grading Breakdown</h2>
+        <ul>
+          <li><strong>Participation (clickers):</strong>  20%</li>
+          <li><strong>Homework:</strong>  30%</li>
+          <li><strong>Midterm Exams:</strong>  30%</li>
+          <li><strong>Final Exam:</strong>  20%</li>
+        </ul>
+
+        <h2>Important Dates</h2>
+        <ul>
+          <li><strong>Midterm Exam 1:</strong> Friday, September 26</li>
+          <li><strong>Midterm Exam 2:</strong> Friday, October 24</li>
+          <li><strong>Midterm Exam 3:</strong> Wednesday, November 19</li>
+          <li><strong>Final Exam:</strong> Wednesday, December 17 (7-10pm, location TBD)</li>
+        </ul>
+      </section>
+
+      <section id="materials">
+        <h1>Course Materials</h1>
+        <h2>Required Materials</h2>
+        <ul>
+          <li><strong>Textbook: </strong><a href="https://linear.axler.net/LADR4e.pdf">Axler, <em>Linear Algebra Done Right</em></a></li> 
+          <li><strong>Technology: </strong><a href="https://www.iclicker.com/students/apps-and-remotes/apps">iClicker app</a> (see student instructions <a href="https://answers.uillinois.edu/120820">here</a>)</li>
+        </ul>
+        <h2>Suggested Resources</h2>
+        <ul>
+          <li><strong>Book: </strong><a href="https://www.amazon.com/Vector-Surprising-Story-Mathematical-Transformation/dp/0226821102"><em>Vector: A Surprising Story of Space, Time, and Mathematical Transformation</em></a> by Robyn Arianhod</li> 
+          <li><strong>Video series: </strong><a href="https://www.3blue1brown.com/topics/linear-algebra">Essence of Linear Algebra</a> by Grant Sanderson (3Blue1Brown on YouTube)</li>
+        </ul>
+      </section>
+
+      
+
+
+      <section id="weekly-outline">
+  <h2>Weekly Outline</h2>
+  <div class="table-container">
+    <table class="outline-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Lecture</th>
+          <th>Content Covered</th>
+          <th>Reading</th>
+          <th>Notes</th>
+          <th>Additional Resources</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>8/25</td>
+          <td>1</td>
+          <td>Introduction, Essence of Linear Algebra</td>
+          <td>Axler Ch. 1, §1–3</td>
+          <td><a href="./notes/week1.pdf">Lecture 1 Notes</a></td>
+          <td><a href="https://linear.ups.edu/">Free Linear Algebra Book</a></td>
+        </tr>
+        <tr>
+          <td>8/27</td>
+          <td>2</td>
+          <td>Linear Maps, Null Spaces</td>
+          <td>Axler Ch. 3, §1–2</td>
+          <td><a href="./notes/week2.pdf">Lecture 2 Notes</a></td>
+          <td><a href="https://www.3blue1brown.com/topics/linear-algebra">3Blue1Brown Videos</a></td>
+        </tr>
+        <tr>
+          <td>8/29</td>
+          <td>3</td>
+          <td>Eigenvalues and Diagonalization</td>
+          <td>Axler Ch. 5</td>
+          <td><a href="./notes/week3.pdf">Week 3 Notes</a></td>
+          <td><a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/">MIT OCW</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>Copyright &#169; 2025 Jacob Beckey. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
