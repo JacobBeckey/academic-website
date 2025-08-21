@@ -99,7 +99,9 @@ a:hover {
   text-underline-offset: 2.2rem;
   text-decoration-color: rgb(255, 95, 5);
 }
-
+section a{
+  color: rgb(255,95,5);
+}
 p a:hover{
   color: rgb(255,95,5);
   text-decoration: underline;
