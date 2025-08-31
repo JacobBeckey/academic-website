@@ -1,0 +1,126 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem} 
+\newtheorem{lemma}[theorem]{Lemma}       % shares numbering with theorem
+\newtheorem{corollary}[theorem]{Corollary}
+
+% For remarks/definitions with different styling:
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+
+
+\setlength{\parindent}{0pt}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+
+\title{MATH 416 Homework Week 1}
+\author{Felix Leditzky}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Homework 1 \\ \textbf{Assigned:} Fri. August 29, 2025 \\ \textbf{Due:} Fri. Sept. 5, 2025 (by 1pm)
+\end{center}
+
+\newex{1}{10} In class, we saw one way of taking products between two vectors. In this problem, you will practice your proof writing skills to prove a few fundamental results about the dot product. First, let us formally define the dot product between two real vectors.
+\begin{definition}
+For vectors $\mathbf{x} = (x_1,\dots,x_n)$ and $\mathbf{y} = (y_1,\dots,y_n)$ in $\mathbb{R}^n$, the \textbf{dot product} is defined as
+\begin{align*}
+\mathbf{x} \cdot \mathbf{y} &= \sum_{i=1}^n x_i y_i.
+\end{align*}
+We also define the \textbf{norm} (or length) of a vector as
+\begin{align*}
+\|\mathbf{x}\| &= \sqrt{\mathbf{x} \cdot \mathbf{x}}.
+\end{align*}
+\end{definition}
+Now, let's warm up with some elementary results.
+\begin{enumerate}
+    \item[1a.] (1 point) Compute $(1,2,3)\cdot (4,5,6)$.
+    \item[1b.] (1 point) Show that $\mathbf{x}\cdot \mathbf{y} = \mathbf{y}\cdot \mathbf{x}$ (commutativity).
+    \item[1c.] (1 point) Show that $\mathbf{x}\cdot (\mathbf{y}+\mathbf{z}) = \mathbf{x}\cdot \mathbf{y} + \mathbf{x}\cdot \mathbf{z}$ (distributivity).
+    \item[1d.] (1 point) Show that $\mathbf{x}\cdot \mathbf{x} \geq 0$ and equals $0$ if and only if $\mathbf{x}=\mathbf{0}$.
+\end{enumerate}
+With these results in mind, we now turn to the proof of one of the most ubiquitous inequalities in mathematics, the \textit{Cauchy-Schwarz Inequality}.
+\begin{theorem}[Cauchy--Schwarz Inequality]
+For all $\mathbf{x},\mathbf{y} \in \mathbb{R}^n$,
+\begin{align*}
+|\mathbf{x} \cdot \mathbf{y}| \leq \|\mathbf{x}\| \,\|\mathbf{y}\|.
+\end{align*}
+\end{theorem}
+\begin{enumerate}
+    \item[1e.] (6 points) Prove the Cauchy-Schwarz inequality. 
+\end{enumerate}
+
+
+\newex{2}{5}
+Consider the following system of linear equations:
+	\begin{align*}
+	a_{11} x_1 + \dots + a_{1n} x_n &= b_1\\
+	&\vdotswithin{=}\\
+	a_{m1} x_1 + \dots + a_{mn} x_n &= b_m,
+	\end{align*}
+	where $a_{ij},b_i\in\mathbb{R}$ for $1\leq i\leq m, 1\leq j\leq n$.
+	Show that the set of solutions of this system does not change under the following operations:
+	\begin{enumerate}
+		\item\label{item:mult} \textbf{Multiplication.} Multiply both sides of an equation by $\lambda\neq 0$.
+            \item\label{item:perm} \textbf{Permutation.} Swapping any two rows.
+		\item\label{item:add} \textbf{Addition.} Add one row to another one.
+	\end{enumerate}
+	{\itshape Hint: Assume there exists a solution $\mathbf{x} = (x_1,\dots,x_n)^T$ of the original system of linear equations, and show that it is also a solution of the system transformed via the operations in \ref{item:mult}, \ref{item:perm}, and \ref{item:add} }
+	
+\vspace*{1em}\newex{3}{10}
+Determine if the following systems of linear equations have solutions, and if yes find them.
+In one of the systems below there are multiple solutions. What is the dimensionality of the solution space? (1 point)
+\begin{enumerate}
+	\item (3 points) System of linear equations in $\mathbb{R}^3$
+	\begin{align*}
+	x_1 + 2x_2 + 2 x_3 &= 4 \\
+	x_1 + 3 x_2 + 3 x_3 &= 5\\
+	2 x_1 + 6x_2 + 5 x_3 &= 6
+	\end{align*}
+	\item (3 points) System of linear equations in $\mathbb{R}^4$
+	\begin{align*}
+	x_1 + 2 x_2 + x_4 &= 7\\
+	x_1 + x_2 + x_3 - x_4 &= 3\\
+	3 x_1 + x_2 + 5 x_3 - 7 x_4 &=1
+	\end{align*}
+	\item (3 points) System of linear equations in $\mathbb{R}^4$
+	\begin{align*}
+	2 x_1 + x_2 + 7x_3-7x_4 &= 2\\
+	-3 x_1 + 4 x_2 -5x_3-6x_4 &= 3\\
+	x_1 + x_2 + 4x_3 -5x_4 &= 2
+	\end{align*}
+\end{enumerate}
+
+
+\end{document}
