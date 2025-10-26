@@ -1,0 +1,135 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+
+\setlength{\parindent}{0pt}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+
+\title{MATH 416 Homework Week 2}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Homework 2 \\ \textbf{Assigned:} Fri. Sept. 5, 2025 \\ \textbf{Due:} Fri. Sept. 12, 2025 (by 1pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{3} \textbf{The Beauty of Complex Numbers}
+
+In this problem we will explore some key properties of complex numbers and then prove one of the most remarkable results in all of math.
+
+\begin{enumerate}[(a)]
+    \item \textbf{Real numbers via conjugation.} 
+    Let $z = x+iy \in \mathbb{C}$ with $x,y \in \mathbb{R}$, and let $z^* = x-iy$ denote its complex conjugate. Prove that $
+    z = z^*$ if and only if $z \in \mathbb{R}$.
+
+    \item \textbf{Cube roots of unity.} 
+    Solve the equation $z^3 = 1$ for all complex numbers $z$. Plot the solutions in the complex plane and describe the geometric pattern you see.
+
+    \item \textbf{Euler’s formula.} 
+    Recall the Taylor series expansions:
+    \begin{align*}
+        e^x &= \sum_{n=0}^\infty \frac{x^n}{n!}, \\
+        \cos x &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}, \\
+        \sin x &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!}.
+    \end{align*}
+    Use these to prove Euler's most famous formula: $e^{i\theta} = \cos\theta + i\sin\theta.$ Setting $\theta = \pi$ we obtain what many consider to be the most beautiful formulas in all of mathematics
+    \[
+    e^{i\pi} + 1 = 0.
+    \]
+\end{enumerate}
+\newpage
+\newex{2}{10} \textbf{A Matrix Representation of Powers of }$i$\\
+This problem is designed to show how we can use linear algebra to represent abstract groups. If you have not taken Math 417 (abstract algebra) before, this may seem daunting, but don't panic! A large part of becoming a mathematician is becoming comfortable working with new, unfamiliar definitions. The result you will derive is a simple example of a \textit{very} powerful field of modern math called \textit{representation theory}. \\
+
+We recall that a \emph{group} is a set $G$ together with a binary operation $\cdot$ satisfying the following axioms:
+\begin{enumerate}
+    \item \textbf{Closure:} For all $a,b \in G$, the product $a \cdot b \in G$.
+    \item \textbf{Associativity:} For all $a,b,c \in G$, we have $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.
+    \item \textbf{Identity:} There exists an element $e \in G$ such that $a \cdot e = e \cdot a = a$ for all $a \in G$.
+    \item \textbf{Inverses:} For each $a \in G$, there exists $a^{-1} \in G$ such that $a \cdot a^{-1} = a^{-1} \cdot a = e$.
+\end{enumerate}
+
+\begin{enumerate}[(a)]
+    \item Show that the set $G = \{1, i, -1, -i\}$ with multiplication of complex numbers as the operation is a group. (This group is sometimes called the \emph{cyclic group of order 4}.)
+
+    \item Recall that a rotation in the plane by an angle $\theta$ can be written as
+    \[
+        R(\theta) = \begin{bmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}.
+    \]
+    Which matrix should represent multiplication by $i$? Denote this matrix as $M$ and then compute its powers $M^2, M^3,$ and $M^4$.
+
+    \item Compare your results to the powers of $i$. What correspondence do you notice between the set $\{1, i, -1, -i\}$ and the set $\{I, M, M^2, M^3\}$, where $I$ is the $2\times 2$ identity matrix?
+
+    \item Show that the set
+    \[
+        H = \{I, M, M^2, M^3\}
+    \]
+    forms a group under matrix multiplication. (You should check closure, identity, and inverses explicitly. Associativity comes for free since matrix multiplication is associative.)
+
+    \item Conclude that the mapping
+    \[
+        \varphi: G \to H, \quad \varphi(1) = I,\ \varphi(i) = M,\ \varphi(-1) = M^2,\ \varphi(-i) = M^3
+    \]
+    is a group homomorphism (i.e. show that for all $g_1,g_2 \in G$, we have $\varphi(g_1 \cdot g_2)=\varphi(g_1)\varphi(g_2)$). In this way, we have found a \emph{matrix representation} of the cyclic group of order 4.
+\end{enumerate}
+
+
+
+
+\newex{3}{4} \textbf{Vector spaces}
+
+Let $V$ be a vector space over a field $\mathbb{F}$. Use the axioms of vector spaces to show the following.
+
+\begin{enumerate}[(a)]
+\item Prove that the zero vector $0 \in V$ is unique.
+\item Show that for any $v\in V$, the additive inverse $-v$ is unique.
+\item Let $v\in V$ and $\lambda \in \mathbb{F}$. Prove that $0 \cdot v = 0$ and $\lambda \cdot 0 = 0$, where the first $0$ is the scalar $0$ and the second $0$ is the zero vector.
+\item Show that if $\lambda v = 0$ for some $\lambda \in \mathbb{F}$ and $v\in V$, then either $\lambda = 0$ or $v = 0$.
+\end{enumerate}
+
+
+
+\newex{4}{3} \textbf{Subspaces}
+
+\begin{enumerate}[(i)]
+	\item Let $U,W\leq V$ be subspaces of a vector space $V$. Show that $U\cap W$ is also a subspace of $V$.
+	\item Prove that the subset $\lbrace x\in\mathbb{F}^3\colon x_1x_2x_3 = 0\rbrace \subset \mathbb{F}^3$ is \emph{not} a subspace of $\mathbb{F}^3$.
+	\item Consider the subspace 
+	\begin{align*} 
+	U=\left\lbrace \begin{pmatrix}x\\x\\y\end{pmatrix}\colon x,y\in\mathbb{F}\right\rbrace \leq \mathbb{F}^3.
+	\end{align*}
+	Find another subspace $W\leq \mathbb{F}^3$ such that $\mathbb{F}^3 = U \oplus W$.
+\end{enumerate}
+\end{document}

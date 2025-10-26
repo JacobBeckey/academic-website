@@ -1,0 +1,133 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+
+\setlength{\parindent}{0pt}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+
+\title{MATH 416 Homework Week 3}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Homework 3 \\ \textbf{Assigned:} Fri. Sept. 12, 2025 \\ \textbf{Due:} Fri. Sept. 19, 2025 (by 1pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{3} \textbf{Linear independence and span}
+
+\begin{enumerate}[(i)]
+	\item (2 points) Let $z_1 = 1 + i$ and $z_2 = 1 - i$. First consider the complex numbers $\mathbb{C}$ as a vector space over the field $\mathbb{R}$, and show that $\lbrace z_1,z_2\rbrace$ is linearly independent over $\mathbb{R}$. 
+	Then consider $\mathbb{C}$ as a vector space over itself (i.e., $\mathbb{F}=\mathbb{C}$), and show that now $\lbrace z_1,z_2\rbrace$ is linearly dependent. 
+	\item (1 point) Let $\lbrace v_1, \dots,v_m\rbrace$ be a set of linearly independent vectors in $V$, and let $w\in V$. Show that, if $\lbrace v_1 +w, \dots, v_m + w\rbrace$ are linearly dependent, then $w\in \langle v_1,\dots v_m\rangle$.
+\end{enumerate}
+
+
+
+\newex{2}{3} \textbf{Bases I}
+\begin{enumerate}[(i)]
+	\item Let $\lbrace u_1,u_2,u_3\rbrace$ be the following vectors in $\mathbb{R}^2$:
+	\begin{align*}
+	u_1 &= \begin{pmatrix}
+	1\\0
+	\end{pmatrix} & 
+	u_2 &= \begin{pmatrix}
+	1\\1
+	\end{pmatrix} & 
+	u_3 &= \begin{pmatrix}
+	2\\1
+	\end{pmatrix}.
+	\end{align*}
+	Show that $\lbrace u_1,u_2,u_3\rbrace$ is not a basis of $\mathbb{R}^2$, but $\lbrace u_i,u_j\rbrace$ is a basis for any $1\leq i<j\leq 3$.
+	\item Prove that the following set of vectors $\lbrace v_1,v_2,v_3\rbrace$ forms a basis of $\mathbb{R}^3$:
+	\begin{align*}
+	v_1 &= \begin{pmatrix}
+	1\\0\\0
+	\end{pmatrix} &
+	v_2 &= \begin{pmatrix}
+	1\\1\\1
+	\end{pmatrix} &
+	v_3 &= \begin{pmatrix}
+	0\\1\\0
+	\end{pmatrix}
+	\end{align*}
+	\item Prove that the following set of vectors $\lbrace w_1,w_2,w_3\rbrace$ does not form a basis of $\mathbb{R}^3$:
+	\begin{align*}
+	w_1 &= \begin{pmatrix}
+	1\\0\\0
+	\end{pmatrix} &
+	w_2 &= \begin{pmatrix}
+	1\\1\\1
+	\end{pmatrix} &
+	w_3 &= \begin{pmatrix}
+	4\\2\\2
+	\end{pmatrix}
+	\end{align*}
+\end{enumerate}
+\newpage
+\newex{3}{3} \textbf{Bases II}
+
+Let $U$ be the subspace of $\mathbb{R}^5$ defined by\footnote{
+	Here, $^T$ denotes transposition, and $x = (x_1,x_2,x_3,x_4,x_5)^T = \begin{pmatrix}
+	x_1\\x_2\\x_3\\x_4\\x_5
+	\end{pmatrix}$.
+}
+\begin{align*}
+U = \left\lbrace (x_1,x_2,x_3,x_4,x_5)^T\in \mathbb{R}^5\colon x_1 = 3 x_2 \text{ and } x_3 =7 x_4 \right\rbrace
+\end{align*}
+\begin{enumerate}[(i)]
+	\item\label{item:basis} Find a basis for $U$.
+	\item Extend the basis you found in (\ref{item:basis}) to a basis of $\mathbb{R}^5$.
+	\item Find a subspace $W\leq \mathbb{R}^5$ such that $\mathbb{R}^5 = U \oplus W$.
+\end{enumerate}
+
+\newex{4}{3} \textbf{Dimension I}\\
+Show that the subspaces of $\mathbb{R}^3$ are precisely $\{0\}$, all lines in $\mathbb{R}^{3}$ containing the origin, all planes in $\mathbb{R}^{3}$ containing the origin, and $\mathbb{R}^3$.
+\newline
+
+\newex{5}{4} \textbf{Dimension II}\\
+Suppose that $V_1, \dots, V_m$ are finite-dimensional subspaces of $V$. Prove that $V_1 + \dotsm + V_m$ is finite dimensional and 
+\begin{align*}
+    \dim{(V_1+\dotsm + V_m)} \leq \dim{V_1}+\dotsm + \dim{V_m}.
+\end{align*}
+
+\newex{6}{4} \textbf{Dimension III}\\
+Suppose $V$ is finite dimensional, with $\dim{V}=n \geq 1$. Prove that there exists one-dimensional subspaces $V_1, \dots, V_m$ of $V$ such that 
+\begin{align*}
+    V = V_1 \oplus \dotsm \oplus V_m.
+\end{align*}
+
+
+
+\end{document}

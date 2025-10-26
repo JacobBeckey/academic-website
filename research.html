@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacob Beckey — Research & Publications</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+  /* Prevent global 'section' styling from affecting publication cards */
+  .research-container section {
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+
+  /* Restore publication layout spacing */
+  .publication-card {
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Ensure your research page doesn’t stretch to full viewport height */
+  .research-container {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  /* Optional: soften main background contrast to match preview */
+  body {
+    background-color: #fafafa;
+  }
+</style>
+
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .research-container { max-width: 950px; margin: 4rem auto; padding: 0 2rem; }
+    .research-container h1 { font-size: 2.5rem; color: rgb(53,53,53); border-bottom: 2px solid rgb(255,95,5); padding-bottom: .5rem; margin-bottom: 2rem; }
+
+    .publication-card { background: #fff; border: 1px solid #ddd; border-radius: 1.25rem; box-shadow: 0 2px 6px rgba(0,0,0,.05); overflow: hidden; margin-bottom: 1.25rem; }
+    .publication-header { padding: 1.25rem 1.5rem 0.75rem; }
+    .publication-title { font-size: 1.1rem; font-weight: 500; color: rgb(53,53,53); margin: 0 0 .35rem; }
+    .publication-meta { font-size: .92rem; color: rgb(100,100,100); }
+
+    /* Info bar under title */
+    .info-bar { display: flex; align-items: center; gap: .75rem; padding: .75rem 1.5rem 1rem; flex-wrap: wrap; }
+    .info-item { display: inline-flex; align-items: center; gap: .35rem; font-size: .9rem; color: rgb(85,85,85); white-space: nowrap; }
+    .divider { width: 1px; height: 18px; background: #e3e3e3; }
+
+    /* Abstract toggle button */
+    .abstract-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .25rem .7rem; border-radius: 9999px; border: 1px solid rgb(255,95,5); color: rgb(255,95,5); background: #fff; cursor: pointer; transition: all 300ms ease; }
+    .abstract-btn:hover { background: rgb(255,95,5); color: #fff; }
+
+    /* Links */
+    .pub-link { color: rgb(53,53,53); text-decoration: none; border-bottom: 1px dotted rgba(0,0,0,.15); padding-bottom: 1px; }
+    .pub-link:hover { color: rgb(255,95,5); text-decoration: underline; }
+
+    /* Category badges */
+    .badge { display: inline-flex; align-items: center; padding: .2rem .6rem; font-size: .8rem; font-weight: 400; border-radius: .75rem; color: #fff; }
+    .badge-sensing { background: rgb(255,95,5); }
+    .badge-ent { background: #663391; }
+    .badge-learn { background: #2a9d8f; }
+
+    /* Abstract panel */
+    .abstract-panel { display: none; padding: 1rem 1.5rem 1.25rem; background: #f7f7f7; border-top: 1px solid #eee; }
+    .abstract-panel.open { display: block; }
+    .abstract-panel p { margin: 0; }
+
+    /* Make research cards slightly wider */
+    .research-container {
+        max-width: 1100px;  /* wider than before (was 950px) */
+        margin: 4rem auto;
+        padding: 0 2rem;
+    }
+
+    /* Add vertical space between accordions */
+    .publication-card {
+        margin-bottom: 2rem;  /* was 1.25–1.5rem */
+    }
+
+    /* Optional: slightly increase padding inside cards for balance */
+    .publication-header,
+    .info-bar,
+    .abstract-panel {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+        /* Increase spacing between cards and ensure margin isn't collapsed */
+    .research-container > .publication-card {
+        margin-bottom: 1rem !important;   /* forces visible vertical space */
+        border-radius: 1.25rem;
+    }
+
+    
+
+    .publication-title {
+        font-size: 1.1rem;
+        font-weight: 400;   /* was 500 */
+        color: rgb(53, 53, 53);
+        margin: 0 0 0.2rem;
+    }
+
+    .year-divider {
+        font-size: 2rem;
+        font-weight: 500;
+        color: rgb(53, 53, 53);
+        border-bottom: 2px solid rgb(255, 95, 5);
+        padding-bottom: 0.3rem;
+        margin: 3rem 0 1.5rem;
+    }
+
+    .year-divider + .publication-card {
+        margin-top: 1rem;
+    }
+
+    .year-divider ~ .publication-card {
+        padding-left: 1rem;
+    }
+
+
+/* Ensure the card clips its children to the rounded corners */
+.publication-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+  overflow: hidden;                  /* ← key: clip to rounded corners */
+}
+
+/* Grey abstract block that reaches the very bottom, no corner mismatch */
+.abstract-panel {
+  display: none;                     /* toggled to block via JS */
+  background: #f7f7f7;
+  border-top: 1px solid #eee;
+  padding: 1.25rem 2rem 1.75rem;
+  margin: 0;                         /* prevent margin collapse */
+}
+
+/* Prevent last child margin from “pushing” outside the grey panel */
+.abstract-panel > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* (Optional, for smooth open/close) */
+.abstract-panel {
+  transition: max-height .25s ease, opacity .2s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+.abstract-panel.open {
+  display: block;
+  max-height: 2000px;                /* large enough to fit content */
+  opacity: 1;
+}
+
+
+
+
+
+/* DOI/arXiv links should look like plain text until hover */
+.pub-link {
+  color: rgb(53,53,53);
+  text-decoration: none !important;  /* override global underline */
+  border: none !important;           /* in case dotted borders were used */
+  transition: color .3s ease;
+}
+.pub-link:hover {
+  color: rgb(255,95,5);
+  text-decoration: none !important;
+}
+
+.mentor-star {
+  color: rgb(255,95,5);     /* Illinois orange */
+  font-size: 0.7rem;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <main class="research-container">
+    <h1>Research & Publications</h1>
+    <p>Click <em>Abstract</em> to view a summary. Publisher/arXiv links and category are shown beside the toggle.</p>
+
+    <!-- ===== 2025 PREPRINT — Quantum Learning Theory ===== -->
+     <h2 class="year-divider">2025</h2>
+
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title"><b>Jacob Beckey</b>, Luke Coffman, Ariel Shlosberg, Louis Schatzki, and Felix Leditzky. “Product testing with single‑copy measurements.” <em>arXiv:2510.07820</em>. October 2025.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2510.07820" target="_blank">arXiv:2510.07820</a></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s Version</span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-learn">Quantum Learning Theory</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Abstract:</strong> In this work, we study the sample complexity of two variants of product testing when restricted to single-copy measurements. 
+            In particular, we consider both bipartite product testing (i.e., does there exist at least one non-trivial cut across which the state is product) and 
+            multipartite product testing (i.e., is the state fully product across every cut). For the first variant, we prove an exponential lower bound on the 
+            sample complexity of any algorithm for this task which utilizes only single-copy measurements. When comparing this with known efficient algorithms 
+            that utilize multi-copy measurements, this establishes an exponential separation for this and several related entanglement learning tasks. For the 
+            second variant, we prove another sample lower bound that establishes a separation between single- and multi-copy strategies. To obtain our results, 
+            we prove a crucial technical lemma that gives a lower bound on the overlap between tensor products of permutation operators acting on subsystems of 
+            states that themselves carry a tensor structure. Finally, we provide an algorithm for multipartite product testing using only single-copy, local 
+            measurements, and we highlight several interesting open questions arising from this work.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2025 PREPRINT — Entanglement Theory & Characterization ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title"><span class="mentor-star">★</span>Christopher Vairogs, Akanksha Chablani, Leo Lee, Hanyang Sha, Abigail Vaughan-Lee, and <strong>Jacob L. Beckey</strong>. “Localizing entanglement in high‑dimensional states.” <em>arXiv:2510.08501</em>. October 2025.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2510.08501" target="_blank">arXiv:2510.08501</a></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s Version</span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-ent">Entanglement Theory & Characterization</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Abstract:</strong> In this work, we study the asymptotic behavior of protocols that localize entanglement in large multi-qubit states 
+            onto a subset of qubits by measuring the remaining qubits. We use the maximal average n-tangle that can be generated on a fixed subsystem by 
+            measuring its complement -- either with local or global measurements -- as our key figure of merit. These quantities are known respectively 
+            as the localizable entanglement (LE) and the entanglement of assistance (EA). We build upon the work of [arXiv:2411.04080] that proposed a 
+            polynomial-time test, based on the EA, for whether it is possible to transform certain graph states into others using local measurements. 
+            We show, using properties of the EA, that this test is effective and useful in large systems for a wide range of sizes of the measured subsystem. 
+            In particular, we use this test to demonstrate the surprising result that general local unitaries and global measurements will typically 
+            not provide an advantage over the more experimentally feasible local Clifford unitaries and local Pauli measurements in transforming large 
+            linear cluster states into GHZ states. Finally, we derive concentration inequalities for the LE and EA over Haar-random states which indicate 
+            that the localized entanglement structure has a striking dependence on the locality of the measurement. In deriving these concentration 
+            inequalities, we develop several technical tools that may be of independent interest.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2025 PRResearch — Quantum Sensing ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Tsai-Chen Lee, <strong>Jacob L. Beckey</strong>, Giacomo Marocco, Daniel Carney. “Impulse measurements enhanced with squeezed readout light.” <em>Phys. Rev. Research 7, 033041</em>. July 2025.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2502.05168" target="_blank">arXiv:2502.05168</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><a class="pub-link" href="https://journals.aps.org/prresearch/abstract/10.1103/kcm9-bqs8" target="_blank">Publisher’s Version</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Abstract:</strong> We quantify how squeezed light can reduce quantum measurement noise to levels below the standard quantum limit in impulse measurements with mechanical detectors. The broadband 
+            nature of the signal implies that frequency-dependent squeezing performs better than frequency-independent squeezing. We calculate the optimal scaling of the impulse sensitivity with the squeezing strength, 
+            and quantify degradations due to photodetection losses. Even for lossless measurement, we find there exists a fundamental limit to the benefit of squeezing that depends only on the system's mechanical properties.</p>
+      </div>
+    </section>
+
+    <h2 class="year-divider">2024</h2>
+    <!-- ===== 2024 PRA — Entanglement Theory & Characterization ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title"><span class="mentor-star">★</span>Luke Coffman, Akshay Seshadri, Graeme Smith, and <strong>Jacob L. Beckey</strong>. “Local measurement strategies for multipartite entanglement quantification.” <em>Phys. Rev. A 110, 012454</em>. July 2024.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2401.08065" target="_blank">arXiv:2401.08065</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><a class="pub-link" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.110.012454" target="_blank">Publisher’s Version</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-ent">Entanglement Theory & Characterization</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Abstract:</strong> Despite multipartite entanglement being a global property of a quantum state, a number of recent works have made it clear 
+            that it can be quantified using only local measurements. This is appealing because local measurements are the easiest to implement on current quantum
+             hardware. However, it remains an open question what protocol one should use in order to minimize the resources required to estimate multipartite 
+             entanglement from local measurements alone. In this work, we construct and compare several estimators of multipartite entanglement based solely 
+             on the data from local measurements. We first construct statistical estimators for a broad family of entanglement measures using local randomized
+              measurement (LRM) data before providing a general criterion for the construction of such estimators in terms of projective 2-designs. Importantly, 
+              this allows us to derandomize the multipartite estimation protocol based on LRMs. In particular, we show how local symmetric, informationally 
+              complete positive operator-valued measures enable multipartite entanglement quantification with only a single measurement setting. For all estimators,
+              we provide both the classical postprocessing cost and rigorous performance guarantees in the form of analytical upper bounds on the number of 
+              measurements needed to estimate the measures to any desired precision.</p>
+      </div>
+    </section>
+
+    <h2 class="year-divider">2023</h2>
+    <!-- ===== 2023 PRA — Entanglement Theory & Characterization ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Beckey, J. L., Pelegrí, G., Foulds, S., Pearson, N. J. (2023). “Multipartite entanglement measures via Bell basis measurements.” <em>Phys. Rev. A 107, 062425</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <span>—</span></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="#" target="_blank">10.1103/PhysRevA.107.062425</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-ent">Entanglement Theory & Characterization</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Introduces Bell‑basis measurement frameworks yielding computable multipartite entanglement measures with operational meaning. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2023 PRApplied — Quantum Sensing ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Polloreno, A. M., Beckey, J. L., Levin, J., Shlosberg, A., Thompson, J. K., Foss‑Feig, M., Hayes, D., Smith, G. (2023). “Opportunities and Limitations in Broadband Sensing.” <em>Phys. Rev. Applied 19, 014029</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <a class="pub-link" href="https://arxiv.org/abs/2210.02575" target="_blank">2210.02575</a></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="https://doi.org/10.1103/PhysRevApplied.19.014029" target="_blank">10.1103/PhysRevApplied.19.014029</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Characterizes bandwidth‑limited sensing performance with realistic noise and control; maps opportunities and no‑go regimes. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <h2 class="year-divider">2022</h2>
+    <!-- ===== 2022 Optics Express — Quantum Sensing (hardware/limits) ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Fradgley, E., French, C., Rushton, L., Dieudonné, Y., Harrison, L., Beckey, J. L., Miao, H., Gill, C., Petrov, P. G., Boyer, V. (2022). “Quantum limits of position‑sensitive photodiodes.” <em>Optics Express 30(22), 39374–39381</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <span>—</span></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="https://doi.org/10.1364/OE.471673" target="_blank">10.1364/OE.471673</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Establishes quantum noise constraints for position‑sensitive photodiodes and implications for precision readout. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2022 PRResearch — Quantum Sensing / QFI algorithm ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Beckey, J. L., Sone, A., Cerezo, M., Coles, P. J. (2022). “Variational Quantum Algorithm for Estimating the Quantum Fisher Information.” <em>Phys. Rev. Research 4, 013083</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <span>—</span></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="https://link.aps.org/doi/10.1103/PhysRevResearch.4.013083" target="_blank">10.1103/PhysRevResearch.4.013083</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Proposes a VQA to estimate QFI on near‑term devices, connecting metrological usefulness with circuit resources. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <h2 class="year-divider">2021</h2>
+    <!-- ===== 2021 PRA — Quantum Sensing / QFI measure ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Sone, A., Cerezo, M., Beckey, J. L., Coles, P. J. (2021). “A Generalized Measure of Quantum Fisher Information.” <em>Phys. Rev. A 104, 062602</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <span>—</span></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.104.062602" target="_blank">10.1103/PhysRevA.104.062602</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Defines and analyzes a generalized QFI measure and its operational/metrological consequences. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2021 PRL — Entanglement Theory & Characterization ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Beckey, J. L., Gigena, N., Coles, P. J., Cerezo, M. (2021). “Computable and operationally meaningful multipartite entanglement measures.” <em>Phys. Rev. Lett. 127, 140501</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <span>—</span></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="https://link.aps.org/doi/10.1103/PhysRevLett.127.140501" target="_blank">10.1103/PhysRevLett.127.140501</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-ent">Entanglement Theory & Characterization</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Constructs computable multipartite entanglement measures with clear operational interpretations. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2021 QST — Quantum Sensing / QFI foundations ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Cerezo, M., Sone, A., Beckey, J. L., Coles, P. J. (2021). “Sub‑Quantum Fisher Information.” <em>Quantum Sci. Technol. 6, 035008</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <a class="pub-link" href="https://iopscience.iop.org/article/10.1088/2058-9565/abfbef" target="_blank">(publisher page)</a></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="https://iopscience.iop.org/article/10.1088/2058-9565/abfbef" target="_blank">10.1088/2058-9565/abfbef</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Explores notions of Fisher information below the standard quantum Fisher bound and conditions for attainability. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <h2 class="year-divider">2020</h2>
+    <!-- ===== 2020 PRL — Quantum Sensing / Interferometry ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Pooser, R. C., Savino, N., Batson, E., Beckey, J. L., Garcia, J., Lawrie, B. J. (2020). “Truncated nonlinear interferometry for quantum‑enhanced atomic force microscopy.” <em>Phys. Rev. Lett. 124, 230504</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <span>—</span></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.124.230504" target="_blank">10.1103/PhysRevLett.124.230504</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Demonstrates a truncated nonlinear interferometer for enhanced AFM readout and discusses quantum advantage mechanisms. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <h2 class="year-divider">2019</h2>
+    <!-- ===== 2019 PRD — Quantum Sensing / GW detectors via EPR ===== -->
+    <section class="publication-card">
+      <div class="publication-header">
+        <h2 class="publication-title">Beckey, J. L., Ma, Y., Boyer, V., Miao, H. (2019). “Broadband quantum noise reduction in future long baseline gravitational‑wave detectors via EPR entanglement.” <em>Phys. Rev. D 100, 083011</em>.</h2>
+      </div>
+      <div class="info-bar">
+        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
+        <span class="divider"></span>
+        <span class="info-item">arXiv: <a class="pub-link" href="https://arxiv.org/abs/1909.03603" target="_blank">1909.03603</a></span>
+        <span class="divider"></span>
+        <span class="info-item">Publisher’s version: <a class="pub-link" href="https://link.aps.org/doi/10.1103/PhysRevD.100.083011" target="_blank">10.1103/PhysRevD.100.083011</a></span>
+        <span class="divider"></span>
+        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
+      </div>
+      <div class="abstract-panel">
+        <p><strong>Placeholder:</strong> Proposes EPR‑entanglement‑based scheme for broadband quantum noise reduction in next‑gen GW detectors; analyzes sensitivity gains. Replace with official abstract.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2022–2021–2023 remaining entries placed above as needed ===== -->
+  </main>
+  <script>
+  function toggleAbstract(btnEl) {
+    const card  = btnEl.closest('.publication-card');
+    const panel = card.querySelector('.abstract-panel');
+    const icon  = btnEl.querySelector('i');
+    const label = btnEl.querySelector('span');
+
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open');      // only toggle the panel
+    if (isOpen) {
+      icon.classList.remove('ph-minus');
+      icon.classList.add('ph-plus');
+      label.textContent = 'Abstract';
+    } else {
+      icon.classList.remove('ph-plus');
+      icon.classList.add('ph-minus');
+      label.textContent = 'Hide Abstract';
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+
+\setlength{\parindent}{0pt}
+
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+\title{MATH 416 Homework Week 3}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Week 6 - Homework 5 \\ \textbf{Assigned:} Fri. Oct. 3, 2025 \\ \textbf{Due:} Fri. Oct. 10, 2025 (by 8pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{10} \textbf{Rank of a Matrix}\\
+
+Consider the matrix
+\[
+A = \begin{bmatrix}
+1 & 0 & 1 \\
+0 & 1 & 1 \\
+1 & 1 & 2
+\end{bmatrix}.
+\]
+
+\begin{enumerate}
+\item[(i)] (3 points). Compute the column rank and the row rank of \(A\) by finding maximal linearly independent sets of columns and of rows.
+
+\item[(ii)] (3 points). Prove the following proposition (the \emph{column–row factorization}):  
+If the column rank of a matrix \(A \in M_{m \times n}(\mathbb{F})\) is \(r\), then there exist matrices
+\[
+C \in M_{m \times r}(\mathbb{F}), \qquad R \in M_{r \times n}(\mathbb{F})
+\]
+such that
+\[
+A = C R.
+\]
+\textit{Hint: let the columns of \(C\) be a maximal linearly independent set of columns of \(A\), and argue that every column of \(A\) is a linear combination of these.}
+\item[(iii)](1 point). Find $C$ and $R$ such that their product yields the $A$ from part (i).
+\item[(iv)] (3 points). Use the factorization in (ii) to prove that the column rank of any matrix equals its row rank.  
+\textit{Hint: Take transposes and interpret column rank of \(A^T\) as row rank of \(A\).}
+\end{enumerate}
+
+
+
+
+\medskip\newex{2}{10} \textbf{Invertibility, Isomorphisms, and Basis Change}
+
+\begin{enumerate}
+    \item[(i)] (2 points). Suppose $T \in \mathcal{L}(U,V)$ and  $S \in \mathcal{L}(V,W)$ are both invertible. Prove that $ST \in \mathcal{L}(U,W)$ is invertible and $(ST)^{-1} = T^{-1} S^{-1}$.
+     \item[(ii)] (4 points). Suppose $V$ is finite-dimensional and $S,T \in \mathcal{L}(V).$ Prove that
+     \begin{align*}
+         ST \text{ is invertible} \Leftrightarrow S,T \text{ are both invertible}.
+     \end{align*}
+     \item[(iii)] (4 points). Suppose $V$ is finite-dimensional and $T \in \mathcal{L}(V)$. Prove that $T$ has the same matrix with respect to every basis of $V$ if and only if $T$ is a scalar multiple of the identity.
+    \end{enumerate}
+
+
+\textbf{(optional) Bonus Question} (2 points): \textbf{Rank-1 Decomposition}\\
+
+Prove that every matrix $A \in M_{m \times n}(\mathbb{F})$ of rank $r$ can be written as a sum of $r$ matrices of rank $1$. 
+That is, show that there exist column vectors $u_1, \dots, u_r \in \mathbb{F}^{m \times 1}$ and row vectors $v_1^T, \dots, v_r^T \in \mathbb{F}^{1 \times n}$ such that
+\[
+A = u_1 v_1^T + u_2 v_2^T + \cdots + u_r v_r^T.
+\]
+
+\textit{Motivation.} This statement shows that we can build up matrices in terms of ``rank-1 outer products'' (i.e. a column times a row vector) building blocks. Later, we will see that the so-called \textit{Singular Value Decomposition (SVD)} is a refinement of this idea: it expresses any matrix as a sum of rank-1 outer products, but with the additional structure that the vectors form orthonormal bases and the coefficients are nonnegative singular values. The SVD has far-reaching consequences for data science, machine learning, entanglement theory, and many more fields. 
+
+
+
+\end{document}

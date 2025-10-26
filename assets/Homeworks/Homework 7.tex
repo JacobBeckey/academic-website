@@ -1,0 +1,110 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=orange,urlcolor=orange,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+
+\setlength{\parindent}{0pt}
+
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+\title{MATH 416 Homework Week 3}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Week 9 - Homework 7 \\ \textbf{Assigned:} Fri. Oct. 24, 2025 \\ \textbf{Due:} Fri. Oct. 31, 2025 (by 8pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{5} \textbf{Eigenspaces and Diagonalizable Operators}\\
+Note that these two problems are both related to eigenspaces and diagonalizable operators, but are otherwise distinct.
+\begin{enumerate}
+    \item[(a)] (1 point) Suppose $T \in \mathcal{L}(V)$ is invertible. Prove that 
+\begin{align}
+    E(\lambda, T) = E(\lambda^{-1},T^{-1}) 
+\end{align}
+for every $\lambda \in \mathbb{F}$ with $\lambda \neq 0$.
+\item[(b)] (4 points) Suppose $V$ is finite-dimensional and $T \in \mathcal{L}(V)$. Let $\lambda_1, \dots, \lambda_m$ denote distinct non-zero eigenvalues of $T$. Prove that 
+\begin{align}
+    \dim{E(\lambda_1,T)} + \dotsm + \dim{E(\lambda_m,T)} \leq \dim{\operatorname{range}{T}}.
+\end{align}
+\end{enumerate}
+
+
+\newpage
+
+\newex{2}{5} \textbf{Commuting Operators}\\
+Suppose $A$ is a diagonal matrix \textit{with distinct entries on the diagonal} and $B$ is a matrix of the same size as $A$. Show that $AB=BA$ if and only if $B$ is a diagonal matrix.
+\newpage
+
+\newex{3}{5} \textbf{Inner Products and Norms}
+\begin{itemize}
+    \item[(a)] (3 points) Suppose $u,v$ are non-zero vectors in $\mathbb{R}^2$. Prove that
+    \begin{align}
+        \langle u, v\rangle = \|u\|\|v\| \cos{\theta},
+    \end{align}
+    where $\theta$ is the angle between $u,v$ when we think of $u,v$ as arrows with bases at the origin. 
+    \textit{Hint: Use the law of cosines on the triangle formed by $u$, $v$, and $u-v$.}
+    \item[(b)] (2 points) Once $n>3$, we lose the ability to picture vectors in $\mathbb{R}^n$ geometrically. In light of part (a), how might we define the angle between vectors in $\mathbb{R}^n$? Use Cauchy-Schwarz to explain why this definition makes sense.
+\end{itemize}
+\newpage
+
+\textbf{(Optional) Bonus Problem} (3 points): \textit{Fibonacci Sequence via Linear Algebra }\\
+This problem is not strictly useful, but it is fun and cool, so I encourage you to try it anyway! The Fibonacci sequence arises in many unexpected places throughout mathematics, physics, and nature generally. In this problem, you will use your newly acquired linear algebra skills to derive a closed-form formula for the $n$-th term in the sequence.\\
+
+The \textit{Fibonacci Sequence} is defined recursively via the following equations 
+\begin{align}
+    F_0 &= 0,\\
+    F_1 &= 1,\\
+    F_n &= F_{n-2} + F_{n-1}, \quad \forall~n \geq 2.
+\end{align}
+Define $T \in \mathcal{L}(\mathbb{R}^2)$ by $T(x,y) = (y,x+y)$.
+\begin{enumerate}
+    \item[(a)] (1 point) Show that $T^n(0,1) = (F_n,F_{n+1})$ for each non-negative integer $n$.
+    \item[(b)] (1 point) Find the eigenvalues and corresponding eigenvectors of $T$.
+    \item[(c)] (1 point) Use your solution in (b) to compute $T^n(0,1)$. Conclude that 
+    \begin{align}
+        F_n = \frac{1}{\sqrt{5}} \left[\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right].
+    \end{align}
+    This is known as \textit{Binet's formula}, named after French mathematician Jacques Philippe Marie Binet, though it was already known by Abraham de Moivre and Daniel Bernoulli (see \href{https://en.wikipedia.org/wiki/Fibonacci_sequence#Binet's_formula}{wikipedia}). 
+\end{enumerate}
+
+\end{document}

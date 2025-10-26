@@ -1,0 +1,103 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+
+\setlength{\parindent}{0pt}
+
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+\title{MATH 416 Homework Week 3}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Week 7 - Homework 6 \\ \textbf{Assigned:} Fri. Oct. 10, 2025 \\ \textbf{Due:} Fri. Oct. 17, 2025 (by 8pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{7} \textbf{Basis change matrices}
+
+Let $V=\bR^3$, and consider the standard basis $\cS = \lbrace e_1,e_2,e_3\rbrace$ and the bases $\cB = \lbrace v_1,v_2,v_3\rbrace$ and $\cB' = \lbrace w_1,w_2,w_3\rbrace$ with
+\begin{align*}
+ v_1 &= (1,1,1)^T & v_2&= (1,-1,0)^T & v_3 &= (1,0,1)^T\\
+ w_1 &=(1,0,1)^T & w_2 &= (1,-1,1)^T & w_3 &= (1,1,0)^T.
+\end{align*}
+\begin{enumerate}[(i)]
+	\item (2 points) Compute $A = \cM(I_V)_{\cB,\cS}$ and $B = \cM(I_V)_{\cS,\cB}$ and verify that $B = A^{-1}$.
+	\item (2 points) Compute $C = \cM(I_V)_{\cB',\cS}$ and $D = \cM(I_V)_{\cS,\cB'}$ and verify that $D = C^{-1}$.
+	\item (2 points) Compute $E = \cM(I_V)_{\cB,\cB'}$ and $F = \cM(I_V)_{\cB',\cB}$ and verify that $F = E^{-1}$.
+	\item (1 point) What is the relationship between $\cM(I_V)_{\cB,\cB'}$, $\cM(I_V)_{\cS,\cB'}$, and $\cM(I_V)_{\cB,\cS}$?
+\end{enumerate}
+
+\newex{2}{3} \textbf{Linear maps as matrices}
+
+Let $T\colon \mathbb{R}^3\to \mathbb{R}^3$ be the linear map defined by
+\begin{align*}
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix} \mapsto 
+\begin{pmatrix}
+2x - 3y\\ x+y+z\\ 3y-z
+\end{pmatrix},
+\end{align*}
+and let $\cS,\cB,\cB'$ be the bases from Exercise 1.
+\begin{enumerate}[(i)]
+	\item (2 points) Determine $\cM(T)_{\cS,\cS}$ and $\cM(T)_{\cB,\cB'}$ using the definition of the matrix representation of a linear map.
+	\item (1 point) Verify that $\cM(T)_{\cB,\cB'} = \cM(I_V)_{\cS,\cB'} \cM(T)_{\cS,\cS} \cM(I_V)_{\cB,\cS}$.
+\end{enumerate}
+
+\newex{3}{5} \textbf{Reverse Triangle Inequality}\\
+
+For this problem, let $w,z \in \mathbb{C}$. And recall that $\bar{z}$ denotes the complex conjugate of $z$.
+
+\begin{itemize}
+    \item[(i)] (1 point) Prove that $|\mathrm{Re}[{z}]| \leq |z|$ and $|\mathrm{Im}[z]|\leq|z|$.
+    \item[(ii)] (1 point) Prove that $|zw|=|z||w|$.
+    \item[(iii)] (3 points) Prove the reverse triangle inequality
+    \begin{align}
+        \left| |w|-|z|\right| \leq |w-z|,
+    \end{align}
+    for all $w,z \in \mathbb{C}$. 
+\end{itemize}
+\textit{ Hint: see page 121 of Axler or Lecture 17 notes for a proof of the standard triangle inequality. }
+
+\end{document}

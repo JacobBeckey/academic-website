@@ -1,0 +1,143 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+
+\setlength{\parindent}{0pt}
+
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+\title{MATH 416 Homework Week 3}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Week 5 - Homework 4 \\ \textbf{Assigned:} Fri. Sept. 26, 2025 \\ \textbf{Due:} Fri. Oct. 3, 2025 (by 8pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{6} Injectivity and surjectivity
+
+Let $V$ be a (finite-dim.) vector space over a field $\mathbb{F}$. 
+Let $v_1,\dots,v_m\in V$ and define the linear map 
+\begin{align*}
+T\colon \mathbb{F}^m &\to V,\quad 
+\begin{pmatrix}
+x_1\\ \vdots\\ x_m
+\end{pmatrix} \mapsto \sum_{i=1}^m x_i v_i.
+\end{align*}
+\begin{enumerate}[(i)]
+	\item Prove that $T$ is injective if and only if $\lbrace v_1,\dots,v_m\rbrace$ are linearly independent.
+	\item Prove that $T$ is surjective if and only if $V = \mathrm{span}\{ v_1,\dots,v_m\}$.
+\end{enumerate}
+
+\medskip\newex{2}{4} Linear maps as matrices I
+
+Let $V,W$ be finite-dimensional vector spaces over a field $\mathbb{F}$, and fix bases $\cB_V = \lbrace v_1,\dots, v_n\rbrace$ for $V$ and $\cB_W = \lbrace w_1,\dots,w_m\rbrace$ for $W$.
+In the following, we abbreviate $\cM(\cdot) = \cM(\cdot)_{\cB_V,\cB_W}$.
+
+Show that:
+
+\begin{enumerate}[(i)]
+	\item $\cM(S+T) = \cM(S) + \cM(T)$ for $S,T\in\cL_\bF(V,W)$.
+	\item $\cM(aT) = a \cM(T)$ for $a\in\bF$ and $T\in\cL_\bF(V,W)$.
+\end{enumerate}
+
+\medskip\newex{3}{4} Linear maps as matrices II
+
+Consider the following linear map:
+\begin{align*}
+T\colon \bR^3 &\to \bR^4,\quad 
+\begin{pmatrix}
+x_1\\x_2\\x_3
+\end{pmatrix}
+\mapsto
+\begin{pmatrix}
+x_1 - x_2 + x_3\\
+x_1 - x_2 - x_3\\
+x_1 + x_2\\
+x_2 - x_3
+\end{pmatrix}
+\end{align*}
+\begin{enumerate}[(i)]
+	\item Determine $\cM(T)_{\cS_3,\cS_4}$, where $\cS_3$ and $\cS_4$ are the standard bases in $\bR^3$ and $\bR^4$, respectively.
+	\item Let now 
+	\begin{align*}
+	\cB_V &= \left\lbrace \left(\begin{smallmatrix}
+	1\\0\\0
+	\end{smallmatrix}\right),
+	\left(\begin{smallmatrix}
+	1\\1\\0
+	\end{smallmatrix}\right)
+	,
+	\left(\begin{smallmatrix}
+	1\\1\\1
+	\end{smallmatrix}\right)\right\rbrace & 
+	\cB_W &= \left\lbrace \left(\begin{smallmatrix}
+	1\\0\\1\\0
+	\end{smallmatrix}\right)
+	,
+	\left(\begin{smallmatrix}
+	0\\-1\\1\\0
+	\end{smallmatrix}\right)
+	,
+	\left(\begin{smallmatrix}
+	0\\0\\1\\1
+	\end{smallmatrix}\right)
+	,
+	\left(\begin{smallmatrix}
+	0\\0\\1\\0
+	\end{smallmatrix}\right)\right\rbrace
+	\end{align*}
+	and determine $\cM(T)_{\cB_V,\cB_W}$.
+	
+	{\itshape Remark: You do not need to show that $\cB_V$ and $\cB_W$ are indeed bases for $\bR^3$ and $\bR^4$, respectively.}
+\end{enumerate}
+
+\textbf{(optional) Bonus Question} (2 points): \textbf{Projection Operators}\\
+Let $P \in \mathcal{L}(V)$ such that $P^2 =P$. Such operators are called \textit{projection operators} or \textit{projectors} and they play a fundamental role in linear algebra, representation theory, quantum mechanics, data science, and many more fields. 
+
+\begin{enumerate}
+    \item[(i)] Suppose $P \in \mathcal{L}(V)$ and $P^2 = P$. Prove that $V = \operatorname{null}{P} \oplus \operatorname{range}{P}$.
+\end{enumerate}
+
+
+\end{document}
