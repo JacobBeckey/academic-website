@@ -912,6 +912,18 @@ footer p {
   margin-bottom: 2rem;
 }
 
+.profile-icon {
+  height: 1.6rem;
+  width: 1.6rem;
+  opacity: 0.8;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.profile-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 .research-heading h1 {
   margin: 0; /* prevent forced line breaks */
   font-size: 2.5rem;
@@ -939,3 +951,11 @@ footer p {
   text-align-last: left; /* prevents awkward last-line spacing */
 }
 
+.research-container .mentor-note {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  background: #f4f4f4;
+  border-radius: 0.6rem;
+  font-size: 0.85rem;
+}

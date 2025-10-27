@@ -33,6 +33,7 @@ a,
   display: flex;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .logo-container img {
@@ -726,4 +727,10 @@ footer p {
   color: #FF552E; /* Illinois orange hover */
 }
 
+nav a:hover {
+  color: rgb(255,95,5);
+  text-decoration: underline;
+  text-underline-offset: 2.2rem;
+  text-decoration-color: rgb(255, 95, 5);
+}
 
