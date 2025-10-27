@@ -1,3 +1,7 @@
+/* =========================================
+   GLOBAL SITE STYLES (original content)
+   ========================================= */
+
 /* GENERAL */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
@@ -20,7 +24,6 @@ p {
 }
 
 /* TRANSITION */
-
 a,
 .btn {
   transition: all 300ms ease;
@@ -33,6 +36,7 @@ a,
   display: flex;
   align-items: center;
   gap: 1rem;
+  cursor: pointer; /* interactive cursor for logo */
 }
 
 .logo-container img {
@@ -63,10 +67,7 @@ a,
   transition: box-shadow 0.3s ease;
 }
 
-
-
 /* Responsive Behavior */
-
 
 nav,
 .nav-links {
@@ -195,7 +196,9 @@ p a:hover{
   transform: none;
 }
 
-/* SECTIONS */
+/* =========================================
+   SECTIONS (HOMEPAGE LAYOUT)
+   ========================================= */
 
 section {
   padding-top: 2vh;
@@ -385,13 +388,13 @@ section {
 }
 
 .experience-sub-title.text {
-      font-size: 12pt;
-      text-align: center;
-      font-weight: 400;
-      line-height: 1.6;
-      color: rgb(85, 85, 85);
-      font-family: 'Poppins', sans-serif;
-    }
+  font-size: 12pt;
+  text-align: center;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgb(85, 85, 85);
+  font-family: 'Poppins', sans-serif;
+}
 
 .experience-details-container {
   display: flex;
@@ -675,4 +678,264 @@ footer p {
   text-decoration: underline;
 }
 
+/* =========================================
+   RESEARCH PAGE STYLES (Scoped)
+   ========================================= */
+
+.research-container {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.research-container h1 {
+  font-size: 2.5rem;
+  color: rgb(53, 53, 53);
+  border-bottom: 2px solid rgb(255, 95, 5);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.research-container .publication-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* important for abstract background flush */
+  margin-bottom: 2rem;
+}
+
+.research-container .publication-header {
+  padding: 1.25rem 2rem 0.75rem;
+}
+
+.research-container .publication-title {
+  font-size: 1.1rem;
+  font-weight: 400; /* not bold */
+  color: rgb(53, 53, 53);
+  margin: 0 0 0.2rem;
+}
+
+/* Info bar under title */
+.research-container .info-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 2rem 1rem;
+  flex-wrap: wrap;
+}
+
+.research-container .info-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: rgb(85, 85, 85);
+  white-space: nowrap;
+}
+
+.research-container .divider {
+  width: 1px;
+  height: 18px;
+  background: #e3e3e3;
+}
+
+/* Abstract toggle button */
+.research-container .abstract-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(255, 95, 5);
+  color: rgb(255, 95, 5);
+  background: #fff;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+.research-container .abstract-btn:hover {
+  background: rgb(255, 95, 5);
+  color: #fff;
+}
+
+/* DOI/arXiv links — plain until hover */
+.research-container .pub-link {
+  color: rgb(53,53,53);
+  text-decoration: none !important;  /* override global underline */
+  border: none !important;
+  transition: color .3s ease;
+}
+.research-container .pub-link:hover {
+  color: rgb(255,95,5);
+  text-decoration: none !important;
+}
+
+/* Category badges */
+.research-container .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .2rem .6rem;
+  font-size: .8rem;
+  font-weight: 400;
+  border-radius: .75rem;
+  color: #fff;
+}
+.research-container .badge-sensing { background:#006230; }
+.research-container .badge-ent { background: #5C0E41; }
+.research-container .badge-learn { background: #1D58A7; }
+
+/* =====================
+   Abstract Panel (Final)
+   ===================== */
+
+.research-container .abstract-panel {
+  background: #f7f7f7;
+  border-top: 1px solid #eee;
+  padding: 0;                     /* completely collapse horizontally too */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+/* fully expanded (open) */
+.research-container .abstract-panel.open {
+  padding: 1.25rem 2rem 1.75rem;  /* vertical + horizontal when open */
+  max-height: 1000px;             /* big enough for most abstracts */
+  opacity: 1;
+}
+
+/* remove bottom whitespace */
+.research-container .abstract-panel > :last-child {
+  margin-bottom: 0 !important;
+}
+
+
+/* Year dividers */
+.research-container .year-divider {
+  font-size: 2rem;
+  font-weight: 500;
+  color: rgb(53, 53, 53);
+  border-bottom: 2px solid rgb(255, 95, 5);
+  padding-bottom: 0.3rem;
+  margin: 3rem 0 1.5rem;
+}
+.research-container .year-divider + .publication-card { margin-top: 1rem; }
+
+/* Mentorship star */
+.research-container .mentor-star {
+  color: rgb(255,95,5);
+  font-size: 0.7rem;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+/* Neutralize homepage <section> layout for research cards */
+.research-container section.publication-card {
+  padding-top: 0;
+  height: auto;
+  margin: 0 0 2rem 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* Open state */
+.research-container .abstract-panel.open {
+  padding: 1.25rem 2rem 1.75rem;  /* restore vertical padding only when open */
+  max-height: 1000px;             /* large enough for typical abstracts */
+  opacity: 1;
+}
+
+/* Avoid bottom-margin causing a white gap */
+.research-container .abstract-panel > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* =====================================
+   FINAL PATCH — Accordion Fix Override
+   ===================================== */
+
+/* 1️⃣ Ensure panels start collapsed cleanly with zero padding */
+.research-container .abstract-panel {
+  text-align: justify;
+  padding: 0 !important;             /* collapse padding when closed */
+  max-height: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  background: #f7f7f7 !important;
+  border-top: 1px solid #eee !important;
+}
+
+/* 2️⃣ When open — restore full space and text visibility */
+.research-container .abstract-panel.open {
+  display: block !important;
+  opacity: 1 !important;
+  padding: 1.25rem 2rem 1.75rem !important; /* inner horizontal padding restored */
+  max-height: 1500px !important;            /* allow plenty of room */
+  overflow: visible !important;
+}
+
+/* 3️⃣ Make sure text inside is visible */
+.research-container .abstract-panel.open p,
+.research-container .abstract-panel.open * {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 4️⃣ Tighten card horizontal spacing while closed */
+.research-container .publication-card {
+  margin: 0 auto 1.5rem auto !important;
+  padding: 0 !important;
+  max-width: 1000px;
+}
+
+/* 5️⃣ Ensure no ghost padding remains on info bar */
+.research-container .info-bar {
+  padding: 0.5rem 1.5rem 0.5rem !important;
+}
+
+/* ============= Research Page Profile Links ============= */
+.research-profile-links {
+  display: flex;
+  justify-content: flex-end; /* move to right side */
+  margin-top: -2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Align Research header text and icons */
+.research-heading {
+  display: flex;
+  align-items: center; /* vertically align icon to text */
+  gap: 0.75rem; /* spacing between text and icon */
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.research-heading h1 {
+  margin: 0; /* prevent forced line breaks */
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.scholar-icon {
+  height: 1.7rem;
+  opacity: 0.8;
+  transition: opacity 200ms ease, transform 200ms ease;
+  cursor: pointer;
+}
+
+.scholar-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Justify research intro paragraph */
+.research-container > p {
+  text-align: justify;
+  line-height: 1.65;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-align-last: left; /* prevents awkward last-line spacing */
+}
 
