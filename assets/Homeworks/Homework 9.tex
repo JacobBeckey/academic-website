@@ -1,0 +1,121 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=orange,urlcolor=orange,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+
+\setlength{\parindent}{0pt}
+
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+\title{MATH 416 Homework Week 3}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Week 11 - Homework 9 \\ \textbf{Assigned:} Fri. Nov. 7, 2025 \\ \textbf{Due:} Fri. Nov. 14, 2025 (by 8pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{5} \textbf{Minimization via Orthogonal Projection}\\
+ 
+Find $p \in \mathcal{P}_3(\mathbb{R})$ such that $p(0)=0, p'(0)=0,$ and $\int_{0}^1 |2+3x-p(x)|^2 dx$ is as small as possible.
+
+\newpage
+\bigskip\newex{2}{5} \textbf{Adjoints and Self-Adjoint Operators}\\
+
+\begin{enumerate}[(a)]
+    \item (3 points) Suppose $V$ is finite dimensional and $\varphi$ is a linear functional on $V$ (i.e. $\varphi \in \mathcal{L}(V,\mathbb{F})).$ Then, there is a unique vector $v \in V$ such that 
+\begin{align}
+    \varphi(u) = \langle u ,v \rangle,
+\end{align}
+for every $u \in V$.
+\item (2 points) Use (a) to argue why the definition of the adjoint makes sense. 
+\end{enumerate}
+\textit{Hint: The result in part (a) is called the Riesz representation theorem and you may find it useful to peruse Axler 6B to learn more!}
+
+\newpage
+
+\bigskip \newex{3}{5} \textbf{Spectral Theorem}
+
+Consider the self-adjoint matrix
+\begin{align*}
+A = \begin{pmatrix}
+2 & 1-i\\
+1+i & 3
+\end{pmatrix}.
+\end{align*}
+\begin{enumerate}[(a)]
+    \item (2 points) Prove that a normal operator on a complex inner product space is self-adjoint if and only if all its eigenvalues are real.
+	\item (2 points) Find the eigenvalues of $A$ and an orthonormal basis $\cB$ for $\mathbb{C}^2$ consisting of eigenvectors.
+	\item (1 point) Let $U = \cM(I)_{\cB,\cS}$, and compute $U^*AU$. What do you find?
+\end{enumerate}
+ \newpage 
+
+ \newpage
+\noindent \textbf{(Optional) Bonus Question} (3 points): \textit{Self-adjoint maps and Pauli matrices}\\
+Some of the most important objects in theoretical physics are the Pauli matrices $I,X,Y,Z\in M_2(\mathbb{C})$, defined as
+\begin{align*}
+I &= \begin{pmatrix}
+1 & 0\\0&1
+\end{pmatrix} &
+X&= \begin{pmatrix}
+0 & 1\\ 1&0
+\end{pmatrix}&
+Y&= \begin{pmatrix}
+0 & -i\\ i & 0
+\end{pmatrix}&
+Z&= \begin{pmatrix}
+1&0\\0&-1
+\end{pmatrix}.
+\end{align*}
+Let the \textit{real} vector space of all self-adjoint complex $(2\times 2)$-matrices be defined $\cH_2 = \lbrace A\in M_2(\mathbb{C})\colon A^* = A\rbrace$. Moreover, let us define an inner product on this space as
+    \begin{align}
+        \langle A,B \rangle = \tr{[AB]},
+    \end{align}
+    where the \textit{trace} of a matrix is defined as $\tr{[A]} = \sum_{i=1}^n A_{ii}$ (i.e. the sum of the diagonal terms). 
+\begin{enumerate}[(a)]
+    \item (1 point)  Show that $\lbrace I,X,Y,Z\rbrace$ is a linearly independent list with respect to this inner product.
+    \item (1 point) Formally prove that the $\dim_{\mathbb{R}} \cH_2 = 4$.
+    \item (1 points) What are the eigenvalues of these matrices? 
+
+\end{enumerate}
+
+\end{document}

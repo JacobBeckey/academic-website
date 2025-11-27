@@ -858,7 +858,8 @@ footer p {
 /* 1️⃣ Ensure panels start collapsed cleanly with zero padding */
 .research-container .abstract-panel {
   text-align: justify;
-  padding: 0 !important;             /* collapse padding when closed */
+  padding: 0 !important;          /* no inner padding when closed */
+  margin: 0 !important;           /* don't touch card padding when closed */
   max-height: 0 !important;
   opacity: 0 !important;
   overflow: hidden;
@@ -867,14 +868,22 @@ footer p {
   border-top: 1px solid #eee !important;
 }
 
+
+
 /* 2️⃣ When open — restore full space and text visibility */
 .research-container .abstract-panel.open {
   display: block !important;
   opacity: 1 !important;
-  padding: 1.25rem 2rem 1.75rem !important; /* inner horizontal padding restored */
-  max-height: 1500px !important;            /* allow plenty of room */
+
+  /* nice inner padding so text lines up with the title */
+  padding: 1.25rem 2rem 1.75rem !important;
+  margin: 0 !important;  /* no need for negative margins anymore */
+
+  max-height: 1500px !important;
   overflow: visible !important;
 }
+
+
 
 /* 3️⃣ Make sure text inside is visible */
 .research-container .abstract-panel.open p,
@@ -883,12 +892,30 @@ footer p {
   opacity: 1 !important;
 }
 
-/* 4️⃣ Tighten card horizontal spacing while closed */
+/* 4️⃣ Card spacing – shared by research + resources */
 .research-container .publication-card {
   margin: 0 auto 1.5rem auto !important;
-  padding: 0 !important;
+  padding: 0.75rem 0 1rem 0 !important;  /* smaller top/bottom, 0 left/right */
   max-width: 1000px;
 }
+
+.research-container .publication-card .abstract-panel.open {
+  /* internal padding for text */
+  padding: 1.25rem 2rem 1.75rem !important;
+
+  /* pull panel outward slightly — but keep left/right padding visible */
+  margin: 0 0rem -1rem !important;
+  /*        ↑    ↑     ↑
+            |    |     └── still removes bottom halo
+            |    └──────── keeps 1rem of side padding
+            └───────────── no top offset needed */
+
+  max-height: 1500px !important;
+  overflow: visible !important;
+}
+
+
+
 
 /* 5️⃣ Ensure no ghost padding remains on info bar */
 .research-container .info-bar {
@@ -951,11 +978,342 @@ footer p {
   text-align-last: left; /* prevents awkward last-line spacing */
 }
 
+/* Mentor note – soft card style to match TOC/legend */
 .research-container .mentor-note {
-  margin-top: 1.75rem;
-  margin-bottom: 0.5rem;
-  padding: 0.6rem 0.9rem;
-  background: #f4f4f4;
-  border-radius: 0.6rem;
+  margin: 1.75rem 0 0.5rem;
+  padding: 0.7rem 1rem;
+  background: #f7f7f7;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.9rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
+
+/* =========================================
+   Student Resources – Difficulty & Audience
+   ========================================= */
+
+/* Base for difficulty & audience badges on the research/resources pages */
+.research-container .badge-difficulty,
+.research-container .badge-audience {
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+}
+
+/* Difficulty colors – solid, high contrast with white text
+   (text remains white from .research-container .badge) */
+.research-container .badge.badge-intro {
+  background-color: #1b7a3c;  /* dark green */
+}
+
+.research-container .badge.badge-intermediate {
+  background-color: #c26a00;  /* deep orange */
+}
+
+.research-container .badge.badge-advanced {
+  background-color: #b21b1b;  /* deep red */
+}
+
+/* Audience colors – also solid, white text */
+.research-container .badge.badge-physics {
+  background-color: #2846a1;  /* deep blue */
+}
+
+.research-container .badge.badge-math {
+  background-color: #653cb8;  /* your brand purple */
+}
+
+.research-container .badge.badge-cs {
+  background-color: #005c99;  /* deep blue/teal */
+}
+
+.research-container .badge.badge-mixed {
+  background-color: #555555;  /* dark gray */
+}
+
+/* Legend spacing */
+.resources-legend .badge {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+/* Global Difficulty / Audience legend bar */
+.research-container .resources-legend {
+  background: #f7f7f7;
+  border: 1px solid #e2e2e2;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+  padding: 0.9rem 1.25rem;
+  margin: 1.5rem 0 2rem 0;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;   /* ↓ tighter, more elegant spacing */
+  font-size: 0.95rem;
+  color: #444;
+}
+
+
+
+/* ================================
+   Student Resources – header row
+   ================================ */
+
+/* (still available if you use resource-title-row anywhere) */
+.research-container .resource-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;      /* allows wrapping on small screens */
+}
+
+.research-container .resource-badges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Make the description look good inside the accordion */
+.research-container .resource-description {
+  text-align: justify;
+  line-height: 1.65;
+  color: rgb(85, 85, 85);
+  font-size: 0.95rem;
+}
+
+/* If any resource cards still have an info-bar, hide it */
+.research-container .resource-card .info-bar {
+  display: none;
+}
+
+
+/* =============================
+   Resource Meta Row Formatting
+   ============================= */
+
+.research-container .resource-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.35rem 0 0.75rem 0;
+}
+
+/* Group label + badge or link together */
+.research-container .resource-meta-row .meta-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Labels (Difficulty, Audience) */
+.research-container .resource-meta-row .meta-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgb(90, 90, 90);
+}
+
+/* Vertical dividers between sections */
+.research-container .resource-meta-row .meta-divider {
+  width: 1px;
+  height: 18px;
+  background: #e0e0e0;
+  margin: 0 0.4rem;
+}
+
+
+/* =============================
+   Learn More button
+   ============================= */
+
+.research-container .learnmore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(255, 95, 5);
+  background: #fff;
+  color: rgb(255, 95, 5);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.research-container .learnmore-btn:hover {
+  background: rgb(255, 95, 5);
+  color: #fff;
+}
+
+/* Plus icon turns into × when open (your JS should toggle .open) */
+.research-container .learnmore-btn.open i {
+  transform: rotate(45deg);
+}
+
+/* Ensure minus icon from Phosphor displays as a clean horizontal dash */
+.learnmore-btn i.ph-minus,
+.abstract-btn i.ph-minus {
+  transform: none !important;    /* override any accidental rotation */
+  font-weight: 600;              /* makes the dash visually stronger */
+  line-height: 1;                
+}
+
+.research-container .publication-header .publication-title {
+  margin-bottom: 0.3rem;
+}
+
+.research-container .publication-header .resource-meta-row {
+  margin-top: 0.85rem !important;
+}
+
+/* ============================
+   Resources – Table of Contents
+   ============================ */
+
+.resource-toc {
+  margin: 2rem 0 2.5rem;
+  padding: 1.2rem 1.6rem;
+  background: #f7f7f7;
+  border-radius: 1rem;
+  border: 1px solid #e2e2e2;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  align-items: flex-start;
+}
+
+/* "Browse by topic" label column */
+.resource-toc .toc-title {
+  margin: 0;
+  min-width: 150px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  color: rgb(53, 53, 53);
+}
+
+/* Link list column */
+.resource-toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  column-gap: 1.75rem;
+  row-gap: 0.15rem;
+}
+
+.resource-toc li {
+  font-size: 0.95rem;
+}
+
+/* Links styled like subtle navigation */
+.resource-toc a {
+  color: rgb(53, 53, 53);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.resource-toc a:hover {
+  color: rgb(255, 95, 5);            /* still turns orange */
+  text-decoration: none !important;  /* no underline */
+  border-bottom-color: transparent;  /* prevents subtle underline ghosts */
+}
+
+
+/* Mobile: stack title above list */
+@media (max-width: 768px) {
+  .resource-toc {
+    flex-direction: column;
+  }
+
+  .resource-toc .toc-title {
+    min-width: 0;
+  }
+}
+
+/* Classic resource star — only takes space when actually used */
+.resource-classic-star {
+  display: none;                 /* default: no star, no indentation */
+  margin-right: 0;
+}
+
+/* For cards that SHOULD show a star, add class="resource-card classic" */
+.resource-card.classic .resource-classic-star {
+  display: inline-block;
+  color: rgb(255, 95, 5);        /* UIUC orange */
+  font-size: 1rem;
+  margin-right: 0.45rem;
+  position: relative;
+  top: -1px;                     /* nudge to sit nicely on baseline */
+}
+
+
+/* ================================
+   Resources: card padding / spacing
+   ================================ */
+
+/* Tighten the gap between the title line and the body text */
+.research-container .resource-card .resource-description {
+  margin-top: 0.75rem;
+}
+
+/* Resources: use slightly tighter padding than the default publication-card */
+.research-container .resource-card {
+  padding: 1.25rem 2rem 1.75rem !important;  /* more bottom padding */
+}
+
+
+
+/* =========================================
+   RESOURCES PAGE – final padding/flush fix
+   ========================================= */
+.research-container .resource-card .abstract-panel {
+  padding: 0 !important;
+  margin: 0 -2rem -1.75rem !important;  /* bottom matches card padding */
+  max-height: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.research-container .resource-card .abstract-panel.open {
+  display: block !important;
+  opacity: 1 !important;
+
+  /* inside padding for the abstract text */
+  padding: 1rem 2rem 1rem !important;
+
+  /* same margin as closed state */
+  margin: 0 -2rem -1.75rem !important;
+
+  max-height: 1500px !important;
+  overflow: visible !important;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -9,48 +9,106 @@ function toggleMenu() {
 }
 
 /* ============================================================
-   RESEARCH PAGE: Abstract Accordion Toggle (Fixed)
+   RESEARCH / RESOURCES: Abstract / Details Accordion Toggle
    ============================================================ */
 function toggleAbstract(btnEl) {
   const card  = btnEl.closest(".publication-card");
+  if (!card) return;
+
   const panel = card.querySelector(".abstract-panel");
-  const icon  = btnEl.querySelector("i");
-  const label = btnEl.querySelector("span");
+  if (!panel) return;
+
   const isOpen = panel.classList.contains("open");
 
-  // Close any others
-  document.querySelectorAll(".abstract-panel.open").forEach(p => {
-    if (p !== panel) {
-      p.classList.remove("open");
-      const b = p.closest(".publication-card").querySelector(".abstract-btn");
-      b.querySelector("i").classList.replace("ph-minus", "ph-plus");
-      b.querySelector("span").textContent = "Abstract";
+  // Close any other open panels + reset their buttons
+  document.querySelectorAll(".abstract-panel.open").forEach((p) => {
+    if (p === panel) return;
+
+    p.classList.remove("open");
+
+    const parentCard = p.closest(".publication-card");
+    if (!parentCard) return;
+
+    const otherBtn =
+      parentCard.querySelector(".learnmore-btn") ||
+      parentCard.querySelector(".abstract-btn");
+
+    if (!otherBtn) return;
+
+    const otherIcon  = otherBtn.querySelector("i");
+    const otherLabel = otherBtn.querySelector("span");
+
+    otherBtn.classList.remove("open");
+    if (otherIcon) {
+      otherIcon.classList.remove("ph-minus");
+      otherIcon.classList.add("ph-plus");
+    }
+    if (otherLabel) {
+      otherLabel.textContent = otherBtn.classList.contains("learnmore-btn")
+        ? "Learn More"
+        : "Abstract";
     }
   });
 
-  // Toggle current
+  // Toggle current panel
   panel.classList.toggle("open", !isOpen);
-  icon.classList.toggle("ph-minus", !isOpen);
-  icon.classList.toggle("ph-plus", isOpen);
-  label.textContent = isOpen ? "Abstract" : "Hide Abstract";
 
+  const icon  = btnEl.querySelector("i");
+  const label = btnEl.querySelector("span");
+
+  btnEl.classList.toggle("open", !isOpen);
+
+  if (!isOpen) {
+    // Opening
+    if (icon) {
+      icon.classList.remove("ph-plus");
+      icon.classList.add("ph-minus");
+    }
+    if (label) {
+      label.textContent = btnEl.classList.contains("learnmore-btn")
+        ? "Hide Details"
+        : "Hide Abstract";
+    }
+  } else {
+    // Closing
+    if (icon) {
+      icon.classList.remove("ph-minus");
+      icon.classList.add("ph-plus");
+    }
+    if (label) {
+      label.textContent = btnEl.classList.contains("learnmore-btn")
+        ? "Learn More"
+        : "Abstract";
+    }
+  }
 }
 
-
-// Ensure start collapsed (classes only; no inline styles)
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.abstract-panel').forEach(p => p.classList.remove('open'));
-});
-
 /* ============================================================
-   INITIALIZATION: Ensure panels start collapsed on load
+   INITIALIZATION: Ensure panels + buttons start collapsed
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
+  // All panels closed
   document.querySelectorAll(".abstract-panel").forEach((panel) => {
     panel.classList.remove("open");
-    panel.style.maxHeight = "0";
-    panel.style.opacity = "0";
-    panel.style.paddingTop = "0";
-    panel.style.paddingBottom = "0";
   });
+
+  // Reset all toggle buttons (research + resources)
+  document
+    .querySelectorAll(".abstract-btn, .learnmore-btn")
+    .forEach((btn) => {
+      const icon  = btn.querySelector("i");
+      const label = btn.querySelector("span");
+
+      btn.classList.remove("open");
+
+      if (icon) {
+        icon.classList.remove("ph-minus");
+        icon.classList.add("ph-plus");
+      }
+      if (label) {
+        label.textContent = btn.classList.contains("learnmore-btn")
+          ? "Learn More"
+          : "Abstract";
+      }
+    });
 });

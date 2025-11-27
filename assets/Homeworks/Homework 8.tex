@@ -1,0 +1,95 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=orange,urlcolor=orange,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+
+\setlength{\parindent}{0pt}
+
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+\title{MATH 416 Homework Week 3}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Week 10 - Homework 8 \\ \textbf{Assigned:} Fri. Oct. 31, 2025 \\ \textbf{Due:} Fri. Nov. 7, 2025 (by 8pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{5} Orthogonal Bases
+
+Suppose $e_1, \dots, e_n$ is an orthonormal basis of $V$. 
+\begin{enumerate}
+    \item[(a)] (3 points) Prove that if $v_1, \dots, v_n$ are vectors in $V$ such that 
+    \begin{align}
+        \|e_k - v_k\| < \frac{1}{\sqrt{n}}
+    \end{align}
+    for each $k$, then $v_1, \dots, v_n$ is a basis of $V$.
+    \item[(b)] Show that there exist $v_1, \dots, v_n \in V$ such that 
+    \begin{align}
+        \|e_k -v_k \| \leq \frac{1}{\sqrt{n}}
+    \end{align}
+    for each $k,$ but $v_1, \dots, v_n$ is \textit{not} linearly independent.
+\end{enumerate}
+\textit{Note: The first part of this exercise shows that if we perturb an orthonormal basis an appropriate amount, we still have a basis. The second part shows that we can't increase the $1/\sqrt{n}$.}
+
+\newpage
+\bigskip\newex{2}{5} Inner products and orthogonal complements
+
+\begin{enumerate}[(i)]
+\item (3 points) Let $U\leq \mathbb{R}^4$ be the subspace spanned by the vectors $v_1 = (1,2,3,-4)^T$ and $v_2 = (-5,4,3,2)^T$.
+Find orthonormal bases for $U$ and its orthogonal complement $U^\perp$ for the standard inner product $\langle x,y\rangle = x_1y_1 + x_2 y_2 + x_3 y_3 + x_4 y_4$.
+\item (2 points) Consider the following inner product on $\mathbb{R}^3$: $\langle x,y\rangle_{\mathrm{alt}} \coloneqq 2 x_1 y_1 + x_2 y_2 + 2x_3 y_3$.
+Compute $\lbrace v\rbrace^\perp$ for the vector $v = (1,-2,1)^T\in\mathbb{R}^3$.
+
+{\itshape Warning: If you use the Gram-Schmidt (GS) procedure for this example, then you need to use the inner product $\langle x,y\rangle_{\mathrm{alt}}$ and the associated norm $\|x\|_{\mathrm{alt}} \coloneqq \sqrt{\langle x,x\rangle_{\mathrm{alt}}}$ in the GS-formulas.}
+\end{enumerate}
+
+\newpage
+\bigskip \newex{3}{5} Orthogonal projections
+
+\begin{enumerate}[(i)]
+    \item (2 points) Suppose $u,v \in V$. Prove that $\langle u,v \rangle = 0\Leftrightarrow \|u\| \leq \|u +a v\|$ for all $a \in \mathbb{F}$.
+	\item (1 point) Let $U\leq V$ be a subspace of a finite-dimensional inner product space $V$. Show that $P_{U^\perp} = I_V - P_U$.
+    \item (2 points) Suppose $V$ is finite-dimensional and $P \in \mathcal{L}(V)$ is such that $P^2=P$ and $\|Pv\| \leq \|v\|$ for every $v \in V$. Prove that there exists a subspace $U$ of $V$ such that $P=P_U$. 
+\end{enumerate}
+ 
+\end{document}
