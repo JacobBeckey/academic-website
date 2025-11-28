@@ -1009,11 +1009,11 @@ footer p {
 /* Difficulty colors – solid, high contrast with white text
    (text remains white from .research-container .badge) */
 .research-container .badge.badge-intro {
-  background-color: #1b7a3c;  /* dark green */
+  background-color: #006230;  /* dark green */
 }
 
 .research-container .badge.badge-intermediate {
-  background-color: #c26a00;  /* deep orange */
+  background-color: #FCB316;  /* Harvest - UIUC yellow */
 }
 
 .research-container .badge.badge-advanced {
@@ -1022,19 +1022,19 @@ footer p {
 
 /* Audience colors – also solid, white text */
 .research-container .badge.badge-physics {
-  background-color: #2846a1;  /* deep blue */
+  background-color: #1D58A7;  /* blue */
 }
 
 .research-container .badge.badge-math {
-  background-color: #653cb8;  /* your brand purple */
+  background-color: #5C0E41;  /* your brand purple */
 }
 
 .research-container .badge.badge-cs {
-  background-color: #005c99;  /* deep blue/teal */
+  background-color: #007E8E;  /* deep blue/teal */
 }
 
-.research-container .badge.badge-mixed {
-  background-color: #555555;  /* dark gray */
+.research-container .badge.badge-general {
+  background-color: #7D3E13;  /* dark gray */
 }
 
 /* Legend spacing */

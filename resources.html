@@ -47,15 +47,16 @@
 
   <main class="research-container">
     <div class="research-heading">
-      <h1>Student Learning Resources</h1>
+      <h1>Selected References for Students</h1>
     </div>
 
     <p>
-      This page collects books, lecture notes, and articles for students interested in
-      physics, mathematics, and computer science, especially with an eye toward quantum
-      information, learning theory, and sensing. Each resource is tagged by
-      <strong>difficulty</strong> and intended <strong>audience</strong> so you can find
-      an entry point that matches your background.
+      This page collects books, lecture notes, and articles that I have found useful and/or enjoyable over the years. The list is far from comprehensive 
+      but contains many of the resources I most frequently recommend to students that are interested in conducting research in theoretical aspects of quantum information science.
+      Each resource is tagged by <strong>difficulty</strong> and intended <strong>audience</strong> so you can find an entry point that matches your background. 
+      In addition to technical references, I also list articles and popular books that supplement content with the history, philosophy, or nature of science/math.
+      I have found the history, philosophy, and nature of math/science both interesting and useful to myself and my students, so I encourage you to develop 
+      a working knowledge of the these areas alongside your technical study of the topics. 
     </p>
 
     <!-- Legend / how-to-use -->
@@ -69,18 +70,21 @@
       <span class="badge badge-audience badge-physics">Physics</span>
       <span class="badge badge-audience badge-math">Mathematics</span>
       <span class="badge badge-audience badge-cs">Computer Science</span>
-      <span class="badge badge-audience badge-mixed">Mixed</span>
+      <span class="badge badge-audience badge-general">General</span>
     </p>
 
     <!-- ==================== TABLE OF CONTENTS ==================== -->
 <nav class="resource-toc">
   <h2 class="toc-title">Browse by topic</h2>
   <ul>
-    <li><a href="#res-quantum-info">Quantum Information Theory</a></li>
-    <li><a href="#res-linear-algebra">Linear Algebra &amp; Background Math</a></li>
+    <li><a href="#res-linear-algebra">Linear Algebra</a></li>
+    <li><a href="#res-quantum-mech">Quantum Mechanics</a></li>
+    <li><a href="#res-group-rep">Group and Representation Theory</a></li>
     <li><a href="#res-probability">High-dimensional Probability</a></li>
-    <li><a href="#res-compsci">Computer Science Foundations</a></li>
+    <li><a href="#res-quantum-info">Quantum Information Theory</a></li>
+    <li><a href="#res-quantum-learning">Quantum Learning Theory</a></li>
     <li><a href="#res-sensing">Quantum Sensing &amp; Metrology</a></li>
+     <li><a href="#res-general">Advice for Mathematicians and Scientists</a></li>
   </ul>
 
   <p>
@@ -89,6 +93,203 @@
 </p>
 
 </nav>
+
+<!-- ========================================================= -->
+    <!-- LINEAR ALGEBRA & BACKGROUND MATH                          -->
+    <!-- ========================================================= -->
+<h2 class="year-divider" id="res-linear-algebra">Linear Algebra</h2>
+
+    <section class="publication-card resource-card">
+  <div class="publication-title">
+  <span class="mentor-star">★</span>
+  <strong>Sheldon Axler</strong>, Linear Algebra Done Right
+</div>
+
+
+    <div class="resource-meta-row">
+      <!-- Resource link on the far left -->
+      <div class="meta-group">
+        <a class="pub-link" href="https://linear.axler.net/LADR4e.pdf" target="_blank">
+          Textbook
+        </a>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-audience badge-math">Mathematics</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <button class="learnmore-btn" onclick="toggleAbstract(this)">
+        <i class="ph ph-plus"></i>
+        <span>Learn More</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Collapsible description -->
+  <div class="abstract-panel">
+    <p class="resource-description">
+      For a second course in linear algebra, I agree with the title whole-heartedly. 
+    </p>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+    <!-- Quantum Mechanics                                      -->
+    <!-- ========================================================= -->
+<h2 class="year-divider" id="res-quantum-mech">Quantum Mechanics</h2>
+
+    <section class="publication-card resource-card">
+  <div class="publication-title">
+  <span class="mentor-star">★</span>
+  <strong>Barton Zwiebach</strong>, Mastering Quantum Mechanics
+</div>
+
+
+    <div class="resource-meta-row">
+      <!-- Resource link on the far left -->
+      <div class="meta-group">
+        <a class="pub-link" href="https://linear.axler.net/LADR4e.pdf" target="_blank">
+          Textbook
+        </a>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-difficulty badge-advanced">Advanced</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-audience badge-physics">Physics</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <button class="learnmore-btn" onclick="toggleAbstract(this)">
+        <i class="ph ph-plus"></i>
+        <span>Learn More</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Collapsible description -->
+  <div class="abstract-panel">
+    <p class="resource-description">
+      This book was developed through many years of Barton's 8.01 sequence at MIT. The lecture videos and courseware are freely available, making this an even
+      better resource to learn from. 
+    </p>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+    <!-- GROUP AND REPRESENTATION THEORY                          -->
+    <!-- ========================================================= -->
+<h2 class="year-divider" id="res-group-rep">Group and Representation Theory</h2>
+
+    <section class="publication-card resource-card">
+  <div class="publication-title">
+  <strong>Vincent Bouchard</strong>, Group Theory in Physics
+</div>
+
+
+    <div class="resource-meta-row">
+      <!-- Resource link on the far left -->
+      <div class="meta-group">
+        <a class="pub-link" href="https://sites.ualberta.ca/~vbouchar/MAPH464/chapter-group.html" target="_blank">
+          Lecture notes
+        </a>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-difficulty badge-intro">Introductory</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-audience badge-physics">Physics</span>
+        <span class="badge badge-audience badge-math">Mathematics</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <button class="learnmore-btn" onclick="toggleAbstract(this)">
+        <i class="ph ph-plus"></i>
+        <span>Learn More</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Collapsible description -->
+  <div class="abstract-panel">
+    <p class="resource-description">
+      An excellent and succinct first introduction to group and representation theory for a cross-listed math/physics course at the University of Alberta.
+    </p>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+    <!-- High-dimensional Probability                         -->
+    <!-- ========================================================= -->
+<h2 class="year-divider" id="res-probability">High-dimensional Probability</h2>
+
+    <section class="publication-card resource-card">
+  <div class="publication-title">
+    <span class="mentor-star">★</span>
+  <strong>Roman Vershynin</strong>, High-dimensional Probability: An Introduction with Applications in Data Science
+</div>
+
+
+    <div class="resource-meta-row">
+      <!-- Resource link on the far left -->
+      <div class="meta-group">
+        <a class="pub-link" href="https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-2.pdf" target="_blank">
+          Textbook
+        </a>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-difficulty badge-intro">Advanced</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-audience badge-math">Mathematics</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <button class="learnmore-btn" onclick="toggleAbstract(this)">
+        <i class="ph ph-plus"></i>
+        <span>Learn More</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Collapsible description -->
+  <div class="abstract-panel">
+    <p class="resource-description">
+      Essential reference on the topic.
+    </p>
+  </div>
+</section>
 
 
     <!-- ========================================================= -->
@@ -99,7 +300,7 @@
     <section class="publication-card resource-card">
   <div class="publication-title">
   <span class="mentor-star">★</span>
-  John Preskill — Quantum Computation and Information Lecture Notes
+  <strong>John Preskill</strong>, Quantum Computation and Information Lecture Notes
 </div>
 
 
@@ -143,17 +344,72 @@
   </div>
 </section>
 
-    <section class="publication-card resource-card classic">
+ <!-- ========================================================= -->
+    <!-- QUANTUM LEARNING THEORY                       -->
+    <!-- ========================================================= -->
+    <h2 class="year-divider" id="res-quantum-learning"> Quantum Learning Theory </h2>
+
+    <section class="publication-card resource-card">
   <div class="publication-title">
-  John Preskill — Quantum Computation and Information Lecture Notes
+  <strong>John Wright</strong>, Quantum Learning Theory Lecture Notes
 </div>
 
 
     <div class="resource-meta-row">
       <!-- Resource link on the far left -->
       <div class="meta-group">
-        <a class="pub-link" href="http://theory.caltech.edu/~preskill/ph229/" target="_blank">
+        <a class="pub-link" href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/" target="_blank">
           Online lecture notes
+        </a>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <div class="meta-group">
+        <span class="badge badge-audience badge-cs">Computer Science</span>
+      </div>
+
+      <span class="meta-divider"></span>
+
+      <button class="learnmore-btn" onclick="toggleAbstract(this)">
+        <i class="ph ph-plus"></i>
+        <span>Learn More</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Collapsible description -->
+  <div class="abstract-panel">
+    <p class="resource-description">
+      Scribe notes from John's course at UC Berkeley.
+    </p>
+  </div>
+</section>
+
+    
+
+     <!-- ========================================================= -->
+    <!-- QUANTUM METROLOGY                      -->
+    <!-- ========================================================= -->
+    <h2 class="year-divider" id="res-sensing"> Quantum Metrology</h2>
+
+    <section class="publication-card resource-card">
+  <div class="publication-title">
+  <strong>Giovannetti, Lloyd, and Maccone</strong>, Quantum Metrology
+</div>
+
+
+    <div class="resource-meta-row">
+      <!-- Resource link on the far left -->
+      <div class="meta-group">
+        <a class="pub-link" href="https://arxiv.org/abs/quant-ph/0509179" target="_blank">
+          Journal Article
         </a>
       </div>
 
@@ -181,287 +437,53 @@
   <!-- Collapsible description -->
   <div class="abstract-panel">
     <p class="resource-description">
-      A classic set of lecture notes that develops quantum information and basic quantum
-      computing from a physics point of view. Good for students who are comfortable with
-      linear algebra and Dirac notation and want a more conceptual, calculation-oriented
-      introduction.
+      Classic paper in the field.
     </p>
   </div>
 </section>
 
-
-    <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          Nielsen &amp; Chuang — <em>Quantum Computation and Quantum Information</em>
-        </h2>
-      </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <a class="pub-link"
-             href="https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/6F8C3E7C3A6B7F9D7B5C8E45D4D94732"
-             target="_blank">
-            Book (Cambridge University Press)
-          </a>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-mixed">Mixed</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        The standard reference in quantum information. Best approached after you have some
-        comfort with linear algebra and basic quantum mechanics. Use it as a “backbone”
-        text and supplement with lecture notes or more focused resources as needed.
-      </p>
-    </section>
-
-    <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          Mark Wilde — <em>Quantum Information Theory</em>
-        </h2>
-      </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <a class="pub-link" href="https://www.markwilde.com/quantum-information-theory.html" target="_blank">
-            Book + freely available draft
-          </a>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-advanced">Advanced</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-math">Math</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        A mathematically focused treatment of quantum Shannon theory: channels,
-        capacities, and entropic quantities. Well-suited for students with a strong
-        analysis / probability background who want to see the information-theoretic core
-        of the subject.
-      </p>
-    </section>
-
+<!-- ========================================================= -->
+    <!-- GENERAL ADVICE                                         -->
     <!-- ========================================================= -->
-    <!-- LINEAR ALGEBRA & BACKGROUND MATH                          -->
-    <!-- ========================================================= -->
-    <h2 class="year-divider">Linear Algebra &amp; Background Mathematics</h2>
+    <h2 class="year-divider" id="res-general"> Advice for Mathematicians and Scientists</h2>
 
     <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          Sheldon Axler — <em>Linear Algebra Done Right</em>
-        </h2>
-      </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <a class="pub-link"
-             href="https://link.springer.com/book/10.1007/978-3-319-11080-6"
-             target="_blank">
-            Book (Springer)
-          </a>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-intro">Intro</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-math">Math</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        A proof-based introduction to linear algebra that emphasizes linear maps and
-        eigenstructure over matrix manipulation. Great for students transitioning into
-        more theoretical coursework (and very aligned with how I teach 416).
-      </p>
-    </section>
+  <div class="publication-title">
+  <strong>Gian-Carlo Rota</strong>, Ten Lessons I Wish I Had Been Taught
+</div>
 
-    <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          Roman Vershynin — <em>High-Dimensional Probability: An Introduction with Applications in Data Science</em>
-        </h2>
-      </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <a class="pub-link"
-             href="https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-book.html"
-             target="_blank">
-            Book + free draft
-          </a>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-advanced">Advanced</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-math">Math</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        An introduction to concentration inequalities, random matrices, and probabilistic
-        tools that appear frequently in modern quantum information, learning theory, and
-        high-dimensional analysis.
-      </p>
-    </section>
 
-    <!-- ========================================================= -->
-    <!-- PROBABILITY, STATISTICS & LEARNING THEORY                 -->
-    <!-- ========================================================= -->
-    <h2 class="year-divider">Probability, Statistics &amp; Learning Theory</h2>
+    <div class="resource-meta-row">
+      <!-- Resource link on the far left -->
+      <div class="meta-group">
+        <a class="pub-link" href="http://staff.ustc.edu.cn/~yqliang/files/teaching/10lessons.pdf" target="_blank">
+          AMS Notice
+        </a>
+      </div>
 
-    <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          Shai Shalev-Shwartz &amp; Shai Ben-David — <em>Understanding Machine Learning: From Theory to Algorithms</em>
-        </h2>
-      </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <a class="pub-link"
-             href="https://www.cs.huji.ac.il/%7Eshais/UnderstandingMachineLearning"
-             target="_blank">
-            Book + free PDF
-          </a>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-cs">CS</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        A clean introduction to statistical learning theory, sample complexity, and core
-        algorithmic ideas. Helpful background if you’re interested in quantum learning
-        theory and want to understand the classical side carefully first.
-      </p>
-    </section>
+      <span class="meta-divider"></span>
 
-    <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          David Williams — <em>Probability with Martingales</em>
-        </h2>
+      <div class="meta-group">
+        <span class="badge badge-audience badge-general">General</span>
+        <span class="badge badge-audience badge-math">Mathematics</span>
       </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <a class="pub-link"
-             href="https://www.cambridge.org/core/books/probability-with-martingales/36A978E38E9CB9E776D08D9A1E8C80BA"
-             target="_blank">
-            Book (Cambridge University Press)
-          </a>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-advanced">Advanced</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-math">Math</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        A rigorous probability text that builds measure-theoretic ideas through
-        martingales. Not required for most undergrad projects, but very useful if you’re
-        heading toward research that mixes quantum information with serious probability.
-      </p>
-    </section>
 
-    <!-- ========================================================= -->
-    <!-- COMPUTER SCIENCE & FOUNDATIONS                            -->
-    <!-- ========================================================= -->
-    <h2 class="year-divider">Computer Science Foundations</h2>
+      <span class="meta-divider"></span>
 
-    <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          Michael Sipser — <em>Introduction to the Theory of Computation</em>
-        </h2>
-      </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <span class="pub-link">Standard textbook</span>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-cs">CS</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        A standard reference for automata, computability, and complexity. Helpful if you
-        want to understand how quantum complexity classes (like BQP and QMA) fit into the
-        broader landscape.
-      </p>
-    </section>
+      <button class="learnmore-btn" onclick="toggleAbstract(this)">
+        <i class="ph ph-plus"></i>
+        <span>Learn More</span>
+      </button>
+    </div>
+  </div>
 
-    <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          Oded Goldreich — <em>Introduction to Property Testing</em> (survey and lecture notes)
-        </h2>
-      </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <a class="pub-link"
-             href="https://www.wisdom.weizmann.ac.il/~oded/pt-foc.html"
-             target="_blank">
-            Survey / notes
-          </a>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-advanced">Advanced</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-cs">CS</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        A gateway into property testing, which is closely related to many quantum
-        state-testing and learning-theoretic questions. Best once you are comfortable with
-        discrete probability and basic complexity theory.
-      </p>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- QUANTUM SENSING & METROLOGY                               -->
-    <!-- ========================================================= -->
-    <h2 class="year-divider">Quantum Sensing &amp; Metrology</h2>
-
-    <section class="publication-card resource-card">
-      <div class="publication-header">
-        <h2 class="publication-title">
-          Review articles and notes on quantum metrology / sensing
-        </h2>
-      </div>
-      <div class="info-bar">
-        <span class="info-item">
-          <span class="pub-link">Ask me for project-specific suggestions</span>
-        </span>
-        <span class="divider"></span>
-        <span class="info-item">
-          <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-        </span>
-        <span class="info-item">
-          <span class="badge badge-audience badge-physics">Physics</span>
-        </span>
-      </div>
-      <p class="resource-description">
-        Quantum sensing is a broad area, and the best resources depend heavily on whether
-        you care about gravitational-wave detectors, dark-matter searches, atomic systems,
-        or photonics. I maintain a small set of curated PDFs and can point you to specific
-        references if you’re interested in a particular platform or application.
-      </p>
-    </section>
+  <!-- Collapsible description -->
+  <div class="abstract-panel">
+    <p class="resource-description">
+      Useful advice from a well-known MIT mathematician and philosopher.
+    </p>
+  </div>
+</section>
 
     <p class="mentor-note" style="margin-top: 2rem;">
       If you are a student interested in a reading or research project, feel free to
