@@ -4,26 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linear Algebra Course – Jacob Beckey</title>
+    <title>Quantum Learning Theory Course – Jacob Beckey</title>
     <link rel="stylesheet" href="courses.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
-     <!-- ==================== NAVIGATION BAR ==================== -->
-  <nav id="desktop-nav" class="sticky-nav">
-    <div class="logo-container" onclick="location.href='index.html'">
-      <img src="./assets/jlb-logo.svg" alt="Logo" />
-      <span class="logo-text">Jacob Beckey</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="research.html">Research</a></li>
-      <li><a href="teaching.html">Teaching</a></li>
-      <li><a href="#outreach">Outreach</a></li>
-      <li><a href="resources.html">Resources</a></li>
-    </ul>
-  </nav>
+    <nav id="desktop-nav" class="sticky-nav">
+      <div class="logo-container" onclick="location.href='index.html'">
+        <img src="./assets/jlb-logo.svg" alt="Logo" />
+        <span class="logo-text">Jacob Beckey</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="research.html">Research</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="#outreach">Outreach</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </nav>
 
-    <!-- Mobile Navigation (unchanged from your original) -->
     <nav id="hamburger-nav">
       <div class="logo-container" onclick="location.href='index.html'">
         <img src="./assets/jlb-logo.svg" alt="Logo" />
@@ -44,107 +42,189 @@
       </div>
     </nav>
 
-    <!-- Main Course Page Content -->
     <main>
-    <div class="course-welcome">
+      <div class="course-welcome">
         <h2 class="welcome-line">Welcome to</h2>
-        <h1 class="course-title">MATH 416: Abstract Linear Algebra</h1>
-        <h2 class="welcome-line">Fall 2025 &mdash; University of Illinois, Urbana-Champaign</h2><br />
+        <h1 class="course-title">MATH 595: Quantum Learning Theory</h1>
+        <h2 class="welcome-line">
+          Spring 2026 &mdash; University of Illinois, Urbana-Champaign
+        </h2>
+        <br />
         <hr class="divider" />
-    </div>
-
+      </div>
 
       <section id="course-info">
         <h1>Course Information</h1>
         <p>
-          <strong>Welcome to MATH 416: Abstract Linear Algebra!</strong> Linear algebra is an essential component of modern mathematics, physics, and computer science. This course 
-          will provide a rigorous treatment of the subject, focusing on the structure and beauty of vector spaces, linear maps, eigenvectors, and much more. In addition 
-          to being elegant and powerful, the course content will also provide ample opportunity for us to understand what mathematics is, what mathematicians do, and how they actually do it! 
-          Our official syllabus can be downloaded <a href="./assets/math416-syllabus-fall25.pdf">here</a>; however, I've included some of the most important points below for easy reference.
+          <strong>Welcome to MATH 595: Quantum Learning Theory!</strong> This
+          course will survey the burgeoning field of quantum learning theory
+          (QLT), which lies at the intersection of mathematics, theoretical
+          computer science, and quantum information theory. QLT can be viewed as
+          a quantum generalization of classical statistical learning theory. At
+          its core, the goal of QLT is to quantify the resources (samples,
+          measurements, memory, time, etc.) needed to test or learn a desired
+          quantity. In this course, we will place a particular emphasis on
+          understanding the effects that randomness, adaptivity, and measurement
+          restrictions have on the sample complexity of various quantum state
+          learning and testing tasks.
         </p>
         <ul>
           <li><strong>Instructor:</strong> Jacob Beckey</li>
-          <li><strong>Grader:</strong> Hyun Tark</li>
-          <li><strong>Meeting times:</strong> Mon, Wed, Fri — 1:00–1:50 PM, 136 Davenport Hall</li>
-          <li><strong>Office Hours:</strong> Mon 2-2:50 (214 Davenport Hall), Wed 2-2:50 (132 Davenport Hall), or by appointment </li>
+          <li><strong>Meeting times:</strong> Tues/Thurs, 3:30–4:50 PM</li>
+          <li><strong>Location:</strong> 132 Davenport Hall</li>
+          <li><strong>Prerequisites:</strong> Math 416 Abstract Linear Algebra (or equivalent) and, ideally, Intro to Quantum Mechanics/Information (e.g., Phys
+                486/487, Phys 513, or ECE 404)
+          </li>
         </ul>
       </section>
 
       <section id="contact">
         <h1>Contact & Communication</h1>
         <ul>
-          <li><strong>Instructor's email:</strong> <a href="mailto:jbeckey@illinois.edu">jbeckey@illinois.edu</a></li>
-          <li><strong>My office:</strong> 72 Computing Applications Building (hopefully changing to Harker Hall soon!)</li>
-          <li><strong>Grader's email:</strong> <a href="mailto:htark2@illinois.edu">htark2@illinois.edu</a></li>
+          <li>
+            <strong>Instructor's email:</strong>
+            <a href="mailto:jbeckey@illinois.edu">jbeckey@illinois.edu</a>
+          </li>
+          <li><strong>My office:</strong> 400B Harker Hall</li>
         </ul>
         <p>
-          Please reach out if you have questions about course content, assignments, or logistics.
+          Please reach out if you have questions about course content,
+          assignments, or logistics!
         </p>
       </section>
 
       <section id="schedule">
-        <h1>Schedule & Grading</h1>
-         <p>
-        My goal in this course is to help you deeply learn linear algebra while also developing your ability to think abstractly, write cogent proofs, and work collaboratively. 
-        Education research has made clear that active engagement increases student learning outcomes and, even more importantly, mathematics is a fundamentally
-        social endeavor. As such, class participation is a significant part of your grade. This grade will be determined based on participation, not correctness, of in-class 
-        clicker questions and pre-lecture quizzes. To accomodate unforeseen circumstances, I will drop the lowest two homework grades, the lowest midterm grade, and 
-        5 participation items. With those caveats, your grade will be calculated based on the following breakdown.
+        <h1>Assignments & Grading</h1>
+        <p>
+          There will be no mandatory homework or exams. We will work through problems at the end of most classes, and optional additional
+          problems will provided at the end of each section of the notes.
         </p>
-        <h2>Grading Breakdown</h2>
-        <ul>
-          <li><strong>Participation:</strong>  20%</li>
-          <li><strong>Homework:</strong>  30%</li>
-          <li><strong>Midterm Exams:</strong>  30%</li>
-          <li><strong>Final Exam:</strong>  20%</li>
-        </ul>
+        <h2>Final Group Project</h2>
+        <p>
+          Grading will be based upon a final group project. All students will do
+          a final project that distills a QLT paper into a guided tutorial-style
+          problem that their peers could complete by that point in the course,
+          highlighting open questions left by the paper. More details forthcoming! 
+        </p>
+      </section>
 
-        <h2>Homework</h2>
-        <p>Problem sets will be assigned on Fridays and will be due (via Canvas) on the following Friday. 
-            LaTeX is ubiquitous in STEM research fields, so I implore all students to use it for writing up solutions, 
-            but this is not a requirement. If you have not ever used LaTeX, I recommend starting with <a href="https://www.overleaf.com/learn/latex/Tutorials">this tutorial.</a></p>
-
-        <h2>Important Dates</h2>
+      <section id="materials">
+        <h1>Literature</h1>
+        <p>We will utilize the following notes and surveys (many more to be added soon):</p>
         <ul>
-          <li><strong>Midterm Exam 1:</strong> Friday, September 26</li>
-          <li><strong>Midterm Exam 2:</strong> Friday, October 24</li>
-          <li><strong>Midterm Exam 3:</strong> Wednesday, November 19</li>
-          <li><strong>Final Exam:</strong> Wednesday, December 17 (7-10pm, location TBD)</li>
+          <li>
+            <strong>Course Notes: </strong>
+            <a href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/">John Wright's Quantum Learning Theory course notes</a>
+            (UC Berkeley, Spring 2024)
+          </li>
+          <li>
+            <strong>Course Notes: </strong>
+            <a href="https://harvard-quantum-learning.github.io/"
+              >Sitan Chen and Jordan Cotler's Quantum Learning Theory course
+              notes</a
+            >
+            (Harvard, Fall 2025)
+          </li>
+           <li>
+            <strong>Course Notes: </strong>
+            <a href="https://caltech-quantum-learning-theory.github.io/"
+              >Robert Huangs's Quantum Learning Theory course
+              notes</a
+            >
+            (Caltech, Fall 2025)
+          </li>
+          <li>
+            <strong>Survey: </strong>
+            <a href="https://arxiv.org/abs/1310.2035"
+              >Montanaro and de Wolf, "A Survey of Quantum Property Testing"</a
+            >
+            (2016)
+          </li>
+          <li>
+            <strong>Survey: </strong>
+            <a href="https://arxiv.org/abs/2305.20069"
+              >Anshu and Arunachalam, "A Survey on the Complexity of Learning
+              Quantum States"</a
+            >
+            (2024)
+          </li>
+          <li>
+            <strong>Course Notes: </strong>
+            <a href="https://felixleditzky.info/teaching/FT25/math595_reptheory.html"
+              >Felix Leditzky's "Representation-theoretic methods in quantum
+              information theory"</a
+            >
+          </li>
+          <li>
+            <strong>Tutorial: </strong>
+            <a href="https://arxiv.org/abs/2307.08956"
+              >Antonio Anna Mele, "Introduction to Haar Measure Tools in Quantum
+              Information"</a
+            >
+            (2023)
+          </li>
         </ul>
       </section>
 
       <section id="materials">
-        <h1>Course Materials</h1>
-        <h2>Required Materials</h2>
+        <h1>Classroom Climate & Inclusivity</h1>
+        <p>
+          People learn mathematics best when they feel respected and comfortable
+          asking questions. In this course, we are committed to creating a
+          supportive environment where everyone can engage fully in discourse
+          and grow as mathematical thinkers.
+        </p>
         <ul>
-          <li><strong>Textbook: </strong><a href="https://linear.axler.net/LADR4e.pdf">Axler, <em>Linear Algebra Done Right</em></a></li> 
-          <li><strong>Technology: </strong><a href="https://www.iclicker.com/students/apps-and-remotes/apps">iClicker app</a> (see student instructions <a href="https://answers.uillinois.edu/120820">here</a>)</li>
-        </ul>
-        <h2>Suggested Resources</h2>
-        <ul>
-          <li><strong>Book: </strong><a href="https://www.amazon.com/Vector-Surprising-Story-Mathematical-Transformation/dp/0226821102"><em>Vector: A Surprising Story of Space, Time, and Mathematical Transformation</em></a> by Robyn Arianhod</li> 
-          <li><strong>Video series: </strong><a href="https://www.3blue1brown.com/topics/linear-algebra">Essence of Linear Algebra</a> by Grant Sanderson (3Blue1Brown on YouTube)</li>
+          <li>
+            All students are expected to treat one another with respect,
+            patience, and kindness.
+          </li>
+          <li>
+            Questions, confusion, and mistakes are a normal and valuable part of
+            learning mathematics.
+          </li>
+          <li>
+            Disruptive, dismissive, or disrespectful behavior will not be
+            tolerated.
+          </li>
+          <li>
+            If something in the course environment makes it harder for you to
+            participate, please let me know so we can address it.
+          </li>
         </ul>
       </section>
 
       <section id="materials">
-      <h1>Course Outline</h1>
-      <p>We will aim to cover most of the content in chapters 1, 2, 3, 5, 6, 7, and 8 of Axler. This is a lot of content; however, if you work hard in this 
-        course, its hard to overstate how useful it will be in your future. The core topic list will be as follows. </p>
-      <ul>
-        <li>Solving systems of linear equations</li>
-        <li>Complex numbers, vector spaces, subspaces</li>
-        <li>Span and linear independence, bases, dimension of vector spaces</li>
-        <li>Linear maps, null space and range, matrices, isomorphic vector spaces, isomorphism theorem, dual spaces</li>
-        <li>Invariant subspaces, eigenvalues, eigenvectors, upper-triangular matrices</li>
-        <li>Inner products, norms, orthonormal bases, orthogonal complements</li>
-        <li>Operators on inner product spaces, self-adjoint and normal operators, spectral theorem, isometries, singular value decomposition</li>
-        <li>Generalized eigenspaces, multiplicity of eigenvalues, characteristic and minimal polynomial, Jordan normal form</li>
-        <li>Trace and determinant</li>
-      </ul>
+        <h1>Course Outline</h1>
+        <p>
+          The course will focus on the following canonical testing/learning
+          problems and associated mathematical techniques:
+        </p>
+        <ul>
+          <li>
+            <strong>Quantum State Discrimination:</strong> Pure state and mixed
+            state discrimination
+          </li>
+          <li>
+            <strong>Quantum State Tomography:</strong> Representation theory
+            review, mixed state tomography with multi-copy and restricted
+            measurements
+          </li>
+          <li>
+            <strong>Shadow Tomography:</strong> Classical shadow tomography,
+            exponential separations, applications, and open questions
+          </li>
+          <li>
+            <strong>Quantum Property Testing:</strong> State certification,
+            purity testing (and exponential separations), entanglement testing
+          </li>
+          <li>
+            <strong>Advanced Topics:</strong> Open problems and class-voted
+            topics
+          </li>
+        </ul>
       </section>
       
-
 
     <section id="weekly-outline">
   <h2>Weekly Outline</h2>
@@ -162,28 +242,20 @@
       </thead>
       <tbody>
         <tr>
-          <td>8/25</td>
+          <td>1/20</td>
           <td>1</td>
-          <td>Introduction and motivation</td>
+          <td>Introduction; pure state discrimination</td>
           <td>None</td>
-          <td><a href="assets/Lecture Notes/Lecture 1 - Aug 25.pdf">Lecture 1 Notes</a></td>
-          <td><a href="https://www.3blue1brown.com/topics/linear-algebra">3Blue1Brown videos 1-4</a>, Axler's <a href="https://www.axler.net/DwD.pdf"><em>Down with Determinants</em></a> article</td>
+          <td>Lecture 1 Notes</td>
+          <td></td>
         </tr>
         <tr>
-          <td>8/27</td>
+          <td>1/22</td>
           <td>2</td>
-          <td>Basic matrix operations, solving systems of linear equations</td>
+          <td>Mixed state discrimination; total variation distance; trace distance</td>
           <td>None</td>
-          <td><a href="">Lecture 2 Notes</a></td>
-          <td><a href="https://www.youtube.com/watch?v=1OxCx11V5LQ">A Brief History of Linear Algebra</a> video, Gilbert Strang's <a href="https://youtu.be/J7DzL2_Na80?si=9rsIG8vmHQfM9bWl">Geometry of Linear Equations Lecture</a></td>
-        </tr>
-        <tr>
-          <td>8/29</td>
-          <td>3</td>
-          <td>Inverses and some fundamental subspaces</td>
-          <td>None</td>
-          <td><a href="">Lecture 3 Notes</a></td>
-          <td><a href="https://www.3blue1brown.com/lessons/inverse-matrices#title">3Blue1Brown inverses video</a>, Gilbert Strang's <a href="https://youtu.be/ggWYkes-n6E?si=6-eYgQ6Prfs2TNHD">The Big Picture of Linear Algebra Lecture</a> </td>
+          <td>Lecture 2 Notes</td>
+          <td></td>
         </tr>
       </tbody>
     </table>

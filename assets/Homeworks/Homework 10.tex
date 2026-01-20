@@ -1,0 +1,87 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{microtype}
+
+\usepackage[colorlinks=true,linkcolor=orange,urlcolor=orange,citecolor=blue,anchorcolor=green,pdfusetitle]{hyperref}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{mathpazo}
+\usepackage{ifthen}
+\usepackage{enumerate}
+
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+
+\setlength{\parindent}{0pt}
+
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\one}{\mathds{1}}
+\DeclareMathOperator{\opvec}{vec}
+\DeclareMathOperator{\rk}{rk}
+\title{MATH 416 Homework Week 3}
+\author{Jacob Beckey}
+
+\newcommand{\newex}[2]{
+	\ifthenelse{\equal{#2}{1}}{\noindent\textbf{Exercise #1} (#2 point):}{\noindent\textbf{Exercise #1} (#2 points):}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\large MATH 416 Abstract Linear Algebra}
+
+\vspace{.5em}Week 15 - Homework 10 \\ \textbf{Assigned:} Wed. Dec. 3, 2025 \\ \textbf{Due:} Wed. Dec. 10, 2025 (by 11:59pm) \\ 
+
+\end{center}
+\textbf{Reminder:} I encourage you to work together and use resources as needed. Please remember to state who you collaborated with and what resources you used. \\
+
+\newex{1}{6} \textbf{Trace}
+
+\begin{enumerate}[(i)]
+    \item Prove that the trace is linear (i.e $\tr{[A+B]}=\tr{[A]}+\tr{[B]}$ and $\tr{[zA]}=z\tr{[A]}$).
+	\item Show that the space of traceless matrices, $\lbrace A\in M_n(\mathbb{F})\colon \tr(A) = 0\rbrace$, is a subspace of $M_n(\mathbb{F})$. What is its dimension?
+	\item Suppose $V$ is an inner product space and $T \in \mathcal{L}(V)$. Prove that $\tr{T^{*}}=\overline{\tr{T}}$. \\\textit{Hint: use Axler 8.55 in the fourth edition.}
+\end{enumerate}
+
+\bigskip\newex{2}{9} \textbf{Determinant}
+
+\begin{enumerate}[(i)]
+	\item Prove that $\det{(AB)}=\det{(A)}\det{(B)}$ for all $2$-by-$2$ matrices $A,B$. 
+    \item Consider the matrix 
+    \begin{align}
+        \begin{pmatrix}
+            6 & -1 \\
+            2 & 3
+        \end{pmatrix}.
+    \end{align}
+    Solve the equation $\det{(A-\lambda I)} =0$ to find the eigenvalues of $A$.
+    \item Let $\lambda_1, \lambda_2$ be two eigenvalues of a matrix $A$. Define the mean and the product of the eigenvalues of a 2-by-2 matrix as
+    \begin{align}
+        m &= \frac{1}{2}\tr{[A]}=\frac{1}{2}(\lambda_1 + \lambda_2),\\
+        p &= \det{(A)} = \lambda_1 \lambda_2.
+    \end{align}
+    Prove that the eigenvalues of $A$ are given as 
+    \begin{align}
+        \lambda_{1}, \lambda_2 &= m \pm \sqrt{m^2-p}.
+    \end{align}
+\end{enumerate}
+\end{document}
