@@ -96,7 +96,7 @@
       <section id="schedule">
         <h1>Assignments & Grading</h1>
         <p>
-          There will be no mandatory homework or exams. We will work through problems at the end of most classes, and optional additional
+          There will be no mandatory homework or exams. We will work through proofs together in most classes, and optional additional
           problems will provided at the end of each section of the notes.
         </p>
         <h2>Final Project</h2>
@@ -146,8 +146,8 @@
       </section>
 
       <section id="materials">
-        <h1>Literature</h1>
-        <p>We will utilize the following notes and surveys (many more to be added soon):</p>
+        <h1>Relevant Lecture Notes and Review Articles</h1>
+        <h3>Quantum Learning Theory</h3>
         <ul>
           <li>
             <strong>Course Notes: </strong>
@@ -185,12 +185,19 @@
             >
             (2024)
           </li>
+          </ul>
+          <h3>Representation Theoretical Methods in QIT</h3>
+          <ul>
           <li>
             <strong>Course Notes: </strong>
             <a href="https://felixleditzky.info/teaching/FT25/math595_reptheory.html"
               >Felix Leditzky's "Representation-theoretic methods in quantum
-              information theory"</a
-            >
+              information theory"</a> (UIUC, Fall 2025)
+          </li>
+          <li>
+            <strong>Course Notes: </strong>
+            <a href="https://qi.ruhr-uni-bochum.de/qit18/qit18.pdf"
+              >Michael Walter's "Symmetry in Quantum Information"</a> (University of Amsterdam, Spring 2018)
           </li>
           <li>
             <strong>Tutorial: </strong>
@@ -243,7 +250,7 @@
       <thead>
         <tr>
           <th>Date</th>
-          <th>Meeting</th>
+          <th>Lecture</th>
           <th>Topics Covered</th>
           <th>Additional Resources</th>
         </tr>
@@ -302,18 +309,49 @@
           <td>9</td>
           <td>Measurement classes and simulation; Intro to Haar Measure</td>
           <td>Simulating measurments <a href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/scribe%20notes/lecture02.pdf">[Wri25]</a>;
-          Intro to Haar <a href="https://arxiv.org/abs/2307.08956">[Mel24]</a>, <a href="https://pennylane.ai/qml/demos/tutorial_haar_measure">Pennylane Haar Tutorial</a> </td>
+          Intro to Haar <a href="https://arxiv.org/abs/2307.08956">[Mel24]</a>, <a href="https://pennylane.ai/qml/demos/tutorial_haar_measure">Pennylane Haar Tutorial</a>, Generating Haar Random Matrices <a href="http://home.lu.lv/~sd20008/papers/essays/Random%20unitary%20[paper].pdf">[Ozo09]</a>
+          </td>
         </tr>
         <tr>
           <td>2/19</td>
           <td>10</td>
-          <td>The Church of the Symmetric Subspace; Single-copy, global QST</td>
+          <td>The Church of the Symmetric Subspace</td>
           <td>Symmetric Subspace <a href="https://arxiv.org/abs/1308.6595">[Har13], <a href="https://arxiv.org/abs/2307.08956">[Mel24]</a></td>
+        </tr>
+        <tr>
+          <td>2/24</td>
+          <td>11</td>
+          <td>Optimal Single-copy, global QST</td>
+          <td>Algorithm we covered (Sec. 5.1 of <a href="https://people.eecs.berkeley.edu/~jswright/papers/thesis.pdf">[Wri16]</a> or Lecture 13 in <a href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/scribe%20notes/lecture13.pdf">[Wri25]</a>); 
+            Original papers <a href="https://arxiv.org/abs/1410.6913">[KRT14]</a>, <a href="https://arxiv.org/abs/1809.11162">[Gut+18]</a>
+          </td>
+        </tr>
+        <tr>
+          <td>2/26</td>
+          <td>12</td>
+          <td>Multi-copy, global pure state tomography</td>
+          <td>Pure state algorithm (Lecture 12 in <a href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/scribe%20notes/lecture12.pdf">[Wri25]</a> or Sec. 4.3 in <a href="https://qi.ruhr-uni-bochum.de/qit18/qit18.pdf">[Wal18]</a>); 
+            Continuous POVMs (Sec. 4.1 in <a href="https://qi.ruhr-uni-bochum.de/qit18/qit18.pdf">[Wal18]</a>); 
+            Original paper <a href="https://arxiv.org/abs/quant-ph/9704041">[Hay98]</a>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </section>
+
+<section id="materials">
+        <h1>Project Ideas</h1>
+        <h3>Quantum State Tomography</h3>
+        <ul>
+          <li>
+            Experimental single-setting quantum state tomography <a href="https://arxiv.org/abs/2206.00019">[Str+22]</a> 
+          </li>
+          <li>
+            Sample efficient tomography via Pauli Measurements<a href="https://arxiv.org/abs/2009.04610">[Yu20]</a> 
+          </li>
+        </ul>
+      </section>
 
     </main>
 
