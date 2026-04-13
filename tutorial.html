@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial: Purity Testing — MATH 595</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./mediaqueries.css" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+  <!-- Only styles NOT in style.css -->
+  <style>
+    /* Hero banner for tutorial pages */
+    .page-hero {
+      background: rgb(53, 53, 53);
+      color: #fff;
+      padding: 3rem 2rem 2.5rem;
+    }
+    .page-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .page-hero .course-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 0.6rem;
+    }
+    .page-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #fff;
+      border-bottom: 2px solid rgb(255, 95, 5);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .page-hero .subtitle {
+      font-size: 0.9rem;
+      opacity: 0.5;
+      font-weight: 300;
+    }
+
+    /* Part label above year-divider */
+    .part-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgb(255, 95, 5);
+      margin-top: 2.5rem;
+      margin-bottom: -0.5rem;
+    }
+
+    /* Sub-section heading (h3 inside research-container) */
+    .research-container h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: rgb(53, 53, 53);
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    /* Horizontal rule */
+    hr.divider {
+      border: none;
+      height: 1px;
+      background: #ddd;
+      margin: 2rem 0;
+    }
+
+    /* Card accent borders */
+    .card-definition { border-left: 4px solid #006230; }
+    .card-theorem,
+    .card-proposition,
+    .card-lemma    { border-left: 4px solid #1D58A7; }
+    .card-exercise {
+      border-left: 4px solid rgb(255, 95, 5);
+      background: #fffaf8;
+    }
+
+    /* Semantic badge colors */
+    .badge-def { background-color: #006230 !important; }
+    .badge-thm { background-color: #1D58A7 !important; }
+    .badge-ex  { background-color: rgb(255, 95, 5) !important; }
+
+    /* Exercise body */
+    .exercise-body {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-top: 0.75rem;
+    }
+    .exercise-body p {
+      margin-bottom: 0.8rem;
+      text-align: left;
+    }
+    .exercise-body p:last-child { margin-bottom: 0; }
+
+    /* Hint button — orange pill matching learnmore-btn */
+    .hint-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      border: 1px solid rgb(255, 95, 5);
+      background: #fff;
+      color: rgb(255, 95, 5);
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-family: "Poppins", sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-right: 0.4rem;
+    }
+    .hint-btn:hover { background: rgb(255, 95, 5); color: #fff; }
+    .hint-btn.open i { transform: rotate(45deg); }
+
+    /* Hint panel — mirrors abstract-panel animation */
+    .hint-panel {
+      background: #f7f7f7;
+      border-top: 1px solid #eee;
+      padding: 0;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+      border-radius: 0.5rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .hint-panel.open {
+      padding: 0.85rem 1.1rem;
+      max-height: 800px;
+      opacity: 1;
+      overflow: visible;
+    }
+    .hint-panel p {
+      text-align: justify;
+      line-height: 1.6;
+      color: rgb(85, 85, 85);
+      font-size: 0.88rem;
+      margin: 0;
+    }
+
+    /* Display math blocks */
+    .display-math {
+      margin: 1rem 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    /* KaTeX sizing */
+    .katex { font-size: 1.05em; }
+    .display-math .katex { font-size: 1.08em; }
+
+    /* Roadmap card */
+    .roadmap-card {
+      background: #f7f7f7 !important;
+      border: 1px solid #e2e2e2 !important;
+    }
+    .roadmap-card .publication-title {
+      font-weight: 500;
+    }
+
+    /* Hint button row */
+    .hint-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+  </style>
+</head>
+
+<body class="research-page">
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <nav id="desktop-nav" class="sticky-nav">
+    <div class="logo-container" onclick="location.href='index.html'">
+      <img src="./assets/jlb-logo.svg" alt="Logo" />
+      <span class="logo-text">Jacob Beckey</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="teaching.html" class="active-link">Teaching</a></li>
+      <li><a href="outreach.html">Outreach</a></li>
+      <li><a href="resources.html">Resources</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== MOBILE NAVIGATION ==================== -->
+  <nav id="hamburger-nav">
+    <div class="logo-container" onclick="location.href='index.html'">
+      <img src="./assets/jlb-logo.svg" alt="Logo" />
+      <span class="logo-text">Jacob Beckey</span>
+    </div>
+    <div class="hamburger-menu">
+      <div class="hamburger-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="menu-links">
+        <li><a href="research.html" onclick="toggleMenu()">Research</a></li>
+        <li><a href="teaching.html" onclick="toggleMenu()">Teaching</a></li>
+        <li><a href="outreach.html" onclick="toggleMenu()">Outreach</a></li>
+        <li><a href="resources.html" onclick="toggleMenu()">Resources</a></li>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="course-tag">MATH 595 · Quantum Learning Theory</div>
+      <h1>Tutorial: Purity Testing</h1>
+      <div class="subtitle">An exponential separation between single-copy and two-copy algorithms · Spring 2026</div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="research-container">
+
+    <p>
+      In this problem set you will prove an exponential separation between single-copy
+      and two-copy algorithms for <strong>purity testing</strong>. Each exercise builds
+      on the last; proofs of supporting lemmas are provided, while the key arguments
+      are left for you.
+    <br></br>
+    </p>
+
+    <!-- ─── Definition 1 ─── -->
+    <section class="publication-card resource-card card-definition">
+      <div class="publication-title">
+        <span class="badge badge-def">Definition 1</span>&ensp;
+        <strong>Purity Testing</strong>
+      </div>
+      <div class="resource-description">
+        Given an unknown quantum state \(\rho\) promised to be either <em>pure</em> or
+        \(\epsilon\)-far in trace distance from all pure states, determine which is the
+        case with probability at least \(2/3\).
+      </div>
+    </section>
+
+    <!-- ─── Roadmap ─── -->
+    <section class="publication-card resource-card roadmap-card">
+      <div class="publication-title">
+        <i class="ph ph-compass" style="color:rgb(255,95,5); margin-right:0.3rem;"></i>
+        <strong>Roadmap</strong>
+      </div>
+      <div class="resource-description">
+        <strong>Part I.</strong> Show the swap test yields an \(O(1/\epsilon)\)-copy
+        algorithm, then prove a matching \(\Omega(1/\epsilon)\) lower bound.<br>
+        <strong>Part II.</strong> Establish that any <em>single-copy</em> algorithm
+        requires \(\Omega(2^{n/2})\) copies — an exponential separation.
+      </div>
+    </section>
+
+    <!-- ═══════════ PART I ═══════════ -->
+    <div class="part-label">Part I</div>
+    <h2 class="year-divider">Purity Testing with Two-Copy Measurements</h2>
+
+    <p>
+      Recall that the <strong>swap test</strong> on two copies of \(\rho\) accepts
+      with probability
+    </p>
+    <div class="display-math">
+      $$p_{\mathrm{acc}} \;=\; \mathrm{tr}[\rho^{\otimes 2} \cdot \Pi_{\mathrm{sym}}^{d,2}]. \tag{1}$$
+    </div>
+
+    <!-- ─── Exercise 1 ─── -->
+    <section class="publication-card resource-card card-exercise">
+      <div class="publication-title">
+        <span class="badge badge-ex">Exercise 1</span>&ensp;
+        <strong>Purity Testing Upper Bound</strong>
+      </div>
+      <div class="resource-meta-row">
+        <div class="meta-group">
+          <span class="badge badge-intermediate">Intermediate</span>
+        </div>
+      </div>
+      <div class="exercise-body">
+        <p>Prove that <span style="font-variant:small-caps;">Purity</span> can be tested with \(O(1/\epsilon)\) copies of \(\rho\).</p>
+        <p><strong>(a) Completeness.</strong> Show that if \(\rho\) is pure, the swap test accepts with certainty.</p>
+        <p><strong>(b) Soundness.</strong> Suppose \(\rho\) is \(\epsilon\)-far from every pure state. Show \(\operatorname{tr}(\rho^2) \le 1-\epsilon\), and conclude \(p_{\mathrm{acc}} \le 1-\epsilon/2\).</p>
+        <p><strong>(c) Repetition.</strong> By running \(T\) independent swap tests (accepting iff all pass), show \(T = O(1/\epsilon)\) suffices for error \(\le 1/3\).</p>
+
+        <div class="hint-btn-row">
+          <button class="hint-btn" onclick="toggleHint(this)">
+            <i class="ph ph-plus"></i> <span>Hint for (b)</span>
+          </button>
+          <button class="hint-btn" onclick="toggleHint(this)">
+            <i class="ph ph-plus"></i> <span>Hint for (c)</span>
+          </button>
+        </div>
+        <div class="hint-panel">
+          <p>Write \(\rho = \sum_i \lambda_i |\psi_i\rangle\!\langle\psi_i|\) with \(\lambda_1 \ge \lambda_2 \ge \cdots\). The closest pure state is \(|\psi_1\rangle\), so the distance assumption gives \(\lambda_1 \le 1-\epsilon\). Then use \(\sum_i \lambda_i^2 \le \max_i \lambda_i \cdot \sum_j \lambda_j\).</p>
+        </div>
+        <div class="hint-panel">
+          <p>Each test accepts with probability \(\le 1-\epsilon/2\), so all \(T\) accept with probability \(\le (1-\epsilon/2)^T \le e^{-\epsilon T/2}\). Set \(\le 1/3\).</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+    <h3>A Matching Lower Bound</h3>
+    <p>We now show \(\Omega(1/\epsilon)\) copies are necessary.
+        <br></br>
+    </p>
+
+    <!-- ─── Exercise 2 ─── -->
+    <section class="publication-card resource-card card-exercise">
+      <div class="publication-title">
+        <span class="badge badge-ex">Exercise 2</span>&ensp;
+        <strong>Purity Testing Lower Bound</strong>
+      </div>
+      <div class="resource-meta-row">
+        <div class="meta-group">
+          <span class="badge badge-intermediate">Intermediate</span>
+        </div>
+      </div>
+      <div class="exercise-body">
+        <p>Prove that testing purity requires \(T = \Omega(1/\epsilon)\) copies.</p>
+        <p><strong>(a)</strong> Consider \(\rho_0 = |0\rangle\!\langle 0|\) and \(\rho_\epsilon = (1-\epsilon)|0\rangle\!\langle 0| + \epsilon|1\rangle\!\langle 1|\). Verify \(\rho_\epsilon\) is \(\epsilon\)-far from \(\rho_0\), so any purity tester distinguishes \(\rho_0^{\otimes T}\) from \(\rho_\epsilon^{\otimes T}\) with probability \(\ge 2/3\).</p>
+        <p><strong>(b)</strong> Using the Holevo–Helstrom theorem and the Fuchs–van de Graaf inequality, show</p>
+        <div class="display-math">
+          $$p_{\mathrm{succ}} \;\le\; \frac{1}{2}\!\left(1 + \sqrt{1-(1-\epsilon)^T}\right).$$
+        </div>
+        <p><em>You may use that fidelity is multiplicative and \(\mathrm{F}(\rho_0,\rho_\epsilon)^2 = 1-\epsilon\).</em></p>
+        <p><strong>(c)</strong> Combine (a) and (b) to conclude \(T \ge \Omega(1/\epsilon)\).</p>
+ 
+        <div class="hint-btn-row">
+          <button class="hint-btn" onclick="toggleHint(this)">
+            <i class="ph ph-plus"></i> <span>Hint for (b)–(c)</span>
+          </button>
+        </div>
+        <div class="hint-panel">
+          <p>Holevo–Helstrom: \(p_{\mathrm{succ}} \le \tfrac{1}{2}(1+d_{\mathrm{tr}})\). Fuchs–van de Graaf: \(d_{\mathrm{tr}} \le \sqrt{1-F^2}\). Multiplicativity: \(F^2=(1-\epsilon)^T\). Impose \(p_{\mathrm{succ}}\ge 2/3\) to get \((1-\epsilon)^T\le 8/9\), then take logs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ PART II ═══════════ -->
+    <div class="part-label">Part II</div>
+    <h2 class="year-divider">Exponential Lower Bound for Single-Copy Testers</h2>
+
+    <p>
+      Any single-copy algorithm for purity testing on \(n\)-qubit states (\(d=2^n\)) must
+      use \(\Omega(d^{1/2})=\Omega(2^{n/2})\) copies. The key ingredient is a lower
+      bound on the permanent of a Gram matrix.
+    </p>
+
+    <h3>Permanents of PSD Matrices</h3>
+
+    <!-- ─── Definition 2 ─── -->
+    <section class="publication-card resource-card card-definition">
+      <div class="publication-title">
+        <span class="badge badge-def">Definition 2</span>&ensp;
+        <strong>Permanent</strong>
+      </div>
+      <div class="resource-description">
+        The permanent of an \(n\times n\) matrix \(A=(A_{ij})\) is
+        \(\displaystyle\mathrm{per}(A)=\sum_{\pi\in S_n}\prod_{i=1}^n A_{i\,\pi(i)}\).
+      </div>
+    </section>
+
+    <!-- ─── Lemma 3 ─── -->
+    <section class="publication-card resource-card card-lemma">
+      <div class="publication-title">
+        <span class="badge badge-thm">Lemma 3</span>&ensp;
+        <strong>Permanent Lower Bound</strong> (<a href="https://epubs.siam.org/doi/10.1137/0609016" style="text-decoration: none;">Grone-Pierce, 1988</a>)
+      </div>
+      <div class="resource-meta-row">
+      </div>
+      <div class="resource-description">
+        Let \(A\) be \(n\times n\) PSD with \(|a_{ii}|=1\) for all \(i\). Then
+        \(\mathrm{per}(A)\ge \frac{1}{n}\|A\|_F^2\).
+      </div>
+    </section>
+
+    <!-- ─── Exercise 3 ─── -->
+    <section class="publication-card resource-card card-exercise">
+      <div class="publication-title">
+        <span class="badge badge-ex">Exercise 3</span>&ensp;
+        <strong>Gram Matrix Permanent Bound</strong>
+      </div>
+      <div class="resource-meta-row">
+        <div class="meta-group">
+          <span class="badge badge-intermediate">Intermediate</span>
+        </div>
+      </div>
+      <div class="exercise-body">
+        <p>Let \(\{|\psi_t\rangle\}_{t=1}^T\) be pure states in \(\mathbb{C}^d\) with Gram matrix \(G_{tt'}=\langle\psi_t|\psi_{t'}\rangle\). Using Lemma 3, prove:</p>
+        <div class="display-math">
+          $$\mathrm{per}(G)\;\ge\;\begin{cases}1,&T\le d,\\T/d,&T>d.\end{cases}$$
+        </div>
+
+        <div class="hint-btn-row">
+          <button class="hint-btn" onclick="toggleHint(this)">
+            <i class="ph ph-plus"></i> <span>Hint: \(T\le d\)</span>
+          </button>
+          <button class="hint-btn" onclick="toggleHint(this)">
+            <i class="ph ph-plus"></i> <span>Hint: \(T>d\)</span>
+          </button>
+        </div>
+        <div class="hint-panel">
+          <p>Lemma 3 gives \(\mathrm{per}(G)\ge\frac{1}{T}\|G\|_F^2\). Since \(\|G\|_F^2 = T + \sum_{i\ne j}|\langle\psi_i|\psi_j\rangle|^2 \ge T\), we get \(\mathrm{per}(G)\ge 1\). An orthonormal set shows tightness.</p>
+        </div>
+        <div class="hint-panel">
+          <p>Let \(r=\mathrm{rank}(G)\le d\). Cauchy–Schwarz: \(T^2=(\sum_k\lambda_k)^2\le r\sum_k\lambda_k^2 = r\|G\|_F^2\le d\|G\|_F^2\). Hence \(\|G\|_F^2\ge T^2/d\), giving \(\mathrm{per}(G)\ge T/d\).</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+    <h3>From Permanents to Permutation Overlaps</h3>
+
+    <!-- ─── Lemma 4 ─── -->
+    <section class="publication-card resource-card card-lemma">
+      <div class="publication-title">
+        <span class="badge badge-thm">Lemma 4</span>&ensp;
+        <strong>Permutation Overlap Bound</strong>
+      </div>
+      <div class="resource-description">
+        For any pure states \(|\psi_1\rangle,\dots,|\psi_T\rangle\in\mathbb{C}^d\),
+      </div>
+      <div class="display-math">
+        $$\sum_{\pi\in S_T}\operatorname{tr}\!\left(P_d(\pi)\,\bigotimes_{t=1}^T|\psi_t\rangle\!\langle\psi_t|\right)\;\ge\;1.$$
+      </div>
+      <div class="resource-meta-row">
+        <button class="learnmore-btn" onclick="toggleAbstract(this)">
+          <i class="ph ph-plus"></i> <span>Proof</span>
+        </button>
+      </div>
+      <div class="abstract-panel">
+        <p>The action of \(P_d(\pi)\) permutes tensor factors:</p>
+        <div class="display-math" style="margin:0.7rem 0;">
+          $$\sum_{\pi\in S_T}\operatorname{tr}\!\left(P_d(\pi)\bigotimes_t|\psi_t\rangle\!\langle\psi_t|\right) = \sum_{\pi\in S_T}\prod_t\langle\psi_t|\psi_{\pi^{-1}(t)}\rangle = \mathrm{per}(G),$$
+        </div>
+        <p>where \(G\) is the Gram matrix. Since \(G\) is PSD with unit diagonal, Exercise 3 gives \(\mathrm{per}(G)\ge 1\).&ensp;&#9632;</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+    <h3>The Main Event</h3>
+
+    <!-- ─── Proposition 5 ─── -->
+    <section class="publication-card resource-card card-proposition">
+      <div class="publication-title">
+        <span class="badge badge-thm">Proposition 5</span>&ensp;
+        <strong>Exponential Lower Bound</strong> (<a href="https://arxiv.org/abs/2111.05881" style="text-decoration: none;">Chen-Cotler-Huang-Li, 2022</a>)
+      </div>
+      <div class="resource-description">
+        Any algorithm using (potentially adaptive) single-copy measurements requires
+        \(T\ge\Omega(d^{1/2})\) copies to distinguish (with probability \(\ge 2/3\))
+        whether \(\rho\in\mathcal{D}(\mathbb{C}^d)\) is a Haar-random pure state or
+        \(\mathbb{I}/d\).
+      </div>
+    </section>
+
+    <!-- ─── Exercise 4 ─── -->
+    <section class="publication-card resource-card card-exercise">
+      <div class="publication-title">
+        <span class="badge badge-ex">Exercise 4</span>&ensp;
+        <strong>Prove the Exponential Lower Bound</strong>
+      </div>
+      <div class="resource-meta-row">
+        <div class="meta-group">
+          <span class="badge badge-advanced">Advanced</span>
+        </div>
+      </div>
+      <div class="exercise-body">
+        <p>Prove Proposition 5 following this outline:</p>
+ 
+        <p><strong>(a) Set up the likelihood ratio.</strong> Consider distinguishing \(\rho=\mathbb{I}/d\) from \(\rho=|v\rangle\!\langle v|\) with \(|v\rangle\) Haar-random. After \(T\) adaptive single-copy measurements producing outcome string \(\ell\), show</p>
+        <div class="display-math">
+          $$\frac{\mathbb{E}_v[p^{|v\rangle\!\langle v|}(\ell)]}{p^{\mathbb{I}/d}(\ell)} = d^T\operatorname{tr}\!\left(\mathbb{E}_v[|v\rangle\!\langle v|^{\otimes T}]\;\bigotimes_{t=1}^T|\psi_{s_t}\rangle\!\langle\psi_{s_t}|\right).$$
+        </div>
+ 
+        <p><strong>(b) Apply the Haar integral.</strong> Using the identity</p>
+        <div class="display-math">
+          $$\underset{\varphi}{\mathbb{E}}\;\varphi^{\otimes T} \;=\; \frac{\Pi_{\mathrm{sym}}^{d,T}}{\operatorname{tr} \Pi_{\mathrm{sym}}^{d,T}} \;=\; \frac{\Pi_{\mathrm{sym}}^{d,T}}{d[T]} \;=\; \frac{\sum_{\pi \in S_T} P_d(\pi)}{d(d+1)\cdots(d+T-1)}$$
+        </div>
+        <p>and Lemma 4, show</p>
+        <div class="display-math">
+          $$\frac{\mathbb{E}_v[p^{|v\rangle\!\langle v|}(\ell)]}{p^{\mathbb{I}/d}(\ell)} \;\ge\; \prod_{t=0}^{T-1}\!\left(1+\frac{t}{d}\right)^{-1}.$$
+        </div>
+ 
+        <p><strong>(c) Bound the product.</strong> Show the RHS is at least \(1 - \frac{T(T-1)}{2d}\).</p>
+ 
+        <p><strong>(d) Conclude.</strong> Via Le Cam's method, deduce \(d_{\mathrm{TV}}\le O(T^2/d)\) and \(T\ge\Omega(d^{1/2})\).</p>
+ 
+        <div class="hint-btn-row">
+          <button class="hint-btn" onclick="toggleHint(this)">
+            <i class="ph ph-plus"></i> <span>Hint for (c)</span>
+          </button>
+          <button class="hint-btn" onclick="toggleHint(this)">
+            <i class="ph ph-plus"></i> <span>Hint for (d)</span>
+          </button>
+        </div>
+        <div class="hint-panel">
+          <p>Take logs: \(-\sum_{t=0}^{T-1}\log(1+t/d)\ge -\sum_{t=0}^{T-1}t/d = -T(T-1)/(2d)\). Then \(e^{-x}\ge 1-x\).</p>
+        </div>
+        <div class="hint-panel">
+          <p>Le Cam's one-sided method: if the likelihood ratio is \(\ge 1-\delta\) for all \(\ell\), then \(d_{\mathrm{TV}}\le\delta\). A successful algorithm needs \(\Omega(1)\le d_{\mathrm{TV}}\), forcing \(T^2/d=\Omega(1)\).</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ─── Summary ─── -->
+    <section class="publication-card resource-card roadmap-card">
+      <div class="publication-title">
+        <i class="ph ph-check-circle" style="color:rgb(255,95,5); margin-right:0.3rem;"></i>
+        <strong>Summary</strong>
+      </div>
+      <div class="resource-description">
+        Exercises 1–2 establish two-copy sample complexity \(\Theta(1/\epsilon)\).
+        Exercise 4 shows any single-copy algorithm requires \(\Omega(2^{n/2})\) copies.
+        Together: an <strong>exponential separation</strong> between single-copy and
+        two-copy purity testing.
+      </div>
+    </section>
+
+    <p class="mentor-note" style="margin-top: 2rem;">
+      This problem set accompanies the
+      <a href="https://www.jacobbeckey.com/assets/Quantum%20Learning%20Theory/Lecture%20Notes/Lecture%20Notes.pdf">MATH 595 lecture notes.</a>
+      If you find errors or have questions, please reach out.
+    </p>
+
+  </main>
+
+  <footer>
+    <p>Copyright &#169; 2025 Jacob Beckey. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="./script.js"></script>
+  <script>
+    /* Hint toggle — each button opens its next .hint-panel sibling.
+       When buttons are grouped in a .hint-btn-row, index into sibling panels. */
+    function toggleHint(btn) {
+      btn.classList.toggle('open');
+
+      /* Find the exercise-body container */
+      var body = btn.closest('.exercise-body');
+      if (!body) return;
+
+      /* Collect all hint buttons and panels in this exercise */
+      var allBtns = body.querySelectorAll('.hint-btn');
+      var allPanels = body.querySelectorAll('.hint-panel');
+      var idx = Array.from(allBtns).indexOf(btn);
+
+      if (allPanels[idx]) {
+        allPanels[idx].classList.toggle('open');
+      }
+    }
+
+    /* KaTeX — wait for deferred scripts to load, then render */
+    (function initKaTeX() {
+      var check = setInterval(function() {
+        if (typeof renderMathInElement === 'function') {
+          clearInterval(check);
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: "$$", right: "$$", display: true},
+              {left: "\\(", right: "\\)", display: false}
+            ],
+            throwOnError: false,
+            trust: true,
+            strict: false
+          });
+        }
+      }, 80);
+    })();
+  </script>
+</body>
+</html>
