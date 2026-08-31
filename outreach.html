@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Outreach — Jacob L. Beckey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4efe6;
+    --paper-deep: #ebe4d5;
+    --ink: #002147;
+    --ink-soft: #30557e;
+    --keaney: #2277b3;
+    --keaney-soft: #c0ddf2;
+    --muted: #7a7466;
+    --rule: #d8cfbd;
+    --gold: #B5985A;
+    --gold-deep: #8a7340;
+    --gold-soft: #fefada;
+    --serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter Tight', 'Helvetica Neue', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .wrap { position: relative; z-index: 2; }
+
+  /* ───────── NAV ───────── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(244, 239, 230, 0.92);
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-block;
+  }
+  .logo-name {
+    font-style: normal;
+    color: var(--gold-deep);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .logo:hover .logo-name { color: var(--ink); }
+  .logo-affil {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+  }
+  .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-deep); }
+  .nav-links a.active { color: var(--ink); border-bottom: 1px solid var(--gold-deep); padding-bottom: 0.2rem; }
+  .nav-links a.cv {
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+  }
+  .nav-links a.cv:hover { background: var(--gold-deep); color: var(--paper); }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    padding: 5rem 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold-deep);
+  }
+  h1.hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    max-width: 980px;
+    margin-bottom: 1.8rem;
+  }
+  h1.hero-headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-deep);
+  }
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 760px;
+    color: var(--ink-soft);
+  }
+
+  /* ───────── COMMITMENTS BAND ───────── */
+  .commitments {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-deep);
+    padding: 4.5rem 3rem;
+  }
+  .commitments-inner { max-width: 1400px; margin: 0 auto; }
+  .commitments-head { margin-bottom: 2.5rem; }
+  .commitments-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  .commitments-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .commitments-head p {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    max-width: 740px;
+    font-weight: 300;
+  }
+  .commitments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  @media (max-width: 900px) { .commitments-grid { grid-template-columns: 1fr; gap: 1.8rem; } }
+  .commitment-col .num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--gold-deep);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .commitment-col h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+    letter-spacing: -0.015em;
+  }
+  .commitment-col p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ───────── SECTION SCAFFOLD ───────── */
+  .section {
+    padding: 5rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section-head {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-head .section-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 0.7rem;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  .section-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .section-head p {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 720px;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  /* ───────── INITIATIVE CARDS (the headline content) ───────── */
+  .initiatives-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  @media (max-width: 900px) { .initiatives-grid { grid-template-columns: 1fr; } }
+
+  .initiative {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .initiative-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .initiative-role {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .initiative-dates {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+
+  .initiative-title {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .initiative-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--gold-deep);
+    font-weight: 300;
+  }
+  .initiative-body {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .initiative-body p { margin-bottom: 0.9rem; }
+  .initiative-body p:last-child { margin-bottom: 0; }
+  .initiative-body strong { font-weight: 500; }
+
+  .initiative-features {
+    display: grid;
+    gap: 0.7rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin: 0.3rem 0;
+  }
+  .initiative-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .initiative-feature .bullet {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    background: var(--gold-deep);
+    border-radius: 50%;
+    margin-top: 0.5rem;
+  }
+
+  .initiative-link {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.2rem;
+    align-self: flex-start;
+    transition: all 0.2s;
+  }
+  .initiative-link:hover {
+    color: var(--gold-deep);
+    border-color: var(--gold-deep);
+  }
+
+  /* ───────── MENTORSHIP ───────── */
+  .mentorship {
+    background: var(--paper-deep);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 5rem 3rem;
+  }
+  .mentorship-inner { max-width: 1400px; margin: 0 auto; }
+
+  .mentor-intro {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3.5rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 900px) { .mentor-intro { grid-template-columns: 1fr; gap: 1.8rem; } }
+
+  .mentor-intro-prose {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .mentor-intro-prose p { margin-bottom: 1rem; }
+  .mentor-intro-prose p:last-child { margin-bottom: 0; }
+  .mentor-intro-prose a {
+    color: var(--keaney);
+    text-decoration: none;
+    border-bottom: 1px solid var(--keaney);
+  }
+  .mentor-intro-prose a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+  .mentor-stats {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.8rem 2rem;
+    display: grid;
+    gap: 1.2rem;
+    align-content: start;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .stat-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--gold-deep);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.3;
+    max-width: 180px;
+  }
+
+  /* mentee list */
+  .mentee-group { margin-bottom: 2rem; }
+  .mentee-group:last-child { margin-bottom: 0; }
+  .mentee-group-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .mentee-group-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .mentee-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.6rem 1.5rem;
+  }
+  .mentee {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.95rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem 1rem;
+    align-items: center;
+  }
+  .mentee-name {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .mentee-name .star {
+    color: var(--gold-deep);
+    margin-right: 0.25rem;
+    font-style: normal;
+  }
+  .mentee-details {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.85rem;
+    grid-column: 1 / -1;
+    margin-top: -0.1rem;
+  }
+  .mentee-term {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .mentee-term.current {
+    background: var(--ink);
+    color: var(--gold);
+  }
+
+  .mentee-star-key {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-top: 1.5rem;
+  }
+  .mentee-star-key .star { color: var(--gold-deep); font-style: normal; }
+
+  /* ───────── BROADER ───────── */
+  .broader-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 800px) { .broader-grid { grid-template-columns: 1fr; } }
+
+  .broader-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1.6rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .broader-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .broader-role {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .broader-dates {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .broader-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .broader-desc {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  /* ───────── RECOGNITION ───────── */
+  .recognition-list {
+    display: grid;
+    gap: 0;
+  }
+  .recognition-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .recognition-item:last-child { border-bottom: none; }
+  .recognition-name {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .recognition-detail {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+  }
+  .recognition-year {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold-deep);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  /* ───────── CLOSING CTA ───────── */
+  .closing-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4.5rem 3rem;
+    text-align: center;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .closing-cta-inner { position: relative; max-width: 720px; margin: 0 auto; z-index: 2; }
+  .closing-cta h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .closing-cta h3 em { font-style: italic; color: var(--gold); }
+  .closing-cta p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--paper);
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 0.9rem 1.6rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .closing-cta .btn-primary { background: var(--gold); color: var(--ink); }
+  .closing-cta .btn-primary:hover { background: var(--paper); }
+
+  /* footer */
+  footer {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--rule);
+  }
+  footer em { font-family: var(--serif); }
+  footer .footer-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-deep);
+    margin: 0 auto 1rem;
+  }
+
+  /* mobile */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a:not(.cv) { display: none; }
+    .hero, .section, .commitments, .mentorship, .closing-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero { padding-top: 3.5rem; padding-bottom: 2rem; }
+    .initiative { padding: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<nav>
+  <a href="index-uri.html" class="logo">
+    <span class="logo-name">Jacob L. Beckey</span>
+    <span class="logo-affil">Physics · University of Rhode Island</span>
+  </a>
+  <div class="nav-links">
+    <a href="research-uri.html">Research</a>
+    <a href="teaching-uri.html">Teaching</a>
+    <a href="resources-uri.html">Resources</a>
+    <a href="outreach-uri.html" class="active">Outreach</a>
+    <a href="#" class="cv">CV ↓</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Outreach</div>
+  <h1 class="hero-headline">A scientist's work belongs to the <em>community</em> that funds it.</h1>
+  <p class="hero-sub">
+    I believe the people who do science have an obligation to share its tools — not just its results — with the educators, students, and public who make the work possible. Most of my outreach is built around supporting the K–12 teachers on whose shoulders this entire enterprise stands, and around mentoring the next generation of undergraduate researchers.
+  </p>
+</section>
+
+<!-- COMMITMENTS -->
+<section class="commitments">
+  <div class="commitments-inner">
+    <div class="commitments-head">
+      <h2>Three <em>commitments</em></h2>
+      <p>My outreach work is organized around three audiences whose access to authentic STEM practice I care most about.</p>
+    </div>
+    <div class="commitments-grid">
+      <div class="commitment-col">
+        <span class="num">I.</span>
+        <h3>K–12 teachers</h3>
+        <p>Building the professional development infrastructure that helps practicing teachers bring authentic scientific and mathematical practice into their classrooms.</p>
+      </div>
+      <div class="commitment-col">
+        <span class="num">II.</span>
+        <h3>Undergraduate researchers</h3>
+        <p>Mentoring undergraduates through serious, publishable research projects — and supporting the institutional structures, like the Illinois Mathematics Lab, that make this possible.</p>
+      </div>
+      <div class="commitment-col">
+        <span class="num">III.</span>
+        <h3>Broader community</h3>
+        <p>Tutoring, mentoring, and outreach to elementary students, graduate students, and the broader public on what science actually is and how it works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- K-12 TEACHER PD — THE CENTERPIECE -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">Centerpiece</div>
+    <h2>K–12 <em>teacher</em> professional development</h2>
+    <p>Most of my outreach effort goes here. Teachers are the leverage point for science education at every level — and they deserve the same kind of intellectual community, professional support, and research-informed practice that university faculty take for granted. I co-founded two organizations to help build that infrastructure.</p>
+  </div>
+
+  <div class="initiatives-grid">
+
+    <article class="initiative">
+      <div class="initiative-header">
+        <span class="initiative-role">Co-founder &amp; Vice President</span>
+        <span class="initiative-dates">2023–present</span>
+      </div>
+      <div class="initiative-title">Idealized Science Institute</div>
+      <div class="initiative-tagline">A national non-profit empowering physics educators with research-backed practice.</div>
+      <div class="initiative-body">
+        <p>I co-founded the Idealized Science Institute (ISI) to give physics teachers a place to engage with the actual research on how science is learned, taught, and understood. ISI brings the findings of decades of educational research to the people who need them most — the educators in K–12 classrooms.</p>
+      </div>
+      <div class="initiative-features">
+        <div class="initiative-feature"><span class="bullet"></span><span><strong>Free educational videos</strong> on the nature of science, scientific practice, and pedagogy.</span></div>
+        <div class="initiative-feature"><span class="bullet"></span><span><strong>A podcast</strong> that translates education research for practicing teachers, in plain language.</span></div>
+        <div class="initiative-feature"><span class="bullet"></span><span><strong>In-person professional development</strong> workshops, including a regional science conference held annually.</span></div>
+        <div class="initiative-feature"><span class="bullet"></span><span><strong>A curated K–12 STEM book library</strong> — the basis for our ongoing literacy-in-STEM initiative.</span></div>
+      </div>
+      <a href="https://www.idealizedscience.org/" target="_blank" rel="noopener" class="initiative-link">Visit Idealized Science Institute →</a>
+    </article>
+
+    <article class="initiative">
+      <div class="initiative-header">
+        <span class="initiative-role">Co-founder &amp; Lead Facilitator</span>
+        <span class="initiative-dates">2025–present</span>
+      </div>
+      <div class="initiative-title">Central Illinois Math Teacher Circles</div>
+      <div class="initiative-tagline">A community of practice for pre- and in-service math teachers in Central Illinois.</div>
+      <div class="initiative-body">
+        <p>Math teacher circles bring practicing K–12 mathematics teachers together with research mathematicians to do mathematics — really do it — collaboratively. The model is built on decades of evidence that teachers teach better when they themselves remain active mathematical learners.</p>
+        <p>I co-founded the Central Illinois chapter to bring this model to teachers across the region, with monthly meetings hosted at UIUC.</p>
+      </div>
+      <div class="initiative-features">
+        <div class="initiative-feature"><span class="bullet"></span><span><strong>Monthly professional development</strong> sessions for pre- and in-service teachers.</span></div>
+        <div class="initiative-feature"><span class="bullet"></span><span><strong>Collaborative problem-solving</strong> with research mathematicians and peer educators.</span></div>
+        <div class="initiative-feature"><span class="bullet"></span><span><strong>A regional community</strong> of math teachers across Central Illinois.</span></div>
+      </div>
+      <a href="mailto:jbeckey@uri.edu?subject=Central%20Illinois%20Math%20Teacher%20Circles" class="initiative-link">Get involved →</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- UNDERGRADUATE MENTORSHIP -->
+<section class="mentorship">
+  <div class="mentorship-inner">
+    <div class="section-head" style="border-bottom-color: var(--ink);">
+      <div class="section-eyebrow">Mentorship</div>
+      <h2>Undergraduate <em>research</em> mentorship</h2>
+      <p>Many of my research projects involve undergraduate co-authors. At UIUC, much of this happens through the <strong style="color: var(--ink); font-style: normal;">Illinois Mathematics Lab</strong>, which pairs mathematics undergraduates with faculty and postdoctoral mentors for serious semester- and year-long research projects.</p>
+    </div>
+
+    <div class="mentor-intro">
+      <div class="mentor-intro-prose">
+        <p>I take undergraduate research seriously. The students I mentor do real work — proving theorems, running simulations, deriving bounds, writing and revising drafts — and several have become co-authors on papers in <em>Phys. Rev. A</em> and elsewhere. Those papers are marked with a <span style="color: var(--gold-deep); font-weight: 600;">★</span> on the research page.</p>
+        <p>I work with students who are at very different stages of their training. Some are first-time researchers learning what mathematical research looks like from the inside; others are advanced undergraduates ready to drive a project independently. Both are welcome.</p>
+        <p>If you are a URI undergraduate curious about quantum information theory, mathematics, or theoretical physics, <a href="mailto:jbeckey@uri.edu?subject=Undergraduate%20research%20inquiry">please get in touch</a>. You do not need to have taken a quantum mechanics course to start.</p>
+      </div>
+
+      <div class="mentor-stats">
+        <div class="stat-row">
+          <span class="stat-num">9</span>
+          <span class="stat-label">Undergraduate &amp; Masters Mentees</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Co-authored Publications with Mentees</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Years of Research Mentorship</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current mentees -->
+    <div class="mentee-group">
+      <div class="mentee-group-label">Current mentees</div>
+      <div class="mentee-list">
+        <div class="mentee">
+          <span class="mentee-name">Yuna Shin</span>
+          <span class="mentee-term current">Active</span>
+          <span class="mentee-details">Physics &amp; Math · UIUC · Spring 2026–present</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name">Mihir Mehta</span>
+          <span class="mentee-term current">Active</span>
+          <span class="mentee-details">Mathematics · UIUC · Spring 2026–present</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name">Diana Lopez</span>
+          <span class="mentee-term current">Active</span>
+          <span class="mentee-details">Mathematics · UIUC · Spring 2026–present</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name">Mayank Bhatia</span>
+          <span class="mentee-term current">Active</span>
+          <span class="mentee-details">Master's, Computer Science · UIUC · Fall 2024–present</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Past mentees -->
+    <div class="mentee-group">
+      <div class="mentee-group-label">Past mentees</div>
+      <div class="mentee-list">
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Akanksha Chablani</span>
+          <span class="mentee-term">Spring 2025</span>
+          <span class="mentee-details">Math &amp; Computer Science · UIUC</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Abbie Lee-Vaughan-Lee</span>
+          <span class="mentee-term">Spring 2025</span>
+          <span class="mentee-details">Math &amp; Computer Science · UIUC</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Hanyang Sha</span>
+          <span class="mentee-term">Spring 2025</span>
+          <span class="mentee-details">Mathematics · UIUC</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Leo Lee</span>
+          <span class="mentee-term">Spring 2025</span>
+          <span class="mentee-details">Mathematics · UIUC</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Luke Coffman</span>
+          <span class="mentee-term">2022–2024</span>
+          <span class="mentee-details">Physics &amp; Math · CU Boulder</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentee-star-key"><span class="star">★</span> Indicates a mentee who became a co-author on a peer-reviewed publication.</div>
+  </div>
+</section>
+
+<!-- BROADER COMMUNITY OUTREACH -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">Broader community</div>
+    <h2>Other <em>outreach</em></h2>
+    <p>Earlier and ongoing outreach work — mentoring graduate students, working with elementary-age learners, and participating in institutional efforts to broaden access to STEM.</p>
+  </div>
+
+  <div class="broader-grid">
+
+    <article class="broader-card">
+      <div class="broader-card-top">
+        <span class="broader-role">Mentor</span>
+        <span class="broader-dates">Fall 2023</span>
+      </div>
+      <div class="broader-title">Partnerships for Informal Science in the Community (PISEC)</div>
+      <div class="broader-desc">Guided elementary students through informal, exploratory science activities on a weekly basis. Boulder, CO.</div>
+    </article>
+
+    <article class="broader-card">
+      <div class="broader-card-top">
+        <span class="broader-role">Mentor &amp; Program Lead</span>
+        <span class="broader-dates">2021–2024</span>
+      </div>
+      <div class="broader-title">Graduate Association of Students in Physics (GASP)</div>
+      <div class="broader-desc">Closely mentored incoming graduate students through the transition into research, and ran the GASP mentorship program starting May 2023. CU Boulder.</div>
+    </article>
+
+    <article class="broader-card">
+      <div class="broader-card-top">
+        <span class="broader-role">Mentor</span>
+        <span class="broader-dates">2019–2024</span>
+      </div>
+      <div class="broader-title">CU Prime</div>
+      <div class="broader-desc">Monthly mentorship of undergraduate physics students, plus a small-group cohort in an introductory Nature of Science course. CU Boulder.</div>
+    </article>
+
+    <article class="broader-card">
+      <div class="broader-card-top">
+        <span class="broader-role">Steering Committee</span>
+        <span class="broader-dates">2023–2024</span>
+      </div>
+      <div class="broader-title">CUbit Education &amp; Workforce Development</div>
+      <div class="broader-desc">Helped develop quantum education and workforce development initiatives across the CU Boulder campus.</div>
+    </article>
+
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">Recognition</div>
+    <h2>Pedagogy &amp; <em>inclusion</em></h2>
+    <p>Awards and credentials related to teaching, mentorship, and a commitment to inclusive STEM education.</p>
+  </div>
+
+  <div class="recognition-list">
+    <div class="recognition-item">
+      <div>
+        <div class="recognition-name">Figueroa Family Fellowship for Commitment to Diversity, Equity, and Inclusion</div>
+        <div class="recognition-detail">University of Colorado, Boulder · Department of Physics</div>
+      </div>
+      <span class="recognition-year">Spring 2024</span>
+    </div>
+    <div class="recognition-item">
+      <div>
+        <div class="recognition-name">CU Physics Award for TA Excellence</div>
+        <div class="recognition-detail">University of Colorado, Boulder · Department of Physics</div>
+      </div>
+      <span class="recognition-year">Spring 2023</span>
+    </div>
+    <div class="recognition-item">
+      <div>
+        <div class="recognition-name">Inclusive Pedagogy Certificate</div>
+        <div class="recognition-detail">University of Illinois Urbana-Champaign · Center for Innovation in Teaching &amp; Learning</div>
+      </div>
+      <span class="recognition-year">2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing-cta">
+  <div class="closing-cta-inner">
+    <h3>K–12 teacher, prospective <em>student,</em> or curious neighbor?</h3>
+    <p>I welcome inquiries from teachers interested in professional development, undergraduates curious about research, and anyone who wants to talk about science education. Get in touch — I read everything.</p>
+    <a href="mailto:jbeckey@uri.edu" class="btn btn-primary">Email me →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-rule"></div>
+  <p><em>Jacob L. Beckey</em> · Assistant Professor, Department of Physics</p>
+  <p>University of Rhode Island · Kingston, RI 02881 · © 2026</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,729 +1,1583 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jacob Beckey — Student Resources</title>
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./mediaqueries.css" />
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resources for Students — Jacob L. Beckey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4efe6;
+    --paper-deep: #ebe4d5;
+    --ink: #002147;
+    --ink-soft: #30557e;
+    --keaney: #2277b3;
+    --keaney-soft: #c0ddf2;
+    --muted: #7a7466;
+    --rule: #d8cfbd;
+    --gold: #B5985A;
+    --gold-deep: #8a7340;
+    --gold-soft: #fefada;
+    --serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter Tight', 'Helvetica Neue', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .wrap { position: relative; z-index: 2; }
+
+  /* ───────── NAV ───────── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(244, 239, 230, 0.92);
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-block;
+  }
+  /* name turns URI navy on hover; affiliation does not change */
+  .logo-name {
+    font-style: normal;
+    color: var(--gold-deep);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .logo:hover .logo-name { color: var(--ink); }
+  .logo-affil {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+  }
+
+  .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-deep); }
+  .nav-links a.active { color: var(--ink); border-bottom: 1px solid var(--gold-deep); padding-bottom: 0.2rem; }
+  .nav-links a.cv {
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+  }
+  .nav-links a.cv:hover { background: var(--gold-deep); color: var(--paper); }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    padding: 5rem 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold-deep);
+  }
+
+  h1.hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    max-width: 950px;
+    margin-bottom: 1.8rem;
+  }
+  h1.hero-headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-deep);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 720px;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+  }
+  .hero-sub a {
+    color: var(--keaney);
+    text-decoration: none;
+    border-bottom: 1px solid var(--keaney);
+  }
+  .hero-sub a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+  .hero-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 720px;
+  }
+  .hero-note .star { color: var(--gold-deep); font-style: normal; }
+
+  /* ───────── LIBRARY (resource grid section) ───────── */
+  .library {
+    padding: 3rem 3rem 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .library-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .library-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    letter-spacing: -0.02em;
+  }
+  .library-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .library-count {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  /* type legend — explains the color coding */
+  .type-legend {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    align-items: center;
+  }
+  .type-legend-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .type-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .type-legend-swatch {
+    width: 22px;
+    height: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px rgba(0, 33, 71, 0.08);
+  }
+  .type-legend-swatch.book { background: var(--ink); }
+  .type-legend-swatch.notes { background: var(--keaney); }
+  .type-legend-swatch.article { background: var(--paper); border: 1px solid var(--rule); box-shadow: none; }
+
+  /* composable sentence filter */
+  .filter-sentence {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink);
+    padding: 1.8rem 2rem;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+    position: sticky;
+    top: 78px;
+    z-index: 50;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.25rem 0.85rem;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    margin: 0 0.15rem;
+    position: relative;
+    font-style: normal;
+  }
+  .chip:hover { background: var(--gold-deep); }
+  .chip::after {
+    content: '▾';
+    font-size: 0.7rem;
+    opacity: 0.7;
+  }
+  .chip.active-filter { background: var(--gold-deep); }
+
+  .chip-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.5rem;
+    box-shadow: 0 12px 28px rgba(0, 33, 71, 0.15);
+    min-width: 220px;
+    display: none;
+    z-index: 200;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  .chip-dropdown.open { display: block; }
+  .chip-dropdown button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0.55rem 0.8rem;
+    border-radius: 2px;
+    cursor: pointer;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    transition: background 0.15s;
+  }
+  .chip-dropdown button:hover { background: var(--paper-deep); }
+  .chip-dropdown button.selected {
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .chip-dropdown button.selected::before { content: '✓ '; }
+
+  .filter-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 0 0.3rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .results-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .controls-right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .star-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: transparent;
+    transition: all 0.2s;
+  }
+  .star-toggle:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+  .star-toggle.active {
+    background: var(--gold-soft);
+    border-color: var(--gold-deep);
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .star-toggle .star { color: var(--gold-deep); }
+  .sort-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .sort-control select {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  /* ───────── RESOURCE GRID — grouped by topic ───────── */
+  .topic-section { margin-bottom: 3.5rem; }
+  .topic-section:last-child { margin-bottom: 0; }
+  .topic-section.hidden { display: none; }
+
+  .topic-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--ink);
+    flex-wrap: wrap;
+  }
+  .topic-header h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+    letter-spacing: -0.015em;
+  }
+  .topic-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 2.5rem 1.8rem;
+  }
+
+  .res {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    animation: fadeUp 0.5s ease backwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .res:hover { transform: translateY(-4px); }
+
+  /* card cover — typographic plate, no book metaphor */
+  .res-plate {
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 1px 2px rgba(0, 33, 71, 0.08),
+      0 8px 24px rgba(0, 33, 71, 0.14);
+    margin-bottom: 1.1rem;
+    transition: box-shadow 0.3s;
+  }
+  .res:hover .res-plate {
+    box-shadow:
+      0 2px 4px rgba(0, 33, 71, 0.1),
+      0 16px 36px rgba(0, 33, 71, 0.22);
+  }
+
+  /* indispensability star — top-right corner of card plate */
+  .star-mark {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: var(--gold);
+    color: var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0, 33, 71, 0.25);
+    z-index: 3;
+  }
+  .star-mark::before { content: '★'; }
+  /* on cream article plates, swap to navy fill so the badge reads against the light background */
+  .res-plate.plate-article .star-mark {
+    background: var(--ink);
+    color: var(--gold);
+  }
+
+  .res-meta { padding: 0 0.1rem; }
+  .res-type {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 0.5rem;
+  }
+  .res-title {
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+  }
+  .res-author {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .res-teaser {
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 1.1rem;
+  }
+
+  /* ───────── SPEC STRIP — the new rating system ───────── */
+  .spec-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--rule);
+  }
+  .spec {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .spec-label {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .spec-gauge {
+    display: flex;
+    gap: 2px;
+    height: 5px;
+  }
+  .spec-gauge .pip {
+    flex: 1;
+    background: var(--rule);
+    border-radius: 1px;
+  }
+  .spec-gauge .pip.filled { background: var(--ink); }
+
+  /* ───────── MODAL ───────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 33, 71, 0.55);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: overlayIn 0.3s ease;
+  }
+  .modal-overlay.open { display: flex; }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: var(--paper);
+    max-width: 880px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--ink);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .modal-content { padding: 3rem; }
+  @media (max-width: 700px) { .modal-content { padding: 2rem 1.5rem; } }
+
+  .modal-type {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 0.8rem;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  .modal-title .star { color: var(--gold-deep); margin-right: 0.4rem; }
+  .modal-author {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: var(--keaney-soft);
+    color: var(--ink);
+    border-radius: 2px;
+  }
+  .tag.gold { background: var(--gold-soft); color: var(--gold-deep); }
+  .tag.topic { background: var(--paper-deep); border: 1px solid var(--rule); color: var(--ink-soft); }
+
+  .section-rule {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin: 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .modal-note {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .modal-note p { margin-bottom: 0.9rem; }
+  .modal-note p:last-child { margin-bottom: 0; }
+  .modal-note a {
+    color: var(--keaney);
+    text-decoration: none;
+    border-bottom: 1px solid var(--keaney);
+  }
+  .modal-note a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+  /* full spec block inside modal */
+  .modal-specs {
+    background: var(--paper-deep);
+    border-radius: 3px;
+    padding: 1.5rem 1.8rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem 2rem;
+  }
+  @media (max-width: 600px) { .modal-specs { grid-template-columns: 1fr; } }
+  .modal-spec { display: flex; flex-direction: column; gap: 0.4rem; }
+  .modal-spec-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .modal-spec-bar {
+    display: flex;
+    gap: 3px;
+    height: 7px;
+  }
+  .modal-spec-bar .pip {
+    flex: 1;
+    background: var(--rule);
+    border-radius: 1px;
+  }
+  .modal-spec-bar .pip.filled { background: var(--ink); }
+  .modal-spec-value {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  .modal-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.2s;
+    margin-bottom: 0.6rem;
+  }
+  .modal-link:hover {
+    background: var(--gold-soft);
+    border-color: var(--gold-deep);
+    transform: translateX(2px);
+  }
+  .modal-link:hover .modal-link-arrow { transform: translateX(4px); color: var(--gold-deep); }
+  .modal-link-info { display: flex; align-items: center; gap: 0.9rem; min-width: 0; }
+  .modal-link-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .modal-link-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  .modal-link-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+  .modal-link-arrow {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  /* empty state */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .empty-state.hidden { display: none; }
+
+  /* ───────── CTA ───────── */
+  .closing-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4.5rem 3rem;
+    text-align: center;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .closing-cta-inner { position: relative; max-width: 720px; margin: 0 auto; z-index: 2; }
+  .closing-cta h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .closing-cta h3 em { font-style: italic; color: var(--gold); }
+  .closing-cta p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--paper);
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 0.9rem 1.6rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .closing-cta .btn-primary { background: var(--gold); color: var(--ink); }
+  .closing-cta .btn-primary:hover { background: var(--paper); }
+
+  /* footer */
+  footer {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--rule);
+  }
+  footer em { font-family: var(--serif); }
+  footer .footer-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-deep);
+    margin: 0 auto 1rem;
+  }
+
+  /* mobile */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a:not(.cv) { display: none; }
+    .hero, .library, .closing-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero { padding-top: 3.5rem; padding-bottom: 2rem; }
+    .filter-sentence { padding: 1.2rem; line-height: 2; }
+    .grid { gap: 2rem 1.2rem; }
+  }
+</style>
 </head>
+<body>
+<div class="wrap">
 
-<body class="research-page">
-  <!-- ==================== NAVIGATION BAR ==================== -->
-  <nav id="desktop-nav" class="sticky-nav">
-    <div class="logo-container" onclick="location.href='index.html'">
-      <img src="./assets/jlb-logo.svg" alt="Logo" />
-      <span class="logo-text">Jacob Beckey</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="research.html">Research</a></li>
-      <li><a href="teaching.html">Teaching</a></li>
-      <li><a href="outreach.html">Outreach</a></li>
-      <li><a href="resources.html" class="active-link">Resources</a></li>
-    </ul>
-  </nav>
-
-  <!-- ==================== MOBILE NAVIGATION ==================== -->
-  <nav id="hamburger-nav">
-    <div class="logo-container" onclick="location.href='index.html'">
-      <img src="./assets/jlb-logo.svg" alt="Logo" />
-      <span class="logo-text">Jacob Beckey</span>
-    </div>
-    <div class="hamburger-menu">
-      <div class="hamburger-icon" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="menu-links">
-        <li><a href="research.html" onclick="toggleMenu()">Research</a></li>
-        <li><a href="teaching.html" onclick="toggleMenu()">Teaching</a></li>
-        <li><a href="outreach.html" onclick="toggleMenu()">Outreach</a></li>
-        <li><a href="resources.html" onclick="toggleMenu()">Resources</a></li>
-      </div>
-    </div>
-  </nav>
-
-  <main class="research-container">
-    <div class="research-heading">
-      <h1>Selected References for Students</h1>
-    </div>
-
-    <p>
-      This page collects books, lecture notes, videos, and articles that I have found useful and/or enjoyable over the years. The list is far from comprehensive 
-      but contains many of the resources I most frequently recommend to students that are interested in conducting research in theoretical aspects of quantum information science.
-      Each resource is tagged by <strong>difficulty</strong> and intended <strong>audience</strong> so you can find an entry point that matches your background. 
-      In addition to technical references, I also list articles and popular books that supplement content with the history, philosophy, or nature of science/math.
-      I have found the history, philosophy, and nature of math/science both interesting and useful to myself and my students, so I encourage you to develop 
-      a working knowledge of the these areas alongside your technical study of the topics. 
-    </p>
-
-    <!-- Legend / how-to-use -->
-    <p class="mentor-note resources-legend">
-      Difficulty:
-      <span class="badge badge-difficulty badge-intro">Introductory</span>
-      <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-      <span class="badge badge-difficulty badge-advanced">Advanced</span>
-      &nbsp;|&nbsp;
-      Audience:
-      <span class="badge badge-audience badge-physics">Physics</span>
-      <span class="badge badge-audience badge-math">Mathematics</span>
-      <span class="badge badge-audience badge-cs">Computer Science</span>
-      <span class="badge badge-audience badge-general">General</span>
-    </p>
-
-    <!-- ==================== TABLE OF CONTENTS ==================== -->
-<nav class="resource-toc">
-  <h2 class="toc-title">Browse by topic</h2>
-  <ul>
-    <li><a href="#res-linear-algebra">Linear Algebra</a></li>
-    <li><a href="#res-quantum-mech">Quantum Mechanics</a></li>
-    <li><a href="#res-group-rep">Group and Representation Theory</a></li>
-    <li><a href="#res-probability">High-dimensional Probability</a></li>
-    <li><a href="#res-quantum-info">Quantum Information Theory</a></li>
-    <li><a href="#res-quantum-learning">Quantum Learning Theory</a></li>
-    <li><a href="#res-sensing">Quantum Sensing &amp; Metrology</a></li>
-     <li><a href="#res-general">Advice for Mathematicians and Scientists</a></li>
-  </ul>
-
-  <p>
-  <span class="mentor-star">★</span>
-  Indicates a resource that I have found indespensible and recommend to all students.
-</p>
-
+<!-- NAV -->
+<nav>
+  <a href="index-uri.html" class="logo">
+    <span class="logo-name">Jacob L. Beckey</span>
+    <span class="logo-affil">Physics · University of Rhode Island</span>
+  </a>
+  <div class="nav-links">
+    <a href="research-uri.html">Research</a>
+    <a href="teaching-uri.html">Teaching</a>
+    <a href="resources-uri.html" class="active">Resources</a>
+    <a href="outreach-uri.html">Outreach</a>
+    <a href="#" class="cv">CV ↓</a>
+  </div>
 </nav>
 
-<!-- ========================================================= -->
-    <!-- LINEAR ALGEBRA & BACKGROUND MATH                          -->
-    <!-- ========================================================= -->
-<h2 class="year-divider" id="res-linear-algebra">Linear Algebra</h2>
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Selected References for Students</div>
+  <h1 class="hero-headline">Books, lecture notes, and articles I <em>recommend</em>.</h1>
+  <p class="hero-sub">
+    A curated collection of the resources I most often share with students interested in theoretical quantum information science — and the mathematical, physical, and historical context that surrounds it. Filter by topic, difficulty, or audience to find an entry point that matches your background.
+  </p>
+  <p class="hero-note">
+    <span class="star">★</span> marks the resources I consider indispensable — the ones I recommend to every student, regardless of subfield.
+  </p>
+</section>
 
-    <section class="publication-card resource-card">
-  <div class="publication-title">
-  <span class="mentor-star">★</span>
-  <strong>Sheldon Axler</strong>, Linear Algebra Done Right
-</div>
+<!-- LIBRARY -->
+<section class="library" id="library">
+  <div class="library-head">
+    <h2>The <em>collection</em></h2>
+    <span class="library-count" id="libraryCount">13 resources</span>
+  </div>
 
+  <div class="type-legend">
+    <span class="type-legend-label">Plate colors</span>
+    <span class="type-legend-item"><span class="type-legend-swatch book"></span> Books</span>
+    <span class="type-legend-item"><span class="type-legend-swatch notes"></span> Lecture Notes</span>
+    <span class="type-legend-item"><span class="type-legend-swatch article"></span> Articles</span>
+  </div>
 
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://linear.axler.net/LADR4e.pdf" target="_blank">
-          Textbook
-        </a>
+  <div class="filter-sentence">
+    Show me resources on
+    <span class="chip" data-filter="topic">
+      <span data-label="topic">any topic</span>
+      <div class="chip-dropdown" data-dropdown="topic">
+        <button data-value="all" class="selected">Any topic</button>
+        <button data-value="Linear Algebra">Linear Algebra</button>
+        <button data-value="Quantum Mechanics">Quantum Mechanics</button>
+        <button data-value="Group & Representation Theory">Group & Representation Theory</button>
+        <button data-value="High-dimensional Probability">High-dimensional Probability</button>
+        <button data-value="Quantum Information Theory">Quantum Information Theory</button>
+        <button data-value="Quantum Learning Theory">Quantum Learning Theory</button>
+        <button data-value="Quantum Sensing & Metrology">Quantum Sensing & Metrology</button>
+        <button data-value="Advice for Mathematicians & Scientists">Advice for Mathematicians & Scientists</button>
       </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
+    </span>
+    at
+    <span class="chip" data-filter="difficulty">
+      <span data-label="difficulty">any level</span>
+      <div class="chip-dropdown" data-dropdown="difficulty">
+        <button data-value="all" class="selected">Any difficulty</button>
+        <button data-value="Introductory">Introductory</button>
+        <button data-value="Intermediate">Intermediate</button>
+        <button data-value="Advanced">Advanced</button>
       </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-math">Mathematics</span>
+    </span>
+    for
+    <span class="chip" data-filter="audience">
+      <span data-label="audience">any audience</span>
+      <div class="chip-dropdown" data-dropdown="audience">
+        <button data-value="all" class="selected">Any audience</button>
+        <button data-value="Physics">Physics students</button>
+        <button data-value="Mathematics">Mathematics students</button>
+        <button data-value="Computer Science">CS students</button>
+        <button data-value="General">General audience</button>
       </div>
+    </span>.
+  </div>
 
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
+  <div class="filter-controls">
+    <div class="results-meta" id="resultsMeta">Showing all 13 resources</div>
+    <div class="controls-right">
+      <button class="star-toggle" id="starToggle"><span class="star">★</span> Indispensable only</button>
+      <div class="sort-control">
+        <span>Sort by</span>
+        <select id="sortSelect">
+          <option value="topic">By topic</option>
+          <option value="difficulty-asc">Difficulty (easy → hard)</option>
+          <option value="difficulty-desc">Difficulty (hard → easy)</option>
+          <option value="title">Title (A–Z)</option>
+          <option value="indispensable">Indispensable first</option>
+        </select>
+      </div>
     </div>
   </div>
 
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      For a second course in linear algebra, I agree with the title whole-heartedly. 
-    </p>
+  <div id="resultsContainer"></div>
+  <div class="empty-state hidden" id="emptyState">No resources match those filters. Try widening your search.</div>
+</section>
+
+<!-- CTA -->
+<section class="closing-cta">
+  <div class="closing-cta-inner">
+    <h3>Want a <em>tailored</em> reading list?</h3>
+    <p>If you're a student interested in a reading or research project, get in touch — I'm happy to suggest a sequence of resources based on your background and goals.</p>
+    <a href="index-uri.html#contact" class="btn btn-primary">Get in touch →</a>
   </div>
 </section>
 
-<!-- ========================================================= -->
-    <!-- Quantum Mechanics                                      -->
-    <!-- ========================================================= -->
-<h2 class="year-divider" id="res-quantum-mech">Quantum Mechanics</h2>
+<footer>
+  <div class="footer-rule"></div>
+  <p><em>Jacob L. Beckey</em> · Assistant Professor, Department of Physics</p>
+  <p>University of Rhode Island · Kingston, RI 02881 · © 2026</p>
+</footer>
 
-<section class="publication-card resource-card">
-  <div class="publication-title">
-  <strong>Leonard Susskind</strong>, Quantum Mechanics: The Theoretical Minimum
+<!-- MODAL -->
+<div class="modal-overlay" id="resourceModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
 </div>
 
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://www.hachettebookgroup.com/titles/leonard-susskind/quantum-mechanics/9780465080618/?lens=basic-books" target="_blank">
-          Book and Lectures
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-general">General</span>
-        <span class="badge badge-difficulty badge-intro">Introductory</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      The <a href="https://www.hachettebookgroup.com/titles/leonard-susskind/quantum-mechanics/9780465080618/?lens=basic-books">book</a> was 
-      co-authored by Leonard Susskind and Art Friedman, who was a student in Susskind's lectures at Stanford to 
-      professionals in the area that had an interest in learning some real physics (these <a href="https://theoreticalminimum.com/courses/quantum-mechanics/2012/winter">lectures</a> are online for free). 
-      The book and the lectures are absolute gold. They present the conceptual underpinnings of quantum mechanics in the clearest 
-      manner I have seen at this level. This book is a great supplement to a core introductory quantum course. 
-    </p>
-  </div>
-</section>
-
-<section class="publication-card resource-card">
-  <div class="publication-title">
-  <span class="mentor-star">★</span>
-  <strong>David Tong</strong>, Quantum Mechanics
 </div>
 
+<script>
+/* ============ RESOURCE DATA ============ */
+/* All content pulled verbatim from jacobbeckey.com/resources
+   The 4-axis "spec strip" rating system, on a 1-4 scale:
+   - depth: how exhaustively the topic is covered (1 = quick intro, 4 = comprehensive)
+   - formality: how mathematically formal/rigorous (1 = conversational, 4 = theorem-and-proof)
+   - difficulty: how hard the material is (1 = introductory, 4 = research-level)
+   - time: time investment to work through (1 = short read, 4 = semester-plus)
+*/
 
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://www.damtp.cam.ac.uk/user/tong/quantum.html" target="_blank">
-          Lecture Notes
-        </a>
-      </div>
+const TOPICS = [
+  { id: "linear-algebra", name: "Linear Algebra" },
+  { id: "quantum-mech", name: "Quantum Mechanics" },
+  { id: "group-rep", name: "Group & Representation Theory" },
+  { id: "probability", name: "High-dimensional Probability" },
+  { id: "quantum-info", name: "Quantum Information Theory" },
+  { id: "quantum-learning", name: "Quantum Learning Theory" },
+  { id: "sensing", name: "Quantum Sensing & Metrology" },
+  { id: "advice", name: "Advice for Mathematicians & Scientists" }
+];
 
-      <span class="meta-divider"></span>
+const RESOURCES = [
+  {
+    topic: "Linear Algebra",
+    type: "Textbook",
+    title: "Linear Algebra Done Right",
+    author: "Sheldon Axler",
+    difficulty: "Intermediate",
+    audiences: ["Mathematics"],
+    indispensable: true,
+    teaser: "For a second course in linear algebra, I agree with the title whole-heartedly.",
+    note: "<p>For a second course in linear algebra, I agree with the title whole-heartedly. Axler's defining choice is to defer the determinant until very late in the book — building the theory around operators, eigenvalues, and inner-product spaces in a way that's both more rigorous and more illuminating than the matrix-first approach most students see first.</p>",
+    specs: { depth: 4, formality: 4, difficulty: 3, time: 4 },
+    links: [
+      { icon: "📕", title: "Free PDF (4th edition)", sub: "linear.axler.net", url: "https://linear.axler.net/LADR4e.pdf" }
+    ],
+    plateStyle: 0
+  },
+  {
+    topic: "Quantum Mechanics",
+    type: "Book & Lectures",
+    title: "Quantum Mechanics: The Theoretical Minimum",
+    author: "Leonard Susskind",
+    difficulty: "Introductory",
+    audiences: ["Physics", "General"],
+    indispensable: false,
+    teaser: "Susskind presents the conceptual underpinnings of quantum mechanics in the clearest manner I have seen at this level.",
+    note: "<p>The book was co-authored by Leonard Susskind and Art Friedman, who was a student in Susskind's lectures at Stanford to professionals in the area that had an interest in learning some real physics. The lectures are <a href='https://theoreticalminimum.com/courses/quantum-mechanics/2012/winter' target='_blank' rel='noopener'>online for free</a>.</p><p>The book and the lectures are absolute gold. They present the conceptual underpinnings of quantum mechanics in the clearest manner I have seen at this level. This book is a great supplement to a core introductory quantum course.</p>",
+    specs: { depth: 2, formality: 2, difficulty: 1, time: 2 },
+    links: [
+      { icon: "📘", title: "Book — Quantum Mechanics: TTM", sub: "Hachette Book Group", url: "https://www.hachettebookgroup.com/titles/leonard-susskind/quantum-mechanics/9780465080618/?lens=basic-books" },
+      { icon: "🎥", title: "Stanford Continuing Studies lectures", sub: "Free video lectures · theoreticalminimum.com", url: "https://theoreticalminimum.com/courses/quantum-mechanics/2012/winter" }
+    ],
+    plateStyle: 1
+  },
+  {
+    topic: "Quantum Mechanics",
+    type: "Lecture Notes",
+    title: "Quantum Mechanics",
+    author: "David Tong",
+    difficulty: "Intermediate",
+    audiences: ["Physics"],
+    indispensable: true,
+    teaser: "The perfect follow-up to Susskind's theoretical minimum and an essential reference for upper-undergraduate QM courses.",
+    note: "<p>David Tong is a world-renowned theoretical physicist and a prolific writer of <em>excellent</em> lecture notes. I think these notes are the perfect follow-up to Susskind's theoretical minimum and an essential reference for upper-undergraduate QM courses.</p>",
+    specs: { depth: 3, formality: 3, difficulty: 3, time: 3 },
+    links: [
+      { icon: "📄", title: "Lecture notes (DAMTP)", sub: "damtp.cam.ac.uk/user/tong", url: "https://www.damtp.cam.ac.uk/user/tong/quantum.html" }
+    ],
+    plateStyle: 2
+  },
+  {
+    topic: "Quantum Mechanics",
+    type: "Textbook",
+    title: "Mastering Quantum Mechanics",
+    author: "Barton Zwiebach",
+    difficulty: "Advanced",
+    audiences: ["Physics"],
+    indispensable: true,
+    teaser: "Developed through many years of Barton's 8.05 course at MIT, with free lecture videos and courseware online.",
+    note: "<p>This book was developed through many years of Barton's 8.05 course at MIT. The lecture videos and courseware are freely available, making this an even better resource to learn from.</p><p>The book is expensive, so unless you want or need a hardcopy, I recommend using the freely available lecture notes from MIT OpenCourseWare.</p>",
+    specs: { depth: 4, formality: 4, difficulty: 4, time: 4 },
+    links: [
+      { icon: "📕", title: "Textbook — Mastering Quantum Mechanics", sub: "MIT Press", url: "https://mitpress.mit.edu/9780262046138/mastering-quantum-mechanics/" },
+      { icon: "🎥", title: "MIT 8.05 lecture videos & courseware", sub: "MIT OpenCourseWare", url: "https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/video_galleries/video-lectures/" }
+    ],
+    plateStyle: 3
+  },
+  {
+    topic: "Quantum Mechanics",
+    type: "Lecture Notes",
+    title: "Quantum Mechanics",
+    author: "Robert Littlejohn",
+    difficulty: "Advanced",
+    audiences: ["Physics"],
+    indispensable: false,
+    teaser: "Legendary lecture notes by UC Berkeley professor Robert Littlejohn — the perfect supplement to Sakurai.",
+    note: "<p>Legendary lecture notes by UC Berkeley professor Robert Littlejohn. They are the perfect supplement to the standard graduate quantum textbook in the United States (<em>Modern Quantum Mechanics</em> by J. J. Sakurai).</p>",
+    specs: { depth: 4, formality: 4, difficulty: 4, time: 4 },
+    links: [
+      { icon: "📄", title: "Physics 221 lecture notes", sub: "bohr.physics.berkeley.edu", url: "https://bohr.physics.berkeley.edu/classes/221/2021/221.html" }
+    ],
+    plateStyle: 4
+  },
+  {
+    topic: "Group & Representation Theory",
+    type: "Lecture Notes",
+    title: "Group Theory in Physics",
+    author: "Vincent Bouchard",
+    difficulty: "Introductory",
+    audiences: ["Physics", "Mathematics"],
+    indispensable: false,
+    teaser: "An excellent and succinct first introduction to group and representation theory.",
+    note: "<p>An excellent and succinct first introduction to group and representation theory for a cross-listed math/physics course at the University of Alberta.</p>",
+    specs: { depth: 2, formality: 3, difficulty: 2, time: 2 },
+    links: [
+      { icon: "📄", title: "MAPH 464 — Group theory chapter", sub: "sites.ualberta.ca", url: "https://sites.ualberta.ca/~vbouchar/MAPH464/chapter-group.html" }
+    ],
+    plateStyle: 0
+  },
+  {
+    topic: "Group & Representation Theory",
+    type: "Textbook",
+    title: "Group Theory in a Nutshell for Physicists",
+    author: "Anthony Zee",
+    difficulty: "Intermediate",
+    audiences: ["Physics", "Mathematics"],
+    indispensable: false,
+    teaser: "Strikes an excellent balance between conversational tone and mathematical rigor.",
+    note: "<p>Group theory, even just as it applies in physics, is an enormous field. So, group theory in a nutshell is still quite a lot of material!</p><p>That said, I think this book strikes an excellent balance between conversational tone and mathematical rigor.</p>",
+    specs: { depth: 4, formality: 3, difficulty: 3, time: 4 },
+    links: [
+      { icon: "📕", title: "Textbook — Group Theory in a Nutshell", sub: "Princeton University Press", url: "https://press.princeton.edu/books/hardcover/9780691162690/group-theory-in-a-nutshell-for-physicists" }
+    ],
+    plateStyle: 1
+  },
+  {
+    topic: "High-dimensional Probability",
+    type: "Textbook",
+    title: "High-dimensional Probability",
+    author: "Roman Vershynin",
+    difficulty: "Advanced",
+    audiences: ["Mathematics"],
+    indispensable: true,
+    teaser: "Essential reference on the topic.",
+    note: "<p>Essential reference on the topic. Vershynin's book covers concentration inequalities, random matrices, and the modern probabilistic tools that have become central to data science, signal processing, and theoretical computer science — including much of quantum information theory.</p>",
+    specs: { depth: 4, formality: 4, difficulty: 4, time: 4 },
+    links: [
+      { icon: "📕", title: "Free PDF (2nd edition)", sub: "math.uci.edu/~rvershyn", url: "https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-2.pdf" }
+    ],
+    plateStyle: 2
+  },
+  {
+    topic: "Quantum Information Theory",
+    type: "Textbook",
+    title: "Quantum Computation and Quantum Information",
+    author: "Michael Nielsen & Isaac Chuang",
+    difficulty: "Intermediate",
+    audiences: ["Physics"],
+    indispensable: true,
+    teaser: "Also known as \"Mike and Ike\" or \"The Bible.\" The classic text in the field.",
+    note: "<p>Also known as \"Mike and Ike\" or \"The Bible.\" This is the classic text in the field. It is pedagogical, rigorous, and thorough. If you want to get into quantum computation and quantum information, this is a great place to start.</p>",
+    specs: { depth: 4, formality: 3, difficulty: 3, time: 4 },
+    links: [
+      { icon: "📕", title: "Textbook — Quantum Computation & QI", sub: "Cambridge University Press", url: "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE" }
+    ],
+    plateStyle: 3
+  },
+  {
+    topic: "Quantum Information Theory",
+    type: "Lecture Notes",
+    title: "Quantum Computation and Information",
+    author: "John Preskill",
+    difficulty: "Advanced",
+    audiences: ["Physics"],
+    indispensable: true,
+    teaser: "A classic set of lecture notes from a physics point of view — conceptual and calculation-oriented.",
+    note: "<p>A classic set of lecture notes that develops quantum information and basic quantum computing from a physics point of view. Good for students who are comfortable with linear algebra and Dirac notation and want a more conceptual, calculation-oriented introduction.</p>",
+    specs: { depth: 4, formality: 3, difficulty: 4, time: 4 },
+    links: [
+      { icon: "📄", title: "Ph 229 lecture notes", sub: "theory.caltech.edu/~preskill", url: "http://theory.caltech.edu/~preskill/ph229/" }
+    ],
+    plateStyle: 4
+  },
+  {
+    topic: "Quantum Learning Theory",
+    type: "Lecture Notes",
+    title: "Quantum Learning Theory",
+    author: "John Wright",
+    difficulty: "Intermediate",
+    audiences: ["Computer Science"],
+    indispensable: false,
+    teaser: "Scribe notes from John's course at UC Berkeley.",
+    note: "<p>Scribe notes from John Wright's course at UC Berkeley. The course covers the modern theory of learning quantum states — sample complexity, tomography, shadow protocols, and the question of when multi-copy access to a quantum state provides a real advantage.</p>",
+    specs: { depth: 3, formality: 4, difficulty: 3, time: 3 },
+    links: [
+      { icon: "📄", title: "Course page & scribe notes", sub: "people.eecs.berkeley.edu/~jswright", url: "https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/" }
+    ],
+    plateStyle: 0
+  },
+  {
+    topic: "Quantum Sensing & Metrology",
+    type: "Journal Article",
+    title: "Quantum Metrology",
+    author: "Giovannetti, Lloyd & Maccone",
+    difficulty: "Intermediate",
+    audiences: ["Physics"],
+    indispensable: false,
+    teaser: "Classic paper in the field.",
+    note: "<p>Classic paper in the field — establishes the framework for understanding how quantum strategies improve the precision of physical measurements, and where the fundamental limits lie. Essential context for anyone working on quantum sensing or metrology.</p>",
+    specs: { depth: 2, formality: 3, difficulty: 3, time: 1 },
+    links: [
+      { icon: "📄", title: "Preprint (arXiv)", sub: "arXiv:quant-ph/0509179", url: "https://arxiv.org/abs/quant-ph/0509179" }
+    ],
+    plateStyle: 1
+  },
+  {
+    topic: "Advice for Mathematicians & Scientists",
+    type: "Article",
+    title: "Ten Lessons I Wish I Had Been Taught",
+    author: "Gian-Carlo Rota",
+    difficulty: "Introductory",
+    audiences: ["Mathematics", "General"],
+    indispensable: false,
+    teaser: "Useful advice from a well-known MIT mathematician and philosopher.",
+    note: "<p>Useful advice from a well-known MIT mathematician and philosopher. Worth re-reading every couple of years — Rota's observations about teaching, writing, and the actual sociology of mathematics hold up remarkably well.</p>",
+    specs: { depth: 1, formality: 1, difficulty: 1, time: 1 },
+    links: [
+      { icon: "📄", title: "AMS Notices reprint", sub: "staff.ustc.edu.cn", url: "http://staff.ustc.edu.cn/~yqliang/files/teaching/10lessons.pdf" }
+    ],
+    plateStyle: 2
+  }
+];
 
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-      </div>
+/* ============ PLATE GENERATION ============ */
+/* Type-coded palettes — color signals resource type at a glance.
+   Books (Textbook, Book & Lectures) → navy field, gold ink
+   Lecture Notes                    → Keaney blue field, cream ink
+   Articles (Journal Article, Article) → cream field, deep gold ink
+*/
+function platePaletteFor(type) {
+  const books = ["Textbook", "Book & Lectures"];
+  const notes = ["Lecture Notes"];
+  // anything else falls under "article"
+  if (books.includes(type)) {
+    return {
+      bg: "#002147",       // URI navy
+      fg: "#B5985A",       // URI gold
+      fgSoft: "#fefada",   // light cream for secondary ink
+      accent: "#B5985A",
+      glyph: "❧",
+      kind: "book"
+    };
+  }
+  if (notes.includes(type)) {
+    return {
+      bg: "#2277b3",       // URI Keaney blue
+      fg: "#fefada",       // cream
+      fgSoft: "#fefada",
+      accent: "#fefada",
+      glyph: "§",
+      kind: "notes"
+    };
+  }
+  // Article
+  return {
+    bg: "#f4efe6",         // paper cream
+    fg: "#002147",         // navy ink
+    fgSoft: "#8a7340",     // deep gold for secondary
+    accent: "#8a7340",     // gold rules
+    glyph: "¶",
+    kind: "article"
+  };
+}
 
-      <span class="meta-divider"></span>
+function generatePlate(r, idx) {
+  const pal = platePaletteFor(r.type);
+  const author = escapeXML(r.author);
+  const type = r.type.toUpperCase();
 
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
-      </div>
+  // Title — split into two lines if too long
+  const titleWords = r.title.split(' ');
+  const line1Words = [], line2Words = [];
+  let line1Len = 0;
+  for (const w of titleWords) {
+    if (line1Len + w.length <= 22 || line2Words.length > 0) {
+      if (line1Len + w.length <= 22) {
+        line1Words.push(w);
+        line1Len += w.length + 1;
+      } else {
+        line2Words.push(w);
+      }
+    }
+  }
+  const line1 = escapeXML(line1Words.join(' '));
+  const line2 = escapeXML(line2Words.join(' '));
 
-      <span class="meta-divider"></span>
+  // Suppress the type glyph when an indispensable star will overlay the same corner.
+  // The star already signals "noteworthy" — two marks in the same spot would collide.
+  const showGlyph = !r.indispensable;
 
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
+  return `
+    <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%; height:100%; display:block;">
+      <rect width="300" height="180" fill="${pal.bg}"/>
+
+      <!-- top-left corner accent — tucked into the actual corner so it doesn't fight the type label -->
+      <line x1="14" y1="14" x2="28" y2="14" stroke="${pal.accent}" stroke-width="1" opacity="0.8"/>
+      <line x1="14" y1="14" x2="14" y2="28" stroke="${pal.accent}" stroke-width="1" opacity="0.8"/>
+
+      <!-- bottom-right corner accent — mirrored treatment -->
+      <line x1="286" y1="166" x2="272" y2="166" stroke="${pal.accent}" stroke-width="1" opacity="0.8"/>
+      <line x1="286" y1="166" x2="286" y2="152" stroke="${pal.accent}" stroke-width="1" opacity="0.8"/>
+
+      <!-- type label at top — left-aligned with title/author, moved down to clear the corner bracket -->
+      <text x="20" y="48" fill="${pal.fg}" font-family="Inter Tight, sans-serif" font-size="8" font-weight="600" letter-spacing="2" opacity="0.85">${escapeXML(type)}</text>
+
+      ${showGlyph ? `<!-- glyph on right -->
+      <text x="280" y="44" text-anchor="end" fill="${pal.fg}" font-family="Fraunces, serif" font-size="20" font-style="italic" opacity="0.55">${pal.glyph}</text>` : ''}
+
+      <!-- title -->
+      <text x="20" y="86" fill="${pal.fg}" font-family="Fraunces, serif" font-size="20" font-weight="500" letter-spacing="-0.3">${line1}</text>
+      ${line2 ? `<text x="20" y="110" fill="${pal.fg}" font-family="Fraunces, serif" font-size="20" font-weight="500" letter-spacing="-0.3">${line2}</text>` : ''}
+
+      <!-- divider line -->
+      <line x1="20" y1="${line2 ? 126 : 104}" x2="60" y2="${line2 ? 126 : 104}" stroke="${pal.accent}" stroke-width="0.8" opacity="0.6"/>
+
+      <!-- author — kept clear of the right corner accent -->
+      <text x="20" y="${line2 ? 146 : 124}" fill="${pal.fgSoft}" font-family="Fraunces, serif" font-size="11" font-style="italic" opacity="0.95">${author}</text>
+    </svg>
+  `;
+}
+
+function escapeXML(s) {
+  return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[ch]));
+}
+
+/* ============ SPEC STRIP RENDERING ============ */
+function specStrip(specs) {
+  const labels = [
+    { key: "depth", label: "DEPTH" },
+    { key: "formality", label: "FORMALITY" },
+    { key: "difficulty", label: "DIFFICULTY" },
+    { key: "time", label: "TIME" }
+  ];
+  return `
+    <div class="spec-strip">
+      ${labels.map(s => `
+        <div class="spec">
+          <div class="spec-label">${s.label}</div>
+          <div class="spec-gauge">
+            ${[1,2,3,4].map(n => `<div class="pip${n <= specs[s.key] ? ' filled' : ''}"></div>`).join('')}
+          </div>
+        </div>
+      `).join('')}
     </div>
-  </div>
+  `;
+}
 
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      David Tong is a world-renowned theoretical physicist and a prolific writer of <em>excellent</em> lecture notes. I think these notes are 
-      the perfect follow-up to Susskind's theoretical minimum and an essential reference for upper-undergraduate QM courses.
-    </p>
-  </div>
-</section>
-
-  <section class="publication-card resource-card">
-  <div class="publication-title">
-  <span class="mentor-star">★</span>
-  <strong>Barton Zwiebach</strong>, Mastering Quantum Mechanics
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://mitpress.mit.edu/9780262046138/mastering-quantum-mechanics/" target="_blank">
-          Textbook
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-advanced">Advanced</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
+function specStripLarge(specs) {
+  const labels = [
+    { key: "depth", label: "Depth", values: ["Quick intro", "Selective coverage", "Substantial", "Comprehensive"] },
+    { key: "formality", label: "Formality", values: ["Conversational", "Mixed", "Rigorous", "Theorem-and-proof"] },
+    { key: "difficulty", label: "Difficulty", values: ["Introductory", "Upper undergrad", "Graduate", "Research-level"] },
+    { key: "time", label: "Time investment", values: ["Short read", "A few sessions", "A semester", "Many semesters"] }
+  ];
+  return `
+    <div class="modal-specs">
+      ${labels.map(s => `
+        <div class="modal-spec">
+          <div class="modal-spec-label">${s.label}</div>
+          <div class="modal-spec-bar">
+            ${[1,2,3,4].map(n => `<div class="pip${n <= specs[s.key] ? ' filled' : ''}"></div>`).join('')}
+          </div>
+          <div class="modal-spec-value">${s.values[specs[s.key] - 1]}</div>
+        </div>
+      `).join('')}
     </div>
-  </div>
+  `;
+}
 
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      This book was developed through many years of Barton's 8.05 course at MIT. The <a href="https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/video_galleries/video-lectures/">lecture videos and courseware</a>
-      are freely available, making this an even better resource to learn from. The book is expensive, so unless you want/need a hardcopy, I recommend 
-      using the freely available lecture notes from MIT open courseware.
-    </p>
-  </div>
-</section>
+/* ============ FILTERING + RENDERING ============ */
+const state = {
+  topic: 'all',
+  difficulty: 'all',
+  audience: 'all',
+  starOnly: false,
+  sort: 'topic'
+};
 
-<section class="publication-card resource-card">
-  <div class="publication-title">
-  <strong>Robert Littlejohn</strong>, Quantum Mechanics
-</div>
+const DIFFICULTY_ORDER = { 'Introductory': 1, 'Intermediate': 2, 'Advanced': 3 };
 
+function filterAndSort() {
+  let list = RESOURCES.filter(r => {
+    if (state.topic !== 'all' && r.topic !== state.topic) return false;
+    if (state.difficulty !== 'all' && r.difficulty !== state.difficulty) return false;
+    if (state.audience !== 'all' && !r.audiences.includes(state.audience)) return false;
+    if (state.starOnly && !r.indispensable) return false;
+    return true;
+  });
 
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://bohr.physics.berkeley.edu/classes/221/2021/221.html" target="_blank">
-          Lecture Notes
-        </a>
+  if (state.sort === 'difficulty-asc') {
+    list.sort((a, b) => DIFFICULTY_ORDER[a.difficulty] - DIFFICULTY_ORDER[b.difficulty]);
+  } else if (state.sort === 'difficulty-desc') {
+    list.sort((a, b) => DIFFICULTY_ORDER[b.difficulty] - DIFFICULTY_ORDER[a.difficulty]);
+  } else if (state.sort === 'title') {
+    list.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (state.sort === 'indispensable') {
+    list.sort((a, b) => (b.indispensable === true) - (a.indispensable === true));
+  }
+  // 'topic' uses original order, which is already by topic group
+
+  return list;
+}
+
+function renderResourceCard(r, animDelay) {
+  const pal = platePaletteFor(r.type);
+  return `
+    <article class="res" data-res-idx="${RESOURCES.indexOf(r)}" style="animation-delay: ${animDelay}ms">
+      <div class="res-plate plate-${pal.kind}">
+        ${generatePlate(r, RESOURCES.indexOf(r))}
+        ${r.indispensable ? '<div class="star-mark" title="Indispensable"></div>' : ''}
       </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-advanced">Advanced</span>
+      <div class="res-meta">
+        <div class="res-type">${r.type} · ${r.difficulty}</div>
+        <div class="res-title">${r.title}</div>
+        <div class="res-author">${r.author}</div>
+        <div class="res-teaser">${r.teaser}</div>
+        ${specStrip(r.specs)}
       </div>
+    </article>
+  `;
+}
 
-      <span class="meta-divider"></span>
+function render() {
+  const list = filterAndSort();
+  const container = document.getElementById('resultsContainer');
+  const emptyState = document.getElementById('emptyState');
 
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
+  if (list.length === 0) {
+    container.innerHTML = '';
+    emptyState.classList.remove('hidden');
+  } else {
+    emptyState.classList.add('hidden');
+
+    if (state.sort === 'topic') {
+      // Grouped rendering
+      const groups = {};
+      list.forEach(r => {
+        if (!groups[r.topic]) groups[r.topic] = [];
+        groups[r.topic].push(r);
+      });
+      let html = '';
+      let cardIdx = 0;
+      // Preserve topic order from TOPICS array
+      TOPICS.forEach(topic => {
+        if (groups[topic.name]) {
+          const items = groups[topic.name];
+          html += `
+            <div class="topic-section">
+              <div class="topic-header">
+                <h3>${topic.name}</h3>
+                <span class="topic-meta">${items.length} ${items.length === 1 ? 'resource' : 'resources'}</span>
+              </div>
+              <div class="grid">
+                ${items.map(r => { const card = renderResourceCard(r, cardIdx * 30); cardIdx++; return card; }).join('')}
+              </div>
+            </div>
+          `;
+        }
+      });
+      container.innerHTML = html;
+    } else {
+      // Flat rendering
+      container.innerHTML = `<div class="grid">${list.map((r, i) => renderResourceCard(r, i * 30)).join('')}</div>`;
+    }
+  }
+
+  document.getElementById('resultsMeta').textContent =
+    list.length === RESOURCES.length ? `Showing all ${list.length} resources` : `${list.length} ${list.length === 1 ? 'resource' : 'resources'} match`;
+  document.getElementById('libraryCount').textContent = `${RESOURCES.length} resources`;
+
+  document.querySelectorAll('.res').forEach(el => {
+    el.addEventListener('click', () => openModal(parseInt(el.dataset.resIdx)));
+  });
+}
+
+/* ============ FILTER UI ============ */
+const labels = {
+  topic: { all: 'any topic' },
+  difficulty: { all: 'any level' },
+  audience: { all: 'any audience' }
+};
+
+document.querySelectorAll('.chip').forEach(chip => {
+  const filter = chip.dataset.filter;
+  chip.addEventListener('click', e => {
+    e.stopPropagation();
+    document.querySelectorAll('.chip-dropdown').forEach(d => {
+      if (d.parentElement !== chip) d.classList.remove('open');
+    });
+    chip.querySelector('.chip-dropdown').classList.toggle('open');
+  });
+
+  chip.querySelectorAll('.chip-dropdown button').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const value = btn.dataset.value;
+      state[filter] = value;
+      chip.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const labelText = value === 'all' ? labels[filter].all : btn.textContent;
+      chip.querySelector(`[data-label="${filter}"]`).textContent = labelText;
+      chip.classList.toggle('active-filter', value !== 'all');
+      chip.querySelector('.chip-dropdown').classList.remove('open');
+      render();
+    });
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.chip-dropdown').forEach(d => d.classList.remove('open'));
+});
+
+document.getElementById('sortSelect').addEventListener('change', e => {
+  state.sort = e.target.value;
+  render();
+});
+
+document.getElementById('starToggle').addEventListener('click', e => {
+  state.starOnly = !state.starOnly;
+  e.currentTarget.classList.toggle('active', state.starOnly);
+  render();
+});
+
+/* ============ MODAL ============ */
+function openModal(idx) {
+  const r = RESOURCES[idx];
+  const linksHTML = r.links.map(l => `
+    <a href="${l.url}" target="_blank" rel="noopener" class="modal-link">
+      <div class="modal-link-info">
+        <div class="modal-link-icon">${l.icon}</div>
+        <div>
+          <div class="modal-link-title">${l.title}</div>
+          <div class="modal-link-sub">${l.sub}</div>
+        </div>
       </div>
+      <span class="modal-link-arrow">→</span>
+    </a>
+  `).join('');
 
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-type">${r.type}</div>
+    <h2 class="modal-title">${r.indispensable ? '<span class="star">★</span>' : ''}${r.title}</h2>
+    <div class="modal-author">${r.author}</div>
+    <div class="tag-row">
+      <span class="tag topic">${r.topic}</span>
+      <span class="tag">${r.difficulty}</span>
+      ${r.audiences.map(a => `<span class="tag">${a}</span>`).join('')}
+      ${r.indispensable ? '<span class="tag gold">Indispensable</span>' : ''}
     </div>
-  </div>
 
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      Legendary lecture notes by UC Berkeley professor Robert Littlejohn. They are the perfect supplement to the standard
-      graduate quantum textbook in the United States (Modern Quantum Mechanics by J.J. Sakurai).
-    </p>
-  </div>
-</section>
-
-<!-- ========================================================= -->
-    <!-- GROUP AND REPRESENTATION THEORY                          -->
-    <!-- ========================================================= -->
-<h2 class="year-divider" id="res-group-rep">Group and Representation Theory</h2>
-
-    <section class="publication-card resource-card">
-  <div class="publication-title">
-  <strong>Vincent Bouchard</strong>, Group Theory in Physics
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://sites.ualberta.ca/~vbouchar/MAPH464/chapter-group.html" target="_blank">
-          Lecture notes
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-intro">Introductory</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
-        <span class="badge badge-audience badge-math">Mathematics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      An excellent and succinct first introduction to group and representation theory for a cross-listed math/physics course at the University of Alberta.
-    </p>
-  </div>
-</section>
-
- <section class="publication-card resource-card">
-  <div class="publication-title">
-  <strong>Anthony Zee</strong>, Group Theory in a Nutshell for Physicists
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://press.princeton.edu/books/hardcover/9780691162690/group-theory-in-a-nutshell-for-physicists?srsltid=AfmBOoq0Ujhv35TgfUP6kgEuquWb4WfkmAExd-kuRhqA2odbFcroKubg" target="_blank">
-          Textbook
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
-        <span class="badge badge-audience badge-math">Mathematics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      Group theory, even just as it applies in physics, is an enormous field. So, group theory in a nutshell is still quite a lot of material!
-      That said, I think this book strikes an excellent balance between conversational tone and mathematical rigor. 
-    </p>
-  </div>
-</section>
-
-<!-- ========================================================= -->
-    <!-- High-dimensional Probability                         -->
-    <!-- ========================================================= -->
-<h2 class="year-divider" id="res-probability">High-dimensional Probability</h2>
-
-    <section class="publication-card resource-card">
-  <div class="publication-title">
-    <span class="mentor-star">★</span>
-  <strong>Roman Vershynin</strong>, High-dimensional Probability: An Introduction with Applications in Data Science
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-2.pdf" target="_blank">
-          Textbook
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-intro">Advanced</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-math">Mathematics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      Essential reference on the topic.
-    </p>
-  </div>
-</section>
-
-
-    <!-- ========================================================= -->
-    <!-- QUANTUM INFORMATION & COMPUTATION                        -->
-    <!-- ========================================================= -->
-    <h2 class="year-divider" id="res-quantum-info"> Quantum Information Theory </h2>
-    <section class="publication-card resource-card">
-  <div class="publication-title">
-  <span class="mentor-star">★</span>
-  <strong>Michael Nielsen and Isaac Chuang</strong>, Quantum Computation and Quantum Information
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE" target="_blank">
-          Textbook
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      Also known as "Mike and Ike" or "The Bible." This is the classic text in the field. It is pedagogical, rigorous, and thorough. 
-      If want to get into quantum computation and quantum information, this is a great place to start.  
-    </p>
-  </div>
-</section>
-
-    <section class="publication-card resource-card">
-  <div class="publication-title">
-  <span class="mentor-star">★</span>
-  <strong>John Preskill</strong>, Quantum Computation and Information Lecture Notes
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="http://theory.caltech.edu/~preskill/ph229/" target="_blank">
-          Online lecture notes
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-advanced">Advanced</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      A classic set of lecture notes that develops quantum information and basic quantum
-      computing from a physics point of view. Good for students who are comfortable with
-      linear algebra and Dirac notation and want a more conceptual, calculation-oriented
-      introduction.
-    </p>
-  </div>
-</section>
-
- <!-- ========================================================= -->
-    <!-- QUANTUM LEARNING THEORY                       -->
-    <!-- ========================================================= -->
-    <h2 class="year-divider" id="res-quantum-learning"> Quantum Learning Theory </h2>
-
-    <section class="publication-card resource-card">
-  <div class="publication-title">
-  <strong>John Wright</strong>, Quantum Learning Theory Lecture Notes
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/" target="_blank">
-          Online lecture notes
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-cs">Computer Science</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      Scribe notes from John's course at UC Berkeley.
-    </p>
-  </div>
-</section>
-
-    
-
-     <!-- ========================================================= -->
-    <!-- QUANTUM METROLOGY                      -->
-    <!-- ========================================================= -->
-    <h2 class="year-divider" id="res-sensing"> Quantum Metrology</h2>
-
-    <section class="publication-card resource-card">
-  <div class="publication-title">
-  <strong>Giovannetti, Lloyd, and Maccone</strong>, Quantum Metrology
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="https://arxiv.org/abs/quant-ph/0509179" target="_blank">
-          Journal Article
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-difficulty badge-intermediate">Intermediate</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-physics">Physics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      Classic paper in the field.
-    </p>
-  </div>
-</section>
-
-<!-- ========================================================= -->
-    <!-- GENERAL ADVICE                                         -->
-    <!-- ========================================================= -->
-    <h2 class="year-divider" id="res-general"> Advice for Mathematicians and Scientists</h2>
-
-    <section class="publication-card resource-card">
-  <div class="publication-title">
-  <strong>Gian-Carlo Rota</strong>, Ten Lessons I Wish I Had Been Taught
-</div>
-
-
-    <div class="resource-meta-row">
-      <!-- Resource link on the far left -->
-      <div class="meta-group">
-        <a class="pub-link" href="http://staff.ustc.edu.cn/~yqliang/files/teaching/10lessons.pdf" target="_blank">
-          AMS Notice
-        </a>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <div class="meta-group">
-        <span class="badge badge-audience badge-general">General</span>
-        <span class="badge badge-audience badge-math">Mathematics</span>
-      </div>
-
-      <span class="meta-divider"></span>
-
-      <button class="learnmore-btn" onclick="toggleAbstract(this)">
-        <i class="ph ph-plus"></i>
-        <span>Learn More</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Collapsible description -->
-  <div class="abstract-panel">
-    <p class="resource-description">
-      Useful advice from a well-known MIT mathematician and philosopher.
-    </p>
-  </div>
-</section>
-
-    <p class="mentor-note" style="margin-top: 2rem;">
-      If you are a student interested in a reading or research project, feel free to
-      reach out — I’m happy to suggest a tailored sequence of resources based on your
-      background and goals.
-    </p>
-  </main>
-
-  <footer>
-    <p>Copyright &#169; 2025 Jacob Beckey. All Rights Reserved.</p>
-  </footer>
-
-  <!-- ==================== SCRIPTS ==================== -->
-  <script src="./script.js"></script>
+    <div class="section-rule">At a glance</div>
+    ${specStripLarge(r.specs)}
+
+    <div class="section-rule">My note</div>
+    <div class="modal-note">${r.note}</div>
+
+    <div class="section-rule">Access</div>
+    ${linksHTML}
+  `;
+  document.getElementById('resourceModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.querySelector('.modal').scrollTop = 0;
+}
+
+function closeModal() {
+  document.getElementById('resourceModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('resourceModal').addEventListener('click', e => {
+  if (e.target.id === 'resourceModal') closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+render();
+</script>
 </body>
 </html>

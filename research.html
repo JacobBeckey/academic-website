@@ -1,433 +1,1433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jacob Beckey — Research & Publications</title>
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./mediaqueries.css" />
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research — Jacob L. Beckey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4efe6;
+    --paper-deep: #ebe4d5;
+    --ink: #002147;
+    --ink-soft: #30557e;
+    --keaney: #2277b3;
+    --keaney-soft: #c0ddf2;
+    --muted: #7a7466;
+    --rule: #d8cfbd;
+    --gold: #B5985A;
+    --gold-deep: #8a7340;
+    --gold-soft: #fefada;
+    --serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter Tight', 'Helvetica Neue', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .wrap { position: relative; z-index: 2; }
+
+  /* ───────── NAV ───────── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(244, 239, 230, 0.92);
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-block;
+  }
+  /* name turns URI navy on hover; affiliation does not change */
+  .logo-name {
+    font-style: normal;
+    color: var(--gold-deep);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .logo:hover .logo-name { color: var(--ink); }
+  .logo-affil {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+  }
+
+  .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-deep); }
+  .nav-links a.active { color: var(--ink); border-bottom: 1px solid var(--gold-deep); padding-bottom: 0.2rem; }
+  .nav-links a.cv {
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+  }
+  .nav-links a.cv:hover { background: var(--gold-deep); color: var(--paper); }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    padding: 5rem 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold-deep);
+  }
+
+  h1.hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    max-width: 980px;
+    margin-bottom: 1.8rem;
+  }
+  h1.hero-headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-deep);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 760px;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+  }
+
+  .scholar-links {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .scholar-links a {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    transition: all 0.2s;
+  }
+  .scholar-links a:hover {
+    border-color: var(--gold-deep);
+    color: var(--gold-deep);
+  }
+
+  /* ───────── RESEARCH THEMES ───────── */
+  .research-areas {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-deep);
+    padding: 5rem 3rem;
+  }
+  .areas-inner { max-width: 1400px; margin: 0 auto; }
+  .areas-head { margin-bottom: 3rem; }
+  .areas-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  .areas-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .areas-head p {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    max-width: 740px;
+    font-weight: 300;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  @media (max-width: 900px) { .areas-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .area-col .num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--gold-deep);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .area-col h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 0.9rem;
+    letter-spacing: -0.015em;
+  }
+  .area-col p {
+    font-size: 0.97rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+  .area-col .area-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .area-tag {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .area-tag:hover {
+    background: var(--gold-deep);
+    color: var(--paper);
+    border-color: var(--gold-deep);
+  }
+
+  /* ───────── PUBLICATIONS ───────── */
+  .publications {
+    padding: 5rem 3rem 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .pub-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .pub-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+  .pub-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .pub-count {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  /* search and filter row */
+  .filter-bar {
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 1.5rem;
+    position: sticky;
+    top: 76px;
+    z-index: 50;
+  }
+
+  .search-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.2rem;
+  }
+  @media (max-width: 700px) { .search-row { grid-template-columns: 1fr; } }
+
+  .search-input {
+    width: 100%;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 300;
+    padding: 0.7rem 1rem 0.7rem 2.4rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink);
+    outline: none;
+    transition: border 0.2s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237a7466' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cpath d='m21 21-4.3-4.3'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 0.85rem center;
+  }
+  .search-input:focus { border-color: var(--gold-deep); }
+  .search-input::placeholder { color: var(--muted); font-style: italic; }
+
+  .clear-search {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.6rem 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .clear-search:hover {
+    border-color: var(--gold-deep);
+    color: var(--gold-deep);
+  }
+  .clear-search:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* chip filter rows */
+  .chip-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+  }
+  .chip-row:last-child { margin-bottom: 0; }
+
+  .chip-row-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 0.4rem;
+    min-width: 60px;
+  }
+
+  .filter-chip {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.35rem 0.85rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .filter-chip:hover {
+    border-color: var(--gold-deep);
+    color: var(--gold-deep);
+  }
+  .filter-chip.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    font-weight: 600;
+  }
+  .filter-chip .count {
+    opacity: 0.6;
+    font-weight: 400;
+    margin-left: 0.25rem;
+  }
+
+  /* results meta */
+  .results-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ───────── YEAR GROUPS & PUB ITEMS ───────── */
+  .year-section { margin-bottom: 3rem; }
+  .year-section:last-child { margin-bottom: 0; }
+
+  .year-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--ink);
+    flex-wrap: wrap;
+  }
+  .year-header h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 2.6vw, 2rem);
+    letter-spacing: -0.015em;
+  }
+  .year-count {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .pub-list { display: grid; gap: 0; }
+
+  .pub {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    cursor: pointer;
+    transition: background 0.2s, padding 0.2s;
+  }
+  .pub:hover {
+    background: rgba(255, 250, 240, 0.5);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .pub:hover .pub-arrow { transform: translateX(4px); color: var(--gold-deep); }
+
+  @media (max-width: 700px) {
+    .pub-arrow-cell { display: none; }
+  }
+
+  .pub-body { min-width: 0; }
+
+  .pub-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .pub-month {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--gold-deep);
+  }
+  .pub-topic {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.6rem;
+    background: var(--keaney-soft);
+    color: var(--ink);
+    border-radius: 2px;
+  }
+  .pub-topic.entanglement { background: var(--keaney-soft); color: var(--ink); }
+  .pub-topic.learning { background: var(--gold-soft); color: var(--gold-deep); }
+  .pub-topic.sensing { background: var(--paper-deep); color: var(--ink); border: 1px solid var(--rule); }
+  .pub-star {
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .pub-title {
+    font-family: var(--serif);
+    font-size: 1.22rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+  .pub-authors {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+  .pub-authors strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .pub-venue {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .pub-arrow {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    padding-top: 0.4rem;
+  }
+
+  /* search highlight */
+  mark {
+    background: var(--gold-soft);
+    color: var(--ink);
+    padding: 0 0.15rem;
+    border-radius: 1px;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* empty state */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .empty-state.hidden { display: none; }
+
+  /* star key */
+  .star-key {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+  .star-key .pub-star { font-style: normal; }
+
+  /* ───────── MODAL ───────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 33, 71, 0.55);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: overlayIn 0.3s ease;
+  }
+  .modal-overlay.open { display: flex; }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: var(--paper);
+    max-width: 880px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--ink);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .modal-content { padding: 3rem; }
+  @media (max-width: 700px) { .modal-content { padding: 2rem 1.5rem; } }
+
+  .modal-year {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold-deep);
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.8rem;
+    color: var(--ink);
+  }
+  .modal-authors {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 0.6rem;
+  }
+  .modal-authors strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .modal-venue {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .modal-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .modal-tag {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: var(--keaney-soft);
+    color: var(--ink);
+    border-radius: 2px;
+  }
+  .modal-tag.gold { background: var(--gold-soft); color: var(--gold-deep); }
+
+  .section-rule {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin: 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .modal-abstract {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .modal-links { display: grid; gap: 0.6rem; }
+  .modal-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+  .modal-link:hover {
+    background: var(--gold-soft);
+    border-color: var(--gold-deep);
+    transform: translateX(2px);
+  }
+  .modal-link:hover .modal-link-arrow { transform: translateX(4px); color: var(--gold-deep); }
+  .modal-link-info { display: flex; align-items: center; gap: 0.9rem; min-width: 0; }
+  .modal-link-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .modal-link-text { min-width: 0; }
+  .modal-link-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  .modal-link-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+  .modal-link-arrow {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+  .modal-empty {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    padding: 0.8rem 0;
+  }
+
+  /* ───────── CLOSING CTA ───────── */
+  .closing-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4.5rem 3rem;
+    text-align: center;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .closing-cta-inner { position: relative; max-width: 720px; margin: 0 auto; z-index: 2; }
+  .closing-cta h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .closing-cta h3 em { font-style: italic; color: var(--gold); }
+  .closing-cta p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--paper);
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 0.9rem 1.6rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .closing-cta .btn-primary { background: var(--gold); color: var(--ink); }
+  .closing-cta .btn-primary:hover { background: var(--paper); }
+
+  /* footer */
+  footer {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--rule);
+  }
+  footer em { font-family: var(--serif); }
+  footer .footer-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-deep);
+    margin: 0 auto 1rem;
+  }
+
+  /* mobile */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a:not(.cv) { display: none; }
+    .hero, .publications, .research-areas { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero { padding-top: 3.5rem; padding-bottom: 2rem; }
+    .filter-bar { padding: 1.2rem; }
+  }
+</style>
 </head>
+<body>
+<div class="wrap">
 
-<body class="research-page">
-  <!-- ==================== NAVIGATION BAR ==================== -->
-  <nav id="desktop-nav" class="sticky-nav">
-    <div class="logo-container" onclick="location.href='index.html'">
-      <img src="./assets/jlb-logo.svg" alt="Logo" />
-      <span class="logo-text">Jacob Beckey</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="research.html">Research</a></li>
-      <li><a href="teaching.html">Teaching</a></li>
-      <li><a href="#outreach">Outreach</a></li>
-      <li><a href="resources.html">Resources</a></li>
-    </ul>
-  </nav>
-
-  <!-- ==================== MOBILE NAVIGATION ==================== -->
-  <nav id="hamburger-nav">
-    <div class="logo-container" onclick="location.href='index.html'">
-      <img src="./assets/jlb-logo.svg" alt="Logo" />
-      <span class="logo-text">Jacob Beckey</span>
-    </div>
-    <div class="hamburger-menu">
-      <div class="hamburger-icon" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="menu-links">
-        <li><a href="research.html" onclick="toggleMenu()">Research</a></li>
-        <li><a href="teaching.html" onclick="toggleMenu()">Teaching</a></li>
-        <li><a href="#outreach" onclick="toggleMenu()">Outreach</a></li>
-        <li><a href="#contact" onclick="toggleMenu()">Resources</a></li>
-      </div>
-    </div>
-  </nav>
-
-  <main class="research-container">
-   <div class="research-heading">
-  <h1>Research & Publications</h1>
-  <a href="https://scholar.google.com/citations?user=OoGGmYwAAAAJ&hl=en"
-     target="_blank" class="scholar-icon-link">
-    <img src="./assets/google-scholar.png" alt="Google Scholar" class="scholar-icon">
+<!-- NAV -->
+<nav>
+  <a href="index-uri.html" class="logo">
+    <span class="logo-name">Jacob L. Beckey</span>
+    <span class="logo-affil">Physics · University of Rhode Island</span>
   </a>
-  <a href="https://orcid.org/0000-0002-2009-8661"
-     target="_blank" class="profile-icon-link">
-    <img src="./assets/orcid-icon.png" alt="ORCID" class="profile-icon">
-  </a>
+  <div class="nav-links">
+    <a href="research-uri.html" class="active">Research</a>
+    <a href="teaching-uri.html">Teaching</a>
+    <a href="resources-uri.html">Resources</a>
+    <a href="outreach-uri.html">Outreach</a>
+    <a href="#" class="cv">CV ↓</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Research</div>
+  <h1 class="hero-headline">What separates <em>classical</em> from <em>quantum?</em></h1>
+  <p class="hero-sub">
+    My research interests include entanglement theory and quantification, quantum learning theory, and quantum sensing. I use tools from quantum information theory, representation theory, and probability to develop methods with rigorous performance guarantees — especially when measurements are subject to realistic constraints. I enjoy working in a highly interdisciplinary fashion, and many of my projects involve undergraduate, master's, and PhD student collaborators.
+  </p>
+  <div class="scholar-links">
+    <a href="https://scholar.google.com/citations?user=OoGGmYwAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a>
+    <a href="https://orcid.org/0000-0002-2009-8661" target="_blank" rel="noopener">ORCID →</a>
+    <a href="https://arxiv.org/a/beckey_j_1" target="_blank" rel="noopener">arXiv →</a>
+  </div>
+</section>
+
+<!-- RESEARCH THEMES -->
+<section class="research-areas" id="themes">
+  <div class="areas-inner">
+    <div class="areas-head">
+      <h2>Research <em>themes</em></h2>
+      <p>Three connected questions organize my work: how to efficiently quantify entanglement, how much information quantum strategies can extract about an unknown state, and how to push quantum sensors past the standard quantum limit. Click any theme below to filter the publications.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-col">
+        <span class="num">I.</span>
+        <h3>Entanglement theory &amp; characterization</h3>
+        <p>How do we efficiently quantify multipartite entanglement when limited to realistic measurements? My work has introduced the family of Concentratable Entanglements, developed Bell-basis estimation protocols, and most recently studied localizable entanglement in high-dimensional states.</p>
+        <div class="area-tags">
+          <span class="area-tag" data-jump-topic="Entanglement Theory &amp; Characterization">View publications →</span>
+        </div>
+      </div>
+      <div class="area-col">
+        <span class="num">II.</span>
+        <h3>Quantum learning theory</h3>
+        <p>What can we learn about a quantum state from finite copies, and how does the answer change when restricted to single-copy versus multi-copy measurements? Recent work proves exponential sample-complexity separations for product testing — sharpening our understanding of when multi-copy access is genuinely necessary.</p>
+        <div class="area-tags">
+          <span class="area-tag" data-jump-topic="Quantum Learning Theory">View publications →</span>
+        </div>
+      </div>
+      <div class="area-col">
+        <span class="num">III.</span>
+        <h3>Quantum sensing</h3>
+        <p>Where are the fundamental limits on how precisely a quantum system can measure a signal — and how do squeezing, entanglement, and non-demolition strategies push past them? My work spans gravitational-wave detector design, dark-matter searches, and quantum Fisher information theory.</p>
+        <div class="area-tags">
+          <span class="area-tag" data-jump-topic="Quantum Sensing">View publications →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="publications" id="publications">
+  <div class="pub-head">
+    <h2><em>Publications</em></h2>
+    <span class="pub-count" id="pubCount">14 papers</span>
+  </div>
+
+  <div class="filter-bar">
+    <div class="search-row">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search by title, author, or venue…" />
+      <button class="clear-search" id="clearSearch" disabled>Clear</button>
+    </div>
+
+    <div class="chip-row" id="topicRow">
+      <span class="chip-row-label">Topic</span>
+      <button class="filter-chip active" data-filter="topic" data-value="all">All topics</button>
+      <button class="filter-chip" data-filter="topic" data-value="Entanglement Theory &amp; Characterization">Entanglement Theory <span class="count" id="count-entanglement"></span></button>
+      <button class="filter-chip" data-filter="topic" data-value="Quantum Learning Theory">Quantum Learning <span class="count" id="count-learning"></span></button>
+      <button class="filter-chip" data-filter="topic" data-value="Quantum Sensing">Quantum Sensing <span class="count" id="count-sensing"></span></button>
+    </div>
+
+    <div class="chip-row" id="yearRow">
+      <span class="chip-row-label">Year</span>
+      <button class="filter-chip active" data-filter="year" data-value="all">All years</button>
+      <!-- year chips inserted by JS -->
+    </div>
+  </div>
+
+  <div class="star-key"><span class="pub-star">★</span> Denotes technical mentorship of undergraduate students leading to co-authorship.</div>
+
+  <div class="results-meta" id="resultsMeta">Showing all 14 papers</div>
+
+  <div id="resultsContainer"></div>
+  <div class="empty-state hidden" id="emptyState">No papers match those filters. Try clearing the search or selecting different filters.</div>
+</section>
+
+<!-- CTA -->
+<section class="closing-cta">
+  <div class="closing-cta-inner">
+    <h3>Questions, comments, or <em>corrections?</em></h3>
+    <p>If you'd like to discuss a paper, suggest a follow-up direction, or flag a typo or error in my published work, please get in touch. I welcome feedback from students, collaborators, and readers alike.</p>
+    <a href="mailto:jbeckey@uri.edu" class="btn btn-primary">Email me →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-rule"></div>
+  <p><em>Jacob L. Beckey</em> · Assistant Professor, Department of Physics</p>
+  <p>University of Rhode Island · Kingston, RI 02881 · © 2026</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="paperModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
 </div>
 
-    <p>My research interests include entanglement theory and quantification, quantum learning theory, and quantum sensing. I utilize
-        tools from quantum information theory, representation theory, and probability/statistics to help develop methods for quantum  
-        sensing and entanglement quantification/characterization with rigorous performance guarantees, especially when subject to realistic 
-        constraints on measurement capabilities. In my postdoc, I am using quantum testing, learning, and sensing tasks as a vehicle for 
-        understanding the resources that fundamentally separate classical from quantum. As a member of IQUIST, I enjoy working in a highly 
-        interdisciplinary fashion with active collaborations in mathematics, computer science, and physics. My love of teaching extends to 
-        my research, with many of my projects involving undergraduate, masters, and PhD students. Below, you will find my pre-prints and publications 
-        organized by year.</p>
+</div>
 
-        <p class="mentor-note"><span class="mentor-star">★</span> Denotes technical mentorship of undergraduate students leading to co-authorship.</p>
+<script>
+/* ============ PAPER DATA ============ */
+/* Full publication list from jacobbeckey.com/research */
+const PAPERS = [
+  {
+    id: "product-testing",
+    year: 2025,
+    month: "October 2025",
+    title: "Product testing with single-copy measurements",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Luke Coffman', 'Ariel Shlosberg', 'Louis Schatzki', 'Felix Leditzky'],
+    venue: "arXiv:2510.07820",
+    topic: "Quantum Learning Theory",
+    starred: false,
+    abstract: "In this work, we study the sample complexity of two variants of product testing when restricted to single-copy measurements. In particular, we consider both bipartite product testing (i.e., does there exist at least one non-trivial cut across which the state is product) and multipartite product testing (i.e., is the state fully product across every cut). For the first variant, we prove an exponential lower bound on the sample complexity of any algorithm for this task which utilizes only single-copy measurements. When comparing this with known efficient algorithms that utilize multi-copy measurements, this establishes an exponential separation for this and several related entanglement learning tasks. For the second variant, we prove another sample lower bound that establishes a separation between single- and multi-copy strategies. To obtain our results, we prove a crucial technical lemma that gives a lower bound on the overlap between tensor products of permutation operators acting on subsystems of states that themselves carry a tensor structure. Finally, we provide an algorithm for multipartite product testing using only single-copy, local measurements, and we highlight several interesting open questions arising from this work.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2510.07820", url: "https://arxiv.org/abs/2510.07820"}
+    ]
+  },
+  {
+    id: "localizing-entanglement",
+    year: 2025,
+    month: "October 2025",
+    title: "Localizing entanglement in high-dimensional states",
+    authors: ['Christopher Vairogs', 'Akanksha Chablani', 'Leo Lee', 'Hanyang Sha', 'Abigail Vaughan-Lee', '<strong>Jacob L. Beckey</strong>'],
+    venue: "arXiv:2510.08501",
+    topic: "Entanglement Theory & Characterization",
+    starred: true,
+    abstract: "In this work, we study the asymptotic behavior of protocols that localize entanglement in large multi-qubit states onto a subset of qubits by measuring the remaining qubits. We use the maximal average n-tangle that can be generated on a fixed subsystem by measuring its complement — either with local or global measurements — as our key figure of merit. These quantities are known respectively as the localizable entanglement (LE) and the entanglement of assistance (EA). We build upon the work of [arXiv:2411.04080] that proposed a polynomial-time test, based on the EA, for whether it is possible to transform certain graph states into others using local measurements. We show, using properties of the EA, that this test is effective and useful in large systems for a wide range of sizes of the measured subsystem. In particular, we use this test to demonstrate the surprising result that general local unitaries and global measurements will typically not provide an advantage over the more experimentally feasible local Clifford unitaries and local Pauli measurements in transforming large linear cluster states into GHZ states. Finally, we derive concentration inequalities for the LE and EA over Haar-random states which indicate that the localized entanglement structure has a striking dependence on the locality of the measurement. In deriving these concentration inequalities, we develop several technical tools that may be of independent interest.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2510.08501", url: "https://arxiv.org/abs/2510.08501"}
+    ]
+  },
+  {
+    id: "impulse-squeezed",
+    year: 2025,
+    month: "July 2025",
+    title: "Impulse measurements enhanced with squeezed readout light",
+    authors: ['Tsai-Chen Lee', '<strong>Jacob L. Beckey</strong>', 'Giacomo Marocco', 'Daniel Carney'],
+    venue: "Phys. Rev. Research 7, 033041",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "We quantify how squeezed light can reduce quantum measurement noise to levels below the standard quantum limit in impulse measurements with mechanical detectors. The broadband nature of the signal implies that frequency-dependent squeezing performs better than frequency-independent squeezing. We calculate the optimal scaling of the impulse sensitivity with the squeezing strength, and quantify degradations due to photodetection losses. Even for lossless measurement, we find there exists a fundamental limit to the benefit of squeezing that depends only on the system's mechanical properties.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2502.05168", url: "https://arxiv.org/abs/2502.05168"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. Research", url: "https://journals.aps.org/prresearch/abstract/10.1103/kcm9-bqs8"}
+    ]
+  },
+  {
+    id: "local-measurement",
+    year: 2024,
+    month: "July 2024",
+    title: "Local measurement strategies for multipartite entanglement quantification",
+    authors: ['Luke Coffman', 'Akshay Seshadri', 'Graeme Smith', '<strong>Jacob L. Beckey</strong>'],
+    venue: "Phys. Rev. A 110, 012454",
+    topic: "Entanglement Theory & Characterization",
+    starred: true,
+    abstract: "Despite multipartite entanglement being a global property of a quantum state, a number of recent works have made it clear that it can be quantified using only local measurements. This is appealing because local measurements are the easiest to implement on current quantum hardware. However, it remains an open question what protocol one should use in order to minimize the resources required to estimate multipartite entanglement from local measurements alone. In this work, we construct and compare several estimators of multipartite entanglement based solely on the data from local measurements. We first construct statistical estimators for a broad family of entanglement measures using local randomized measurement (LRM) data before providing a general criterion for the construction of such estimators in terms of projective 2-designs. Importantly, this allows us to derandomize the multipartite estimation protocol based on LRMs. In particular, we show how local symmetric, informationally complete positive operator-valued measures enable multipartite entanglement quantification with only a single measurement setting. For all estimators, we provide both the classical postprocessing cost and rigorous performance guarantees in the form of analytical upper bounds on the number of measurements needed to estimate the measures to any desired precision.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2401.08065", url: "https://arxiv.org/abs/2401.08065"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. A", url: "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.110.012454"}
+    ]
+  },
+  {
+    id: "users-manual",
+    year: 2023,
+    month: "November 2023",
+    title: "Quantum measurements in fundamental physics: a user's manual",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Daniel Carney', 'Giacomo Marocco'],
+    venue: "arXiv:2311.07270",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "We give a systematic theoretical treatment of linear quantum detectors used in modern high energy physics experiments, including dark matter cavity haloscopes, gravitational wave detectors, and impulsive mechanical sensors. We show how to derive the coupling of signals of interest to these devices, and how to calculate noise spectra, signal-to-noise ratios, and detection sensitivities. We emphasize the role of quantum vacuum and thermal noise in these systems. Finally, we review ways in which advanced quantum techniques — squeezing, non-demolition measurements, and entanglement — can be or currently are used to enhance these searches.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2311.07270", url: "https://arxiv.org/abs/2311.07270"}
+    ]
+  },
+  {
+    id: "bell-basis",
+    year: 2023,
+    month: "June 2023",
+    title: "Multipartite entanglement measures via Bell basis measurements",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Gerard Pelegrí', 'Steph Foulds', 'Natalie J. Pearson'],
+    venue: "Phys. Rev. A 107, 062425",
+    topic: "Entanglement Theory & Characterization",
+    starred: false,
+    abstract: "We show how to estimate a broad class of multipartite entanglement measures from Bell basis measurement data. In addition to lowering the experimental requirements relative to previously known methods of estimating these measures, our proposed scheme also enables a simpler analysis of the number of measurement repetitions required to achieve an ε-close approximation of the measures, which we provide for each. We focus our analysis on the recently introduced Concentratable Entanglements because many other well-known multipartite entanglement measures are recovered as special cases of this family of measures. We extend the definition of the Concentratable Entanglements to mixed states and show how to construct lower bounds on the mixed state Concentratable Entanglements that can also be estimated using only Bell basis measurement data. Finally, we demonstrate the feasibility of our methods by classically simulating their implementation on a noisy Rydberg atom quantum computer.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2210.02575", url: "https://arxiv.org/abs/2210.02575"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. A", url: "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.107.062425"}
+    ]
+  },
+  {
+    id: "broadband-sensing",
+    year: 2023,
+    month: "January 2023",
+    title: "Opportunities and limitations in broadband sensing",
+    authors: ['Anthony M. Polloreno', '<strong>Jacob L. Beckey</strong>', 'Joshua Levin', 'Ariel Shlosberg', 'James K. Thompson', 'Michael Foss-Feig', 'David Hayes', 'Graeme Smith'],
+    venue: "Phys. Rev. Applied 19, 014029",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "Detecting a signal at an unknown frequency is a common task, arising in settings from dark-matter detection to magnetometry. For any detection protocol, the precision achieved depends on the frequency of the signal and can be quantified by the quantum Fisher information (QFI). To study limitations in broadband sensing, we introduce the integrated quantum Fisher information and derive inequality bounds that embody fundamental trade-offs in any sensing protocol. Our inequalities show that sensitivity in one frequency range must come at the cost of reduced sensitivity elsewhere. For many protocols, including those with small phase accumulation and those consisting of π pulses, we find that the integrated quantum Fisher information scales linearly with T. We also find protocols with substantial phase accumulation that can have integrated QFI that grows quadratically with T and prove that this scaling is asymptotically optimal. These protocols may allow the very rapid detection of a signal with unknown frequency over a very wide bandwidth. We discuss the implications of these results for a wide variety of contexts, including dark-matter searches and dynamical decoupling. Thus we establish fundamental limitations on the broadband detection of signals and highlight their consequences.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2210.02575", url: "https://arxiv.org/abs/2210.02575"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. Applied", url: "https://doi.org/10.1103/PhysRevApplied.19.014029"}
+    ]
+  },
+  {
+    id: "position-photodiodes",
+    year: 2022,
+    month: "October 2022",
+    title: "Quantum limits of position-sensitive photodiodes",
+    authors: ['E. Fradgley', 'C. French', 'L. Rushton', 'Y. Dieudonné', 'L. Harrison', '<strong>J. L. Beckey</strong>', 'H. Miao', 'C. Gill', 'P. G. Petrov', 'V. Boyer'],
+    venue: "Optics Express 30(22), 39374–39381",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "The split photodiode and the lateral effect photodiode are two popular detectors for measuring beam displacement. For small displacements of a Gaussian beam, which is the case of interest here, they are often seen as equivalent and used interchangeably, giving a signal proportional to the displacement. We show theoretically and experimentally that in the limit of low technical noise, where the signal to noise ratio is dominated by the shot noise of the light, the lateral effect photodiode produces a better signal to noise ratio than the split photodiode, owing to its optimum spatial detector response. This quantum advantage can be practically exploited in spite of the intrinsic thermal noise of the lateral effect photodiode.",
+    links: [
+      {icon: "PR", title: "Publisher's version", sub: "Optics Express", url: "https://doi.org/10.1364/OE.471673"}
+    ]
+  },
+  {
+    id: "vqfie",
+    year: 2022,
+    month: "February 2022",
+    title: "Variational Quantum Algorithm for Estimating the Quantum Fisher Information",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'M. Cerezo', 'Akira Sone', 'Patrick J. Coles'],
+    venue: "Phys. Rev. Research 4, 013083",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "The Quantum Fisher information (QFI) quantifies the ultimate precision of estimating a parameter from a quantum state, and can be regarded as a reliability measure of a quantum system as a quantum sensor. However, estimation of the QFI for a mixed state is in general a computationally demanding task. In this work we present a variational quantum algorithm called Variational Quantum Fisher Information Estimation (VQFIE) to address this task. By estimating lower and upper bounds on the QFI, based on bounding the fidelity, VQFIE outputs a range in which the actual QFI lies. This result can then be used to variationally prepare the state that maximizes the QFI, for the application of quantum sensing. In contrast to previous approaches, VQFIE does not require knowledge of the explicit form of the sensor dynamics. We simulate the algorithm for a magnetometry setup and demonstrate the tightening of our bounds as the state purity increases. For this example, we compare our bounds to literature bounds and show that our bounds are tighter.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2010.10488", url: "https://arxiv.org/abs/2010.10488"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. Research", url: "https://link.aps.org/doi/10.1103/PhysRevResearch.4.013083"}
+    ]
+  },
+  {
+    id: "generalized-qfi",
+    year: 2021,
+    month: "December 2021",
+    title: "A generalized measure of quantum Fisher information",
+    authors: ['Akira Sone', 'M. Cerezo', '<strong>Jacob L. Beckey</strong>', 'Patrick J. Coles'],
+    venue: "Phys. Rev. A 104, 062602",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "In this work, we present a lower bound on the quantum Fisher information (QFI) which is efficiently computable on near-term quantum devices. This bound itself is of interest, as we show that it satisfies the canonical criteria of a QFI measure. Specifically, it is essentially a QFI measure for subnormalized states, and hence it generalizes the standard QFI in this sense. Our bound employs the generalized fidelity applied to a truncated state, which is constructed via the m largest eigenvalues and their corresponding eigenvectors of the probe quantum state ρθ. Focusing on unitary families of exact states, we analyze the properties of our proposed lower bound, and demonstrate its utility for efficiently estimating the QFI.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2010.02904", url: "https://arxiv.org/abs/2010.02904"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. A", url: "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.104.062602"}
+    ]
+  },
+  {
+    id: "concentratable",
+    year: 2021,
+    month: "September 2021",
+    title: "Computable and operationally meaningful multipartite entanglement measures",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'N. Gigena', 'Patrick J. Coles', 'M. Cerezo'],
+    venue: "Phys. Rev. Lett. 127, 140501",
+    topic: "Entanglement Theory & Characterization",
+    starred: false,
+    abstract: "Multipartite entanglement is an essential resource for quantum communication, quantum computing, quantum sensing, and quantum networks. The utility of a quantum state |ψ⟩ for these applications is often directly related to the degree or type of entanglement present in |ψ⟩. Therefore, efficiently quantifying and characterizing multipartite entanglement is of paramount importance. In this work, we introduce a family of multipartite entanglement measures, called Concentratable Entanglements. Several well-known entanglement measures are recovered as special cases of our family of measures, and hence we provide a general framework for quantifying multipartite entanglement. We prove that the entire family does not increase, on average, under Local Operations and Classical Communications. We also provide an operational meaning for these measures in terms of probabilistic concentration of entanglement into Bell pairs. Finally, we show that these quantities can be efficiently estimated on a quantum computer by implementing a parallelized SWAP test, opening up a research direction for measuring multipartite entanglement on quantum devices.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2104.06923", url: "https://arxiv.org/abs/2104.06923"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. Lett.", url: "https://link.aps.org/doi/10.1103/PhysRevLett.127.140501"}
+    ]
+  },
+  {
+    id: "sub-qfi",
+    year: 2021,
+    month: "June 2021",
+    title: "Sub-quantum Fisher information",
+    authors: ['M. Cerezo', 'Akira Sone', '<strong>Jacob L. Beckey</strong>', 'Patrick J. Coles'],
+    venue: "Quantum Sci. Technol. 6, 035008",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "The Quantum Fisher Information (QFI) plays a crucial role in quantum information theory and in many practical applications such as quantum metrology. However, computing the QFI is generally a computationally demanding task. In this work we analyze a lower bound on the QFI which we call the sub-Quantum Fisher Information (sub-QFI). The bound can be efficiently estimated on a quantum computer for an n-qubit state using 2n qubits. The sub-QFI is based on the super-fidelity, an upper bound on Uhlmann's fidelity. We analyze the sub-QFI in the context of unitary families, where we derive several crucial properties including its geometrical interpretation. In particular, we prove that the QFI and the sub-QFI are maximized for the same optimal state, which implies that the sub-QFI is faithful to the QFI in the sense that both quantities share the same global extrema. Based on this faithfulness, the sub-QFI acts as an efficiently computable surrogate for the QFI for quantum sensing and quantum metrology applications. Finally, we provide additional meaning to the sub-QFI as a measure of coherence, asymmetry, and purity loss.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2101.10144", url: "https://arxiv.org/abs/2101.10144"},
+      {icon: "PR", title: "Publisher's version", sub: "Quantum Sci. Technol.", url: "https://iopscience.iop.org/article/10.1088/2058-9565/abfbef"}
+    ]
+  },
+  {
+    id: "truncated-nonlinear",
+    year: 2020,
+    month: "June 2020",
+    title: "Truncated nonlinear interferometry for quantum-enhanced atomic force microscopy",
+    authors: ['R. C. Pooser', 'N. Savino', 'E. Batson', '<strong>J. L. Beckey</strong>', 'J. Garcia', 'B. J. Lawrie'],
+    venue: "Phys. Rev. Lett. 124, 230504",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "Nonlinear interferometers that replace beam splitters in Mach-Zehnder interferometers with nonlinear amplifiers for quantum-enhanced phase measurements have drawn increasing interest in recent years, but practical quantum sensors based on nonlinear interferometry remain an outstanding challenge. Here, we demonstrate the first practical application of nonlinear interferometry by measuring the displacement of an atomic force microscope microcantilever with quantum noise reduction of up to 3 dB below the standard quantum limit, corresponding to a quantum-enhanced measurement of beam displacement of 1.7 fm/√Hz. Further, we minimize photon backaction noise while taking advantage of quantum noise reduction by transducing the cantilever displacement signal with a weak squeezed state while using dual homodyne detection with a higher power local oscillator. This approach may enable quantum-enhanced broadband, high-speed scanning probe microscopy.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:1912.10550", url: "https://arxiv.org/abs/1912.10550"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. Lett.", url: "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.124.230504"}
+    ]
+  },
+  {
+    id: "epr-gw",
+    year: 2019,
+    month: "October 2019",
+    title: "Broadband quantum noise reduction in future long-baseline gravitational-wave detectors via EPR entanglement",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Yiqiu Ma', 'Vincent Boyer', 'Haixing Miao'],
+    venue: "Phys. Rev. D 100, 083011",
+    topic: "Quantum Sensing",
+    starred: false,
+    abstract: "Broadband quantum noise reduction can be achieved in gravitational-wave detectors by injecting frequency-dependent squeezed light into the dark port of the interferometer. This frequency-dependent squeezing can be generated by combining squeezed light with external filter cavities. However, in future long baseline interferometers (LBIs), the filter cavity required to achieve the broadband squeezing has a low bandwidth — necessitating a very long cavity to mitigate the issue from optical loss. It has been shown recently that by taking advantage of Einstein-Podolsky-Rosen (EPR) entanglement in the squeezed light source, the interferometer can simultaneously act as a detector and a filter cavity. This is an attractive broadband squeezing scheme for LBIs because the length requirement for the filter cavity is naturally satisfied by the length of the interferometer arms. In this paper we present a systematic way of finding the working points for this broadband squeezing scheme in LBIs. We also show that in LBIs, the EPR scheme achieves nearly perfect ellipse rotation as compared to 4-km interferometers which have appreciable error around the intermediate frequency. Finally, we show that an approximation for the optomechanical coupling constant in the 4-km case can break down for longer baselines. These results are applicable to future detectors such as the 10-km Einstein Telescope and the 40-km Cosmic Explorer.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:1909.03603", url: "https://arxiv.org/abs/1909.03603"},
+      {icon: "PR", title: "Publisher's version", sub: "Phys. Rev. D", url: "https://link.aps.org/doi/10.1103/PhysRevD.100.083011"}
+    ]
+  }
+];
 
-    <!-- ===== 2025 PREPRINT — Quantum Learning Theory ===== -->
-     <h2 class="year-divider">2025</h2>
+/* topic -> CSS class for color-coded badge */
+function topicClass(topic) {
+  if (topic.startsWith("Entanglement")) return "entanglement";
+  if (topic.startsWith("Quantum Learning")) return "learning";
+  if (topic.startsWith("Quantum Sensing")) return "sensing";
+  return "";
+}
 
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"><b>Jacob Beckey</b>, Luke Coffman, Ariel Shlosberg, Louis Schatzki, and Felix Leditzky. “Product testing with single‑copy measurements.” <em>arXiv:2510.07820</em>. October 2025.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2510.07820" target="_blank">arXiv:2510.07820</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-learn">Quantum Learning Theory</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> In this work, we study the sample complexity of two variants of product testing when restricted to single-copy measurements. 
-            In particular, we consider both bipartite product testing (i.e., does there exist at least one non-trivial cut across which the state is product) and 
-            multipartite product testing (i.e., is the state fully product across every cut). For the first variant, we prove an exponential lower bound on the 
-            sample complexity of any algorithm for this task which utilizes only single-copy measurements. When comparing this with known efficient algorithms 
-            that utilize multi-copy measurements, this establishes an exponential separation for this and several related entanglement learning tasks. For the 
-            second variant, we prove another sample lower bound that establishes a separation between single- and multi-copy strategies. To obtain our results, 
-            we prove a crucial technical lemma that gives a lower bound on the overlap between tensor products of permutation operators acting on subsystems of 
-            states that themselves carry a tensor structure. Finally, we provide an algorithm for multipartite product testing using only single-copy, local 
-            measurements, and we highlight several interesting open questions arising from this work.</p>
-      </div>
-    </section>
+/* ============ STATE ============ */
+const state = {
+  search: '',
+  topic: 'all',
+  year: 'all'
+};
 
-    <!-- ===== 2025 PREPRINT — Entanglement Theory & Characterization ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"><span class="mentor-star">★</span>Christopher Vairogs, Akanksha Chablani, Leo Lee, Hanyang Sha, Abigail Vaughan-Lee, and <strong>Jacob L. Beckey</strong>. “Localizing entanglement in high‑dimensional states.” <em>arXiv:2510.08501</em>. October 2025.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2510.08501" target="_blank">arXiv:2510.08501</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-ent">Entanglement Theory & Characterization</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> In this work, we study the asymptotic behavior of protocols that localize entanglement in large multi-qubit states 
-            onto a subset of qubits by measuring the remaining qubits. We use the maximal average n-tangle that can be generated on a fixed subsystem by 
-            measuring its complement -- either with local or global measurements -- as our key figure of merit. These quantities are known respectively 
-            as the localizable entanglement (LE) and the entanglement of assistance (EA). We build upon the work of [arXiv:2411.04080] that proposed a 
-            polynomial-time test, based on the EA, for whether it is possible to transform certain graph states into others using local measurements. 
-            We show, using properties of the EA, that this test is effective and useful in large systems for a wide range of sizes of the measured subsystem. 
-            In particular, we use this test to demonstrate the surprising result that general local unitaries and global measurements will typically 
-            not provide an advantage over the more experimentally feasible local Clifford unitaries and local Pauli measurements in transforming large 
-            linear cluster states into GHZ states. Finally, we derive concentration inequalities for the LE and EA over Haar-random states which indicate 
-            that the localized entanglement structure has a striking dependence on the locality of the measurement. In deriving these concentration 
-            inequalities, we develop several technical tools that may be of independent interest.</p>
-      </div>
-    </section>
+/* ============ INIT FILTERS ============ */
+function initFilters() {
+  // year chips
+  const years = [...new Set(PAPERS.map(p => p.year))].sort((a, b) => b - a);
+  const yearRow = document.getElementById('yearRow');
+  years.forEach(y => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-chip';
+    btn.dataset.filter = 'year';
+    btn.dataset.value = String(y);
+    const count = PAPERS.filter(p => p.year === y).length;
+    btn.innerHTML = `${y} <span class="count">${count}</span>`;
+    yearRow.appendChild(btn);
+  });
 
-    <!-- ===== 2025 PRResearch — Quantum Sensing ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title">Tsai-Chen Lee, <strong>Jacob L. Beckey</strong>, Giacomo Marocco, Daniel Carney. “Impulse measurements enhanced with squeezed readout light.” <em>Phys. Rev. Research 7, 033041</em>. July 2025.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2502.05168" target="_blank">arXiv:2502.05168</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://journals.aps.org/prresearch/abstract/10.1103/kcm9-bqs8" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> We quantify how squeezed light can reduce quantum measurement noise to levels below the standard quantum limit in impulse measurements with mechanical detectors. The broadband 
-            nature of the signal implies that frequency-dependent squeezing performs better than frequency-independent squeezing. We calculate the optimal scaling of the impulse sensitivity with the squeezing strength, 
-            and quantify degradations due to photodetection losses. Even for lossless measurement, we find there exists a fundamental limit to the benefit of squeezing that depends only on the system's mechanical properties.</p>
-      </div>
-    </section>
+  // topic counts
+  const topicCounts = {
+    "Entanglement Theory & Characterization": "count-entanglement",
+    "Quantum Learning Theory": "count-learning",
+    "Quantum Sensing": "count-sensing"
+  };
+  Object.entries(topicCounts).forEach(([topic, id]) => {
+    const n = PAPERS.filter(p => p.topic === topic).length;
+    document.getElementById(id).textContent = n;
+  });
 
-    <h2 class="year-divider">2024</h2>
-    <!-- ===== 2024 PRA — Entanglement Theory & Characterization ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"><span class="mentor-star">★</span>Luke Coffman, Akshay Seshadri, Graeme Smith, and <strong>Jacob L. Beckey</strong>. “Local measurement strategies for multipartite entanglement quantification.” <em>Phys. Rev. A 110, 012454</em>. July 2024.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2401.08065" target="_blank">arXiv:2401.08065</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.110.012454" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-ent">Entanglement Theory & Characterization</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> Despite multipartite entanglement being a global property of a quantum state, a number of recent works have made it clear 
-            that it can be quantified using only local measurements. This is appealing because local measurements are the easiest to implement on current quantum
-             hardware. However, it remains an open question what protocol one should use in order to minimize the resources required to estimate multipartite 
-             entanglement from local measurements alone. In this work, we construct and compare several estimators of multipartite entanglement based solely 
-             on the data from local measurements. We first construct statistical estimators for a broad family of entanglement measures using local randomized
-              measurement (LRM) data before providing a general criterion for the construction of such estimators in terms of projective 2-designs. Importantly, 
-              this allows us to derandomize the multipartite estimation protocol based on LRMs. In particular, we show how local symmetric, informationally 
-              complete positive operator-valued measures enable multipartite entanglement quantification with only a single measurement setting. For all estimators,
-              we provide both the classical postprocessing cost and rigorous performance guarantees in the form of analytical upper bounds on the number of 
-              measurements needed to estimate the measures to any desired precision.</p>
-      </div>
-    </section>
+  // wire chip click handlers
+  document.querySelectorAll('.filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      const value = btn.dataset.value;
+      state[filter] = value;
+      // update active state within same filter group
+      document.querySelectorAll(`.filter-chip[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    });
+  });
 
-    <h2 class="year-divider">2023</h2>
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"><strong>Jacob L. Beckey</strong>, Daniel Carney, Giacomo Marocco. “Quantum measurements in fundamental physics: a user’s manual.” <em>arXiv:2311.07270</em>. November 2023</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a href="https://arxiv.org/abs/2311.07270">arXiv:2311.07270</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> We give a systematic theoretical treatment of linear quantum detectors used in modern 
-            high energy physics experiments, including dark matter cavity haloscopes, gravitational wave detectors, and 
-            impulsive mechanical sensors. We show how to derive the coupling of signals of interest to these devices, and 
-            how to calculate noise spectra, signal-to-noise ratios, and detection sensitivities. We emphasize the role of 
-            quantum vacuum and thermal noise in these systems. Finally, we review ways in which advanced quantum 
-            techniques—squeezing, non-demolition measurements, and entanglement—can be or currently are used to enhance these searches..</p>
-      </div>
-    </section>
+  // search
+  const searchInput = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearSearch');
+  searchInput.addEventListener('input', e => {
+    state.search = e.target.value.trim().toLowerCase();
+    clearBtn.disabled = state.search === '';
+    render();
+  });
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    state.search = '';
+    clearBtn.disabled = true;
+    render();
+  });
 
-    <!-- ===== 2023 PRA — Entanglement Theory & Characterization ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"><strong>Jacob L. Beckey</strong>, Gerard Pelegrí, Steph Foulds, Natalie J Pearson. “Multipartite entanglement measures via Bell basis measurements.” <em>Phys. Rev. A 107, 062425</em>. June 2023</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a href="https://arxiv.org/abs/2210.02575">arXiv:2210.02575</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.107.062425" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-ent">Entanglement Theory & Characterization</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> We show how to estimate a broad class of multipartite entanglement measures from Bell basis measurement data. 
-            In addition to lowering the experimental requirements relative to previously known methods of estimating these measures, our proposed 
-            scheme also enables a simpler analysis of the number of measurement repetitions required to achieve an ϵ-close approximation of the 
-            measures, which we provide for each. We focus our analysis on the recently introduced Concentratable Entanglements [Beckey et al. Phys. Rev. Lett. 127, 140501 (2021)] because
-             many other well-known multipartite entanglement measures are recovered as special cases of this family of measures. We extend the definition 
-             of the Concentratable Entanglements to mixed states and show how to construct lower bounds on the mixed state Concentratable Entanglements that 
-             can also be estimated using only Bell basis measurement data. Finally, we demonstrate the feasibility of our methods by classically simulating their 
-             implementation on a noisy Rydberg atom quantum computer.</p>
-      </div>
-    </section>
+  // theme tag → filter by topic
+  document.querySelectorAll('[data-jump-topic]').forEach(el => {
+    el.addEventListener('click', () => {
+      const topic = el.dataset.jumpTopic.replace(/&amp;/g, '&');
+      state.topic = topic;
+      document.querySelectorAll('.filter-chip[data-filter="topic"]').forEach(b => {
+        const val = b.dataset.value.replace(/&amp;/g, '&');
+        b.classList.toggle('active', val === topic);
+      });
+      document.getElementById('publications').scrollIntoView({ behavior: 'smooth' });
+      render();
+    });
+  });
+}
 
-    <!-- ===== 2023 PRApplied — Quantum Sensing ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title">Anthony M. Polloreno, <strong>Jacob L. Beckey</strong>, Joshua Levin, Ariel Shlosberg, James K. Thompson, Michael Foss-Feig, David Hayes, Graeme Smith. “Opportunities and Limitations in Broadband Sensing.” <em>Phys. Rev. Applied 19, 014029</em>. January 2023.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2210.02575" target="_blank">arXiv:2210.02575</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://doi.org/10.1103/PhysRevApplied.19.014029" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> Detecting a signal at an unknown frequency is a common task, arising in settings from dark-matter detection to magnetometry. 
-            For any detection protocol, the precision achieved depends on the frequency of the signal and can be quantified by the quantum Fisher information (QFI). 
-            To study limitations in broadband sensing, we introduce the integrated quantum Fisher information and derive inequality bounds that embody fundamental 
-            trade-offs in any sensing protocol. Our inequalities show that sensitivity in one frequency range must come at the cost of reduced sensitivity elsewhere. 
-            For many protocols, including those with small phase accumulation and those consisting of 𝜋 pulses, we find that the integrated quantum Fisher 
-            information scales linearly with 𝑇. We also find protocols with substantial phase accumulation that can have integrated QFI that grows quadratically 
-            with 𝑇 and prove that this scaling is asymptotically optimal. These protocols may allow the very rapid detection of a signal with unknown frequency 
-            over a very wide bandwidth. We discuss the implications of these results for a wide variety of contexts, including dark-matter searches and dynamical 
-            decoupling. Thus we establish fundamental limitations on the broadband detection of signals and highlight their consequences.</p>
-      </div>
-    </section>
+/* ============ FILTER + SEARCH ============ */
+function matchesSearch(p, q) {
+  if (!q) return true;
+  const hay = (p.title + ' ' + p.authors.join(' ') + ' ' + p.venue + ' ' + p.topic).toLowerCase();
+  return hay.includes(q);
+}
 
-    <h2 class="year-divider">2022</h2>
-    <!-- ===== 2022 Optics Express — Quantum Sensing (hardware/limits) ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"> E. Fradgley, C. French, L. Rushton, Y. Dieudonné, L. Harrison, <strong>J. L. Beckey</strong>, H. Miao, C. Gill, P. G. Petrov, and V. Boyer. “Quantum limits of position‑sensitive photodiodes.” <em>Optics Express 30(22), 39374–39381</em>. October 2022.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://doi.org/10.1364/OE.471673" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> The split photodiode and the lateral effect photodiode are two popular detectors for measuring beam displacement. 
-            For small displacements of a Gaussian beam, which is the case of interest here, they are often seen as equivalent and used interchangeably, 
-            giving a signal proportional to the displacement. We show theoretically and experimentally that in the limit of low technical noise, where 
-            the signal to noise ratio is dominated by the shot noise of the light, the lateral effect photodiode produces a better signal to noise ratio 
-            than the split photodiode, owing to its optimum spatial detector response. This quantum advantage can be practically exploited in spite of 
-            the intrinsic thermal noise of the lateral effect photodiode.</p>
-      </div>
-    </section>
+function highlight(text, q) {
+  if (!q) return text;
+  // case-insensitive replace, escape regex chars
+  const safe = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${safe})`, 'gi'), '<mark>$1</mark>');
+}
 
-    <!-- ===== 2022 PRResearch — Quantum Sensing / QFI algorithm ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"><strong>Jacob L. Beckey</strong>, M Cerezo, Akira Sone, Patrick J Coles. “Variational Quantum Algorithm for Estimating the Quantum Fisher Information.” <em>Phys. Rev. Research 4, 013083</em>. February 2022.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a href="https://arxiv.org/abs/2010.10488">arXiv:2010.10488</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://link.aps.org/doi/10.1103/PhysRevResearch.4.013083" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> The Quantum Fisher information (QFI) quantifies the ultimate precision of estimating a parameter from a quantum state, and
-             can be regarded as a reliability measure of a quantum system as a quantum sensor. However, estimation of the QFI for a mixed state is in general a 
-             computationally demanding task. In this work we present a variational quantum algorithm called Variational Quantum Fisher Information Estimation (VQFIE) 
-             to address this task. By estimating lower and upper bounds on the QFI, based on bounding the fidelity, VQFIE outputs a range in which the actual QFI lies.
-              This result can then be used to variationally prepare the state that maximizes the QFI, for the application of quantum sensing. In contrast to previous 
-              approaches, VQFIE does not require knowledge of the explicit form of the sensor dynamics. We simulate the algorithm for a magnetometry setup and 
-              demonstrate the tightening of our bounds as the state purity increases. For this example, we compare our bounds to literature bounds and show that 
-              our bounds are tighter.</p>
-      </div>
-    </section>
+function filterPapers() {
+  return PAPERS.filter(p => {
+    if (state.topic !== 'all') {
+      const topicNorm = state.topic.replace(/&amp;/g, '&');
+      if (p.topic !== topicNorm) return false;
+    }
+    if (state.year !== 'all' && String(p.year) !== state.year) return false;
+    if (!matchesSearch(p, state.search)) return false;
+    return true;
+  });
+}
 
-    <h2 class="year-divider">2021</h2>
-    <!-- ===== 2021 PRA — Quantum Sensing / QFI measure ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title">Akira Sone, M. Cerezo, <strong>Jacob L. Beckey</strong>, Patrick J. Coles. “A Generalized Measure of Quantum Fisher Information.” <em>Phys. Rev. A 104, 062602</em>. December 2021.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2010.02904" target="_blank">arXiv:2010.02904</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.104.062602" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> In this work, we present a lower bound on the quantum Fisher information (QFI) which is efficiently computable on near-term quantum devices. 
-            This bound itself is of interest, as we show that it satisfies the canonical criteria of a QFI measure. Specifically, it is essentially a QFI measure for subnormalized 
-            states, and hence it generalizes the standard QFI in this sense. Our bound employs the generalized fidelity applied to a truncated state, which is constructed via the m 
-            largest eigenvalues and their corresponding eigenvectors of the probe quantum state ρθ. Focusing on unitary families of exact states, we analyze the properties of our 
-            proposed lower bound, and demonstrate its utility for efficiently estimating the QFI.</p>
-      </div>
-    </section>
+/* ============ RENDER ============ */
+function render() {
+  const list = filterPapers();
+  const container = document.getElementById('resultsContainer');
+  const emptyState = document.getElementById('emptyState');
+  const meta = document.getElementById('resultsMeta');
 
-    <!-- ===== 2021 PRL — Entanglement Theory & Characterization ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"><strong>Jacob L. Beckey</strong>, N. Gigena, Patrick J. Coles, M. Cerezo. “Computable and operationally meaningful multipartite entanglement measures.” <em>Phys. Rev. Lett. 127, 140501</em>. September 2021.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a href="https://arxiv.org/abs/2104.06923">arXiv:2104.06923</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://link.aps.org/doi/10.1103/PhysRevLett.127.140501" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-ent">Entanglement Theory & Characterization</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> Multipartite entanglement is an essential resource for quantum communication, quantum computing, quantum sensing, and 
-            quantum networks. The utility of a quantum state, |ψ⟩, for these applications is often directly related to the degree or type of entanglement present 
-            in |ψ⟩. Therefore, efficiently quantifying and characterizing multipartite entanglement is of paramount importance. In this work, we introduce a 
-            family of multipartite entanglement measures, called Concentratable Entanglements. Several well-known entanglement measures are recovered as special 
-            cases of our family of measures, and hence we provide a general framework for quantifying multipartite entanglement. We prove that the entire family 
-            does not increase, on average, under Local Operations and Classical Communications. We also provide an operational meaning for these measures in 
-            terms of probabilistic concentration of entanglement into Bell pairs. Finally, we show that these quantities can be efficiently estimated on a quantum 
-            computer by implementing a parallelized SWAP test, opening up a research direction for measuring multipartite entanglement on quantum devices.</p>
-      </div>
-    </section>
+  if (list.length === 0) {
+    container.innerHTML = '';
+    emptyState.classList.remove('hidden');
+    meta.textContent = 'No matching papers';
+    return;
+  }
+  emptyState.classList.add('hidden');
 
-    <!-- ===== 2021 QST — Quantum Sensing / QFI foundations ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title">M. Cerezo, Akira Sone, <strong>Jacob L. Beckey</strong>, Patrick J. Coles. “Sub‑Quantum Fisher Information.” <em>Quantum Sci. Technol. 6, 035008</em>. June 2021.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/2101.10144" target="_blank">arXiv:2101.10144</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://iopscience.iop.org/article/10.1088/2058-9565/abfbef" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> The Quantum Fisher Information (QFI) plays a crucial role in quantum information theory and in many practical applications such as quantum metrology. However, computing the QFI is generally a computationally demanding task. In this work we analyze a lower bound on the QFI which we call the sub-Quantum Fisher Information (sub-QFI). The bound can be efficiently estimated on a quantum computer for an n-qubit state using 2n qubits. The sub-QFI is based on the super-fidelity, an upper bound on Uhlmann's fidelity. We analyze the sub-QFI in the context of unitary families, where we derive several crucial properties including its geometrical interpretation. In particular, we prove that the QFI and the sub-QFI are maximized for the same optimal state, which implies that the sub-QFI is faithful to the QFI in the sense that both quantities share the same global extrema. Based on this faithfulness, the sub-QFI acts as an efficiently computable surrogate for the QFI for quantum sensing and quantum metrology applications. Finally, we provide additional meaning to the sub-QFI as a measure of coherence, asymmetry, and purity loss.</p>
-      </div>
-    </section>
+  // describe results
+  const total = PAPERS.length;
+  if (list.length === total && !state.search) {
+    meta.textContent = `Showing all ${total} papers`;
+  } else {
+    const parts = [`${list.length} of ${total} papers`];
+    if (state.search) parts.push(`matching "${state.search}"`);
+    if (state.topic !== 'all') parts.push(`in ${state.topic.replace(/&amp;/g, '&')}`);
+    if (state.year !== 'all') parts.push(`from ${state.year}`);
+    meta.textContent = parts.join(' · ');
+  }
 
-    <h2 class="year-divider">2020</h2>
-    <!-- ===== 2020 PRL — Quantum Sensing / Interferometry ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title">R.C. Pooser, N. Savino, E. Batson, <strong>J. L. Beckey</strong>, J. Garcia, B.J. Lawrie. “Truncated nonlinear interferometry for quantum‑enhanced atomic force microscopy.” <em>Phys. Rev. Lett. 124, 230504</em>. June 2020.</h2>
-      </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a href="https://arxiv.org/abs/1912.10550">arXiv:1912.10550</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.124.230504" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> Nonlinear interferometers that replace beam splitters in Mach-Zehnder interferometers with nonlinear amplifiers for quantum-enhanced phase measurements 
-            have drawn increasing interest in recent years, but practical quantum sensors based on nonlinear interferometry remain an outstanding challenge. Here, we demonstrate the first practical 
-            application of nonlinear interferometry by measuring the displacement of an atomic force microscope microcantilever with quantum noise reduction of up to 3 dB below the standard quantum limit, 
-            corresponding to a quantum-enhanced measurement of beam displacement of 1.7  fm/√Hz. Further, we minimize photon backaction noise while taking advantage of quantum noise reduction by transducing 
-            the cantilever displacement signal with a weak squeezed state while using dual homodyne detection with a higher power local oscillator. This approach may enable quantum-enhanced broadband, high-speed 
-            scanning probe microscopy.</p>
-      </div>
-    </section>
+  // group by year
+  const byYear = {};
+  list.forEach(p => {
+    if (!byYear[p.year]) byYear[p.year] = [];
+    byYear[p.year].push(p);
+  });
+  const years = Object.keys(byYear).sort((a, b) => b - a);
 
-    <h2 class="year-divider">2019</h2>
-    <!-- ===== 2019 PRD — Quantum Sensing / GW detectors via EPR ===== -->
-    <section class="publication-card">
-      <div class="publication-header">
-        <h2 class="publication-title"><strong>Jacob L. Beckey</strong>, Yiqiu Ma, Vincent Boyer, Haixing Miao. “Broadband quantum noise reduction in future long baseline gravitational‑wave detectors via EPR entanglement.” <em>Phys. Rev. D 100, 083011</em>. October 2019.</h2>
+  let html = '';
+  let animIdx = 0;
+  years.forEach(year => {
+    const items = byYear[year];
+    html += `
+      <div class="year-section">
+        <div class="year-header">
+          <h3>${year}</h3>
+          <span class="year-count">${items.length} ${items.length === 1 ? 'paper' : 'papers'}</span>
+        </div>
+        <div class="pub-list">
+          ${items.map(p => {
+            const card = renderPubCard(p, animIdx * 30);
+            animIdx++;
+            return card;
+          }).join('')}
+        </div>
       </div>
-      <div class="info-bar">
-        <button class="abstract-btn" onclick="toggleAbstract(this)"><i class="ph ph-plus"></i><span>Abstract</span></button>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://arxiv.org/abs/1909.03603" target="_blank">arXiv:1909.03603</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><a class="pub-link" href="https://link.aps.org/doi/10.1103/PhysRevD.100.083011" target="_blank">Publisher’s Version</a></span>
-        <span class="divider"></span>
-        <span class="info-item"><span class="badge badge-sensing">Quantum Sensing</span></span>
-      </div>
-      <div class="abstract-panel">
-        <p><strong>Abstract:</strong> Broadband quantum noise reduction can be achieved in gravitational-wave detectors by injecting frequency-dependent 
-            squeezed light into the dark port of the interferometer. This frequency-dependent squeezing can be generated by combining squeezed light with 
-            external filter cavities. However, in future long baseline interferometers (LBIs), the filter cavity required to achieve the broadband squeezing 
-            has a low bandwidth—necessitating a very long cavity to mitigate the issue from optical loss. It has been shown recently that by taking 
-            advantage of Einstein-Podolsky-Rosen (EPR) entanglement in the squeezed light source, the interferometer can simultaneously act as a detector 
-            and a filter cavity. This is an attractive broadband squeezing scheme for LBIs because the length requirement for the filter cavity is 
-            naturally satisfied by the length of the interferometer arms. In this paper we present a systematic way of finding the working points for
-             this broadband squeezing scheme in LBIs. We also show that in LBIs, the EPR scheme achieves nearly perfect ellipse rotation as compared to 
-             4-km interferometers which have appreciable error around the intermediate frequency. Finally, we show that an approximation for the 
-             optomechanical coupling constant in the 4-km case can break down for longer baselines. These results are applicable to future detectors 
-             such as the 10-km Einstein Telescope and the 40-km Cosmic Explorer.</p>
-      </div>
-    </section>
+    `;
+  });
+  container.innerHTML = html;
 
-    <!-- ===== 2022–2021–2023 remaining entries placed above as needed ===== -->
-  </main>
-  <footer>
-    <p>Copyright &#169; 2025 Jacob Beckey. All Rights Reserved.</p>
-  </footer>
+  // attach click handlers
+  document.querySelectorAll('.pub[data-paper]').forEach(card => {
+    card.addEventListener('click', () => openModal(card.dataset.paper));
+  });
+}
 
-  <!-- ==================== SCRIPTS ==================== -->
-  <script src="./script.js"></script>
+function renderPubCard(p, delay) {
+  const q = state.search;
+  const title = highlight(p.title, q);
+  const authors = p.authors.map(a => highlight(a, q)).join(', ');
+  const venue = highlight(p.venue, q);
+  const star = p.starred ? '<span class="pub-star" title="Undergraduate mentorship">★</span> ' : '';
+
+  return `
+    <article class="pub" data-paper="${p.id}" style="animation-delay: ${delay}ms">
+      <div class="pub-body">
+        <div class="pub-meta-row">
+          <span class="pub-month">${p.month}</span>
+          <span class="pub-topic ${topicClass(p.topic)}">${p.topic}</span>
+        </div>
+        <div class="pub-title">${star}${title}</div>
+        <div class="pub-authors">${authors}</div>
+        <div class="pub-venue">${venue}</div>
+      </div>
+      <div class="pub-arrow-cell"><span class="pub-arrow">→</span></div>
+    </article>
+  `;
+}
+
+/* ============ MODAL ============ */
+function openModal(id) {
+  const p = PAPERS.find(x => x.id === id);
+  if (!p) return;
+
+  const linksHTML = p.links.map(l => `
+    <a href="${l.url}" target="_blank" rel="noopener" class="modal-link">
+      <div class="modal-link-info">
+        <div class="modal-link-icon">${l.icon}</div>
+        <div class="modal-link-text">
+          <div class="modal-link-title">${l.title}</div>
+          <div class="modal-link-sub">${l.sub}</div>
+        </div>
+      </div>
+      <span class="modal-link-arrow">→</span>
+    </a>
+  `).join('');
+
+  const starPrefix = p.starred ? '<span class="pub-star">★</span> ' : '';
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-year">${p.month}</div>
+    <h2 class="modal-title">${starPrefix}${p.title}</h2>
+    <div class="modal-authors">${p.authors.join(', ')}</div>
+    <div class="modal-venue">${p.venue}</div>
+    <div class="modal-tag-row">
+      <span class="modal-tag">${p.topic}</span>
+      ${p.starred ? '<span class="modal-tag gold">Undergraduate mentorship</span>' : ''}
+    </div>
+
+    <div class="section-rule">Abstract</div>
+    <div class="modal-abstract">${p.abstract}</div>
+
+    <div class="section-rule">Read the paper</div>
+    <div class="modal-links">${linksHTML}</div>
+  `;
+
+  document.getElementById('paperModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.querySelector('.modal').scrollTop = 0;
+}
+
+function closeModal() {
+  document.getElementById('paperModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('paperModal').addEventListener('click', e => {
+  if (e.target.id === 'paperModal') closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.getElementById('pubCount').textContent = `${PAPERS.length} papers`;
+
+initFilters();
+render();
+</script>
 </body>
 </html>

@@ -1,484 +1,1314 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quantum Learning Theory Course – Jacob Beckey</title>
-    <link rel="stylesheet" href="courses.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-  </head>
-  <body>
-    <nav id="desktop-nav" class="sticky-nav">
-      <div class="logo-container" onclick="location.href='index.html'">
-        <img src="./assets/jlb-logo.svg" alt="Logo" />
-        <span class="logo-text">Jacob Beckey</span>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Teaching — Jacob L. Beckey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4efe6;
+    --paper-deep: #ebe4d5;
+    --ink: #002147;
+    --ink-soft: #30557e;
+    --keaney: #2277b3;
+    --keaney-soft: #c0ddf2;
+    --muted: #7a7466;
+    --rule: #d8cfbd;
+    --gold: #B5985A;
+    --gold-deep: #8a7340;
+    --gold-soft: #fefada;
+    --serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter Tight', 'Helvetica Neue', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .wrap { position: relative; z-index: 2; }
+
+  /* ───────── NAV ───────── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(244, 239, 230, 0.92);
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-block;
+  }
+  .logo-name {
+    font-style: normal;
+    color: var(--gold-deep);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .logo:hover .logo-name { color: var(--ink); }
+  .logo-affil {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+  }
+  .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-deep); }
+  .nav-links a.active { color: var(--ink); border-bottom: 1px solid var(--gold-deep); padding-bottom: 0.2rem; }
+  .nav-links a.cv {
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+  }
+  .nav-links a.cv:hover { background: var(--gold-deep); color: var(--paper); }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    padding: 5rem 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold-deep);
+  }
+  h1.hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    max-width: 980px;
+    margin-bottom: 1.8rem;
+  }
+  h1.hero-headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-deep);
+  }
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 760px;
+    color: var(--ink-soft);
+  }
+
+  /* ───────── PHILOSOPHY SECTION ───────── */
+  .philosophy {
+    padding: 4rem 3rem 5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .philosophy-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 1000px) {
+    .philosophy-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .philosophy-text h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.8rem;
+  }
+  .philosophy-text h2 em { font-style: italic; color: var(--gold-deep); }
+
+  .philosophy-text p {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+  .philosophy-text p strong { color: var(--ink); font-weight: 500; }
+  .philosophy-text a {
+    color: var(--keaney);
+    text-decoration: none;
+    border-bottom: 1px solid var(--keaney);
+  }
+  .philosophy-text a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+  /* the pull quote — anchor visual element */
+  .pull-quote {
+    position: relative;
+    padding: 2.5rem 2.2rem 2.5rem 3rem;
+    background: var(--paper-deep);
+    border-left: 3px solid var(--gold-deep);
+    border-radius: 2px 4px 4px 2px;
+  }
+  .pull-quote::before {
+    content: '"';
+    position: absolute;
+    top: -0.8rem;
+    left: 1.8rem;
+    font-family: var(--serif);
+    font-size: 6.5rem;
+    line-height: 1;
+    color: var(--gold-deep);
+    opacity: 0.5;
+    font-weight: 400;
+  }
+  .pull-quote-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .pull-quote-text em {
+    font-style: normal;
+    color: var(--gold-deep);
+    font-weight: 400;
+  }
+  .pull-quote-attribution {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .pull-quote-attribution::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold-deep);
+  }
+  .pull-quote-attribution a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.1rem;
+  }
+  .pull-quote-attribution a:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ───────── INCLUSIVITY STATEMENT ───────── */
+  .inclusivity {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-deep);
+    padding: 4rem 3rem;
+  }
+  .inclusivity-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 1000px) {
+    .inclusivity-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+  .inclusivity-label {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    padding-top: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .inclusivity-label::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold-deep);
+  }
+  .inclusivity-text {
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    line-height: 1.6;
+    color: var(--ink);
+    font-weight: 300;
+  }
+  .inclusivity-text strong { font-weight: 500; color: var(--ink); }
+
+  /* ───────── CURRENT TERM ───────── */
+  .current-section {
+    padding: 5rem 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+  .section-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .section-head .section-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .current-course {
+    background: linear-gradient(135deg, var(--ink) 0%, #1d3a5f 100%);
+    color: var(--paper);
+    border-radius: 3px;
+    padding: 2.5rem 2.8rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .current-course::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n3)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .current-course:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0, 33, 71, 0.25); }
+  .current-course > * { position: relative; z-index: 1; }
+
+  @media (max-width: 800px) {
+    .current-course { grid-template-columns: 1fr; gap: 1rem; padding: 2rem; }
+    .current-course-arrow { display: none; }
+  }
+
+  .current-course-code {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--gold);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .current-course-body { min-width: 0; }
+  .current-course-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .current-course-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+  }
+  .current-course-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    color: rgba(244, 239, 230, 0.75);
+    font-size: 1rem;
+  }
+  .current-course-arrow {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--gold);
+    transition: transform 0.2s;
+  }
+  .current-course:hover .current-course-arrow { transform: translateX(6px); }
+
+  /* ───────── HISTORY ───────── */
+  .history {
+    padding: 4rem 3rem 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .university-section { margin-bottom: 3.5rem; }
+  .university-section:last-child { margin-bottom: 0; }
+
+  .university-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--ink);
+    flex-wrap: wrap;
+  }
+  .university-header h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+    letter-spacing: -0.015em;
+  }
+  .university-header h3 .uni-detail {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--muted);
+    font-size: 0.85em;
+    margin-left: 0.5rem;
+  }
+  .university-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .course-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1.8rem 2rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    animation: fadeUp 0.5s ease backwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .course-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold-deep);
+    box-shadow: 0 10px 24px rgba(0, 33, 71, 0.10);
+  }
+  .course-card:hover .course-card-arrow { transform: translateX(4px); color: var(--gold-deep); }
+
+  .course-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .course-card-code {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  /* term badge — color coded by season; status dot signals current/upcoming */
+  .course-card-term {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .course-card-term.season-fall {
+    background: var(--gold-soft);
+    color: var(--gold-deep);
+  }
+  .course-card-term.season-spring {
+    background: var(--keaney-soft);
+    color: var(--ink);
+  }
+  .course-card-term.season-summer {
+    background: var(--paper-deep);
+    color: var(--ink-soft);
+  }
+
+  /* status dot — small filled circle when current/upcoming, sits inside the season badge */
+  .status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .status-dot.current {
+    background: var(--ink);
+    box-shadow: 0 0 0 2px rgba(0, 33, 71, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .status-dot.upcoming {
+    background: var(--gold-deep);
+    border: 1px solid var(--gold-deep);
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 2px rgba(0, 33, 71, 0.15); }
+    50% { box-shadow: 0 0 0 4px rgba(0, 33, 71, 0.08); }
+  }
+
+  .course-card-title {
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  /* tagline — short descriptive line, one of the card's most-read elements */
+  .course-card-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    font-weight: 300;
+  }
+
+  /* small, understated note that past offerings exist (details in modal) */
+  .past-offerings {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    padding-top: 0.2rem;
+  }
+
+  .course-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.4rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--rule);
+  }
+  .course-card-resources {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .course-card-resources .none { color: var(--muted); font-style: italic; }
+  .course-card-arrow {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+  }
+
+  /* ───────── MODAL ───────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 33, 71, 0.55);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: overlayIn 0.3s ease;
+  }
+  .modal-overlay.open { display: flex; }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: var(--paper);
+    max-width: 880px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--ink);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .modal-content { padding: 3rem; }
+  @media (max-width: 700px) { .modal-content { padding: 2rem 1.5rem; } }
+
+  .modal-code {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold-deep);
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+  .modal-univ {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .modal-tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .modal-tag {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: var(--keaney-soft);
+    color: var(--ink);
+    border-radius: 2px;
+  }
+  .modal-tag.gold { background: var(--gold-soft); color: var(--gold-deep); }
+
+  .section-rule {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin: 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-rule::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .modal-description {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .modal-description p { margin-bottom: 0.9rem; }
+  .modal-description p:last-child { margin-bottom: 0; }
+
+  /* offerings list inside modal */
+  .offerings-list {
+    display: grid;
+    gap: 0;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .offering-row {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.95rem 1.2rem;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .offering-row:last-child { border-bottom: none; }
+  @media (max-width: 600px) {
+    .offering-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 1rem;
+    }
+    .offering-enrollment { grid-column: 1 / -1; }
+  }
+  .offering-term-badge {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+  .offering-term-badge.season-fall {
+    background: var(--gold-soft);
+    color: var(--gold-deep);
+  }
+  .offering-term-badge.season-spring {
+    background: var(--keaney-soft);
+    color: var(--ink);
+  }
+  .offering-term-badge.season-summer {
+    background: var(--paper);
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+  }
+  .offering-code {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .offering-enrollment {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .modal-links { display: grid; gap: 0.6rem; }
+  .modal-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+  .modal-link:hover {
+    background: var(--gold-soft);
+    border-color: var(--gold-deep);
+    transform: translateX(2px);
+  }
+  .modal-link:hover .modal-link-arrow { transform: translateX(4px); color: var(--gold-deep); }
+  .modal-link-info { display: flex; align-items: center; gap: 0.9rem; min-width: 0; }
+  .modal-link-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .modal-link-text { min-width: 0; }
+  .modal-link-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  .modal-link-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .modal-link-arrow {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+  .modal-empty {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    padding: 0.8rem 0;
+  }
+
+  /* ───────── CLOSING CTA ───────── */
+  .closing-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4.5rem 3rem;
+    text-align: center;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .closing-cta-inner { position: relative; max-width: 720px; margin: 0 auto; z-index: 2; }
+  .closing-cta h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .closing-cta h3 em { font-style: italic; color: var(--gold); }
+  .closing-cta p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--paper);
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 0.9rem 1.6rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .closing-cta .btn-primary { background: var(--gold); color: var(--ink); }
+  .closing-cta .btn-primary:hover { background: var(--paper); }
+
+  /* footer */
+  footer {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--rule);
+  }
+  footer em { font-family: var(--serif); }
+  footer .footer-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-deep);
+    margin: 0 auto 1rem;
+  }
+
+  /* mobile */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a:not(.cv) { display: none; }
+    .hero, .philosophy, .inclusivity, .current-section, .history, .closing-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero { padding-top: 3.5rem; padding-bottom: 2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<nav>
+  <a href="index-uri.html" class="logo">
+    <span class="logo-name">Jacob L. Beckey</span>
+    <span class="logo-affil">Physics · University of Rhode Island</span>
+  </a>
+  <div class="nav-links">
+    <a href="research-uri.html">Research</a>
+    <a href="teaching-uri.html" class="active">Teaching</a>
+    <a href="resources-uri.html">Resources</a>
+    <a href="outreach-uri.html">Outreach</a>
+    <a href="#" class="cv">CV ↓</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Teaching</div>
+  <h1 class="hero-headline">Teaching <em>science</em> is teaching how to <em>think.</em></h1>
+  <p class="hero-sub">
+    Every student who passes through a physics or math classroom — not just those headed for STEM careers — deserves to learn what science actually is, how knowledge gets made and contested, and how to think clearly with evidence. My courses are built on that conviction.
+  </p>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-text">
+      <h2>Teaching <em>philosophy</em></h2>
+      <p>My approach to teaching is informed by decades of educational research and a core belief: <strong>science literacy is not optional, and it is not only for future scientists.</strong> Every student needs to understand what science is and what scientists actually do, because those tools serve them in any career — and because a functioning democracy requires a populace that can assess claims, engage in fact-based dialogue, exercise appropriate skepticism, and interpret data effectively.</p>
+      <p>That commitment shapes how I design every course I teach. I draw heavily on the <a href="https://www.idealizedscience.org/" target="_blank" rel="noopener">Idealized Science Framework</a> — a research-informed model my colleagues and I have developed at the Idealized Science Institute — which centers the actual practices of science and mathematics: how questions get framed, how evidence is gathered and evaluated, how disagreement is resolved, and how knowledge evolves.</p>
+      <p>In practice, this means students in my courses don't just solve problem sets — they argue, model, write, and revise. They encounter not just the polished results in their textbooks but the messy, contested process that produced them.</p>
+    </div>
+
+    <aside class="pull-quote">
+      <div class="pull-quote-text">
+        A functioning democracy requires a society that can <em>assess claims, engage in fact-based dialogue, and interpret data.</em> Teaching science well is teaching those skills.
       </div>
-      <ul class="nav-links">
-        <li><a href="research.html">Research</a></li>
-        <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="#outreach">Outreach</a></li>
-        <li><a href="resources.html">Resources</a></li>
-      </ul>
-    </nav>
-
-    <nav id="hamburger-nav">
-      <div class="logo-container" onclick="location.href='index.html'">
-        <img src="./assets/jlb-logo.svg" alt="Logo" />
-        <span class="logo-text">Jacob Beckey</span>
+      <div class="pull-quote-attribution">
+        <a href="https://www.idealizedscience.org/" target="_blank" rel="noopener">The Idealized Science Framework →</a>
       </div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ul class="menu-links">
-          <li><a href="research.html" onclick="toggleMenu()">Research</a></li>
-          <li><a href="teaching.html" onclick="toggleMenu()">Teaching</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Outreach</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Resources</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <main>
-      <div class="course-welcome">
-        <h2 class="welcome-line">Welcome to</h2>
-        <h1 class="course-title">MATH 595: Quantum Learning Theory</h1>
-        <h2 class="welcome-line">
-          Spring 2026 &mdash; University of Illinois, Urbana-Champaign
-        </h2>
-        <br />
-        <hr class="divider" />
-      </div>
-
-      <section id="course-info">
-        <h1>Course Information</h1>
-        <p>
-          <strong>Welcome to MATH 595: Quantum Learning Theory!</strong> This
-          course will survey the burgeoning field of quantum learning theory
-          (QLT), which lies at the intersection of mathematics, theoretical
-          computer science, and quantum information theory. QLT can be viewed as
-          a quantum generalization of classical statistical learning theory. At
-          its core, the goal of QLT is to quantify the resources (samples,
-          measurements, memory, time, etc.) needed to test or learn a desired
-          quantity. In this course, we will place a particular emphasis on
-          understanding the effects that randomness, adaptivity, and measurement
-          restrictions have on the sample complexity of various quantum state
-          learning and testing tasks.
-        </p>
-        <ul>
-          <li><strong>Instructor:</strong> Jacob Beckey</li>
-          <li><strong>Meeting times:</strong> Tues/Thurs, 3:30–4:50 PM</li>
-          <li><strong>Location:</strong> 132 Davenport Hall</li>
-          <li><strong>Prerequisites:</strong> Math 416 Abstract Linear Algebra (or equivalent) and, ideally, Intro to Quantum Mechanics/Information (e.g., Phys
-                486/487, Phys 513, or ECE 404)
-          </li>
-        </ul>
-      </section>
-
-      <section id="contact">
-        <h1>Contact & Communication</h1>
-        <ul>
-          <li>
-            <strong>Instructor's email:</strong>
-            <a href="mailto:jbeckey@illinois.edu">jbeckey@illinois.edu</a>
-          </li>
-          <li><strong>My office:</strong> 400B Harker Hall</li>
-        </ul>
-        <p>
-          Please reach out if you have questions about course content,
-          assignments, or logistics!
-        </p>
-      </section>
-
-      <section id="schedule">
-        <h1>Assignments & Grading</h1>
-        <p>
-          There will be no mandatory homework or exams. We will work through proofs together in most classes, and optional additional
-          problems will provided at the end of each section of the notes.
-        </p>
-        <h2>Final Project</h2>
-        <p>
-          Grading will be based upon a final project. All students will do
-          a final project that distills a QLT paper into a guided tutorial-style
-          problem that their peers could complete by that point in the course,
-          highlighting open questions left by the paper. An example tutorial can be found <a href="/tutorial.html">here.</a>
-        </p>
-      </section>
-
-      <section id="materials">
-        <h1>Classroom Climate & Inclusivity</h1>
-        <p>
-          People learn mathematics best when they feel respected and comfortable
-          asking questions. In this course, we are committed to creating a
-          supportive environment where everyone can engage fully in discourse
-          and grow as mathematical thinkers.
-        </p>
-        <ul>
-          <li>
-            All students are expected to treat one another with respect,
-            patience, and kindness.
-          </li>
-          <li>
-            Questions, confusion, and mistakes are a normal and valuable part of
-            learning mathematics.
-          </li>
-          <li>
-            Disruptive, dismissive, or disrespectful behavior will not be
-            tolerated.
-          </li>
-          <li>
-            If something in the course environment makes it harder for you to
-            participate, please let me know so we can address it.
-          </li>
-        </ul>
-      </section>
-
-      <section id="materials">
-        <h1>Course Notes</h1>
-        <ul>
-          <li>
-            <strong>Primary Notes</strong>: These <a href="/assets/Quantum Learning Theory/Lecture Notes/Lecture Notes.pdf" target="_blank">notes</a> will be uploaded continuously throughout the semester.
-          </li>
-        </ul>
-      </section>
-
-      <section id="materials">
-        <h1>Relevant Lecture Notes and Review Articles</h1>
-        <h3>Quantum Learning Theory</h3>
-        <ul>
-          <li>
-            <strong>Course Notes: </strong>
-            <a href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/">John Wright's Quantum Learning Theory course notes</a>
-            (UC Berkeley, Spring 2024)
-          </li>
-          <li>
-            <strong>Course Notes: </strong>
-            <a href="https://harvard-quantum-learning.github.io/"
-              >Sitan Chen and Jordan Cotler's Quantum Learning Theory course
-              notes</a
-            >
-            (Harvard, Fall 2025)
-          </li>
-           <li>
-            <strong>Course Notes: </strong>
-            <a href="https://caltech-quantum-learning-theory.github.io/"
-              >Robert Huangs's Quantum Learning Theory course
-              notes</a
-            >
-            (Caltech, Fall 2025)
-          </li>
-          <li>
-            <strong>Survey: </strong>
-            <a href="https://arxiv.org/abs/1310.2035"
-              >Montanaro and de Wolf, "A Survey of Quantum Property Testing"</a
-            >
-            (2016)
-          </li>
-          <li>
-            <strong>Survey: </strong>
-            <a href="https://arxiv.org/abs/2305.20069"
-              >Anshu and Arunachalam, "A Survey on the Complexity of Learning
-              Quantum States"</a
-            >
-            (2024)
-          </li>
-          </ul>
-          <h3>Representation Theoretical Methods in QIT</h3>
-          <ul>
-          <li>
-            <strong>Course Notes: </strong>
-            <a href="https://felixleditzky.info/teaching/FT25/math595_reptheory.html"
-              >Felix Leditzky's "Representation-theoretic methods in quantum
-              information theory"</a> (UIUC, Fall 2025)
-          </li>
-          <li>
-            <strong>Course Notes: </strong>
-            <a href="https://qi.ruhr-uni-bochum.de/qit18/qit18.pdf"
-              >Michael Walter's "Symmetry in Quantum Information"</a> (University of Amsterdam, Spring 2018)
-          </li>
-          <li>
-            <strong>Tutorial: </strong>
-            <a href="https://arxiv.org/abs/2307.08956"
-              >Antonio Anna Mele, "Introduction to Haar Measure Tools in Quantum
-              Information"</a
-            >
-            (2023)
-          </li>
-        </ul>
-      </section>
-
-
-      <section id="materials">
-        <h1>Course Outline</h1>
-        <p>
-          The course will focus on the following canonical testing/learning
-          problems and associated mathematical techniques:
-        </p>
-        <ul>
-          <li>
-            <strong>Quantum State Discrimination:</strong> Pure state and mixed
-            state discrimination
-          </li>
-          <li>
-            <strong>Quantum State Tomography:</strong> Representation theory
-            review, mixed state tomography with multi-copy and restricted
-            measurements
-          </li>
-          <li>
-            <strong>Shadow Tomography:</strong> Classical shadow tomography,
-            exponential separations, applications, and open questions
-          </li>
-          <li>
-            <strong>Quantum Property Testing:</strong> State certification,
-            purity testing (and exponential separations), entanglement testing
-          </li>
-          <li>
-            <strong>Advanced Topics:</strong> Open problems and class-voted
-            topics
-          </li>
-        </ul>
-      </section>
-      
-
-    <section id="weekly-outline">
-  <h2>Weekly Outline</h2>
-  <div class="table-container">
-    <table class="outline-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Lecture</th>
-          <th>Topics Covered</th>
-          <th>Additional Resources</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1/20</td>
-          <td>1</td>
-          <td>Introduction; pure state discrimination</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>1/22</td>
-          <td>2</td>
-          <td>Mixed state discrimination; total variation distance; trace distance</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>1/27</td>
-          <td>3</td>
-          <td>Problem Session</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>1/29</td>
-          <td>4</td>
-          <td>Cancelled (QIP)</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>2/3</td>
-          <td>5</td>
-          <td>Distinguishing distriubtions with multiple samples</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>2/5</td>
-          <td>6</td>
-          <td>Distinguishing distriubtions with multiple samples (cont.)</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>2/10</td>
-          <td>7</td>
-          <td>Distinguishing states with multiple samples; fidelity; Start Pauli tomography</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>2/12</td>
-          <td>8</td>
-          <td>Textbook Pauli tomography algorithm</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>2/17</td>
-          <td>9</td>
-          <td>Measurement classes and simulation; Intro to Haar Measure</td>
-          <td>Simulating measurments <a href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/scribe%20notes/lecture02.pdf">[Wri25]</a>;
-          Intro to Haar <a href="https://arxiv.org/abs/2307.08956">[Mel24]</a>, <a href="https://pennylane.ai/qml/demos/tutorial_haar_measure">Pennylane Haar Tutorial</a>, Generating Haar Random Matrices <a href="http://home.lu.lv/~sd20008/papers/essays/Random%20unitary%20[paper].pdf">[Ozo09]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>2/19</td>
-          <td>10</td>
-          <td>The Church of the Symmetric Subspace</td>
-          <td>Symmetric Subspace <a href="https://arxiv.org/abs/1308.6595">[Har13], <a href="https://arxiv.org/abs/2307.08956">[Mel24]</a></td>
-        </tr>
-        <tr>
-          <td>2/24</td>
-          <td>11</td>
-          <td>Optimal Single-copy, global QST</td>
-          <td>Algorithm we covered (Sec. 5.1 of <a href="https://people.eecs.berkeley.edu/~jswright/papers/thesis.pdf">[Wri16]</a> or Lecture 13 in <a href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/scribe%20notes/lecture13.pdf">[Wri25]</a>); 
-            Original papers <a href="https://arxiv.org/abs/1410.6913">[KRT14]</a>, <a href="https://arxiv.org/abs/1809.11162">[Gut+18]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>2/26</td>
-          <td>12</td>
-          <td>Multi-copy, global pure state tomography</td>
-          <td>Pure state algorithm (Lecture 12 in <a href="https://people.eecs.berkeley.edu/~jswright/quantumlearningtheory24/scribe%20notes/lecture12.pdf">[Wri25]</a> or Sec. 4.3 in <a href="https://qi.ruhr-uni-bochum.de/qit18/qit18.pdf">[Wal18]</a>); 
-            Continuous POVMs (Sec. 4.1 in <a href="https://qi.ruhr-uni-bochum.de/qit18/qit18.pdf">[Wal18]</a>); 
-            Original paper <a href="https://arxiv.org/abs/quant-ph/9704041">[Hay98]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>3/3</td>
-          <td>13</td>
-          <td>Multi-copy, global mixed state tomography</td>
-          <td>Original papers <a href="https://arxiv.org/abs/1508.01797">[HHJ+16]</a>, <a href="https://arxiv.org/abs/1508.01907">[OW15]</a>; 
-          Recent optimal algorithms via pure state tomography reduction <a href="https://arxiv.org/abs/2511.15806">[PSTW25]</a>,
-           lower bound <a href="https://arxiv.org/abs/2510.07699">[SSW25]</a>; Random purification paper <a href="arXiv:2510.07622">[TWZ25]</a>,
-          simplified treatment <a href="https://arxiv.org/pdf/2511.23451">[GML25]</a></td>
-        </tr>
-        <tr>
-          <td>3/5</td>
-          <td></td>
-          <td>Class cancelled due to travel</td>
-          <td>
-          </td>
-        </tr>
-        <tr>
-          <td>3/10</td>
-          <td>14</td>
-          <td>Universal Tomography Lower Bound</td>
-          <td>Original papers <a href="https://arxiv.org/abs/1508.01797">[HHJ+16]</a>, <a href="https://arxiv.org/abs/1508.01907">[OW15]</a>; 
-            Angus Lowe's masters thesis <a href="https://harvard-quantum-learning.github.io/lecture9.pdf">[Low21]</a>; John Wright's Thesis <a href="https://people.eecs.berkeley.edu/~jswright/papers/thesis.pdf">[Wri16]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>3/12</td>
-          <td>15</td>
-          <td>Universal Tomography Lower Bound</td>
-          <td>Original papers <a href="https://arxiv.org/abs/1508.01797">[HHJ+16]</a>, <a href="https://arxiv.org/abs/1508.01907">[OW15]</a>; 
-            Angus Lowe's masters thesis <a href="https://harvard-quantum-learning.github.io/lecture9.pdf">[Low21]</a>; John Wright's Thesis <a href="https://people.eecs.berkeley.edu/~jswright/papers/thesis.pdf">[Wri16]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>3/24</td>
-          <td>16</td>
-          <td>Classical Shadows I</td>
-          <td>Original paper <a href="https://arxiv.org/abs/2002.08953">[HKP20]</a>; 
-            Chen and Cotler's lecture notes <a href="https://harvard-quantum-learning.github.io/lecture9.pdf">[CC25]</a>; 
-            Robert's lecture notes <a href="https://caltech-quantum-learning-theory.github.io/materials/Note_Learning_Predicting_States.pdf">[Hua25]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>3/26</td>
-          <td>17</td>
-          <td>Classical Shadows II</td>
-          <td>Original paper <a href="https://arxiv.org/abs/2002.08953">[HKP20]</a>; 
-            Chen and Cotler's lecture notes <a href="https://harvard-quantum-learning.github.io/lecture9.pdf">[CC25]</a>; 
-            Robert's lecture notes <a href="https://caltech-quantum-learning-theory.github.io/materials/Note_Learning_Predicting_States.pdf">[Hua25]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>3/31</td>
-          <td>18</td>
-          <td>Classical Shadows III</td>
-          <td>Original paper <a href="https://arxiv.org/abs/2002.08953">[HKP20]</a>; 
-            Chen and Cotler's lecture notes <a href="https://harvard-quantum-learning.github.io/lecture9.pdf">[CC25]</a>; 
-            Robert's lecture notes <a href="https://caltech-quantum-learning-theory.github.io/materials/Note_Learning_Predicting_States.pdf">[Hua25]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>4/2</td>
-          <td>19</td>
-          <td>Single-copy Lower Bound for Pauli Shadows</td>
-          <td>Original paper <a href="https://arxiv.org/abs/2111.05881">[CCHL22]</a>; 
-            Chen and Cotler's lecture notes <a href="https://harvard-quantum-learning.github.io/lecture9.pdf">[CC25]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>4/7</td>
-          <td>20</td>
-          <td>Multi-copy Upper Bound for Pauli Shadow Tomography</td>
-          <td>Learning Absolute Values <a href="https://arxiv.org/abs/2101.02464">[HKP21] and Learning Signs <a href="https://arxiv.org/abs/2404.19105">[CGY24]</a>; 
-            Chen and Cotler's lecture notes <a href="https://harvard-quantum-learning.github.io/lecture9.pdf">[CC25]</a>
-          </td>
-        </tr>
-        <tr>
-          <td>4/9</td>
-          <td>21</td>
-          <td>Shadow Tomography Wrap-up</td>
-          <td></a>
-          </td>
-        </tr>
-        <tr>
-          <td>4/14</td>
-          <td>22</td>
-          <td>Property Testing and the SWAP Test</td>
-          <td></a>
-          </td>
-        </tr>
-        <tr>
-          <td>4/16</td>
-          <td>23</td>
-          <td>Purity Testing Exponential Separation</td>
-          <td></a>
-          </td>
-        </tr>
-        <tr>
-          <td>4/21</td>
-          <td>24</td>
-          <td>Product Testing</td>
-          <td></a>
-          </td>
-        </tr>
-        <tr>
-          <td>4/23</td>
-          <td>25</td>
-          <td>Product Testing Wrap-up + Course recap/open questions</td>
-          <td></a>
-          </td>
-        </tr>
-        <tr>
-          <td>4/28</td>
-          <td>26</td>
-          <td>Visitor Talk: Jack Spilecki (UC Berkeley)</td>
-          <td></a>
-          </td>
-        </tr>
-         <tr>
-          <td>4/30</td>
-          <td>27</td>
-          <td>In-person Final Project Peer Review</td>
-          <td></a>
-          </td>
-        </tr>
-        <tr>
-          <td>5/5</td>
-          <td>27</td>
-          <td>Class Cancelled -- Final Project Work</td>
-          <td></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    </aside>
   </div>
 </section>
 
-    </main>
+<!-- INCLUSIVITY -->
+<section class="inclusivity">
+  <div class="inclusivity-inner">
+    <div class="inclusivity-label">A commitment to every student</div>
+    <div class="inclusivity-text">
+      <p>My classroom is open to every student — regardless of background, identity, prior preparation, or career path. <strong>I take my obligation to inclusive teaching seriously,</strong> and I work to make sure that students who have historically been underrepresented in physics and mathematics know that they belong here. If you are a URI student curious about quantum physics, mathematics, or science more broadly — whether you've taken three courses or none — I want to hear from you. Come to office hours. Send me an email. Ask the question you think is too basic. It almost certainly isn't.</p>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-      <p>Copyright &#169; 2025 Jacob Beckey. All Rights Reserved.</p>
-    </footer>
+<!-- CURRENT TERM -->
+<section class="current-section">
+  <div class="section-head">
+    <h2>This <em>semester</em></h2>
+    <span class="section-meta">Fall 2026 · University of Illinois Urbana-Champaign</span>
+  </div>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-  </body>
+  <div class="current-course" data-course="uiuc-abstract-linear-algebra">
+    <div class="current-course-code">MATH 416</div>
+    <div class="current-course-body">
+      <div class="current-course-eyebrow">Currently teaching</div>
+      <div class="current-course-title">Abstract Linear Algebra</div>
+      <div class="current-course-meta">Rigorous proof-based linear algebra, following Axler.</div>
+    </div>
+    <span class="current-course-arrow">→</span>
+  </div>
+</section>
+
+<!-- TEACHING HISTORY -->
+<section class="history">
+  <div class="section-head">
+    <h2>Teaching <em>history</em></h2>
+    <span class="section-meta">Courses by institution</span>
+  </div>
+
+  <div id="universitiesContainer"></div>
+</section>
+
+<!-- CTA -->
+<section class="closing-cta">
+  <div class="closing-cta-inner">
+    <h3>A current or prospective <em>student?</em></h3>
+    <p>I welcome questions about my courses, office hours, syllabi, and research opportunities. URI students considering quantum physics or mathematical research are especially encouraged to be in touch.</p>
+    <a href="mailto:jbeckey@uri.edu" class="btn btn-primary">Email me →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-rule"></div>
+  <p><em>Jacob L. Beckey</em> · Assistant Professor, Department of Physics</p>
+  <p>University of Rhode Island · Kingston, RI 02881 · © 2026</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="courseModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+/* ============ COURSE DATA ============ */
+/* Each entry represents a DISTINCT COURSE (not a single semester).
+   `offerings` is the list of times that course has been taught — sorted newest first.
+   Different course codes for the same course across offerings (e.g., MATH 416 → MATH 460)
+   are tracked per offering.
+   Spring 2027 courses are placeholders to be confirmed.
+*/
+const COURSES = [
+  /* URI — Spring 2027 placeholders */
+  {
+    id: "uri-math-methods",
+    institution: "uri",
+    title: "Mathematical Methods in Physics",
+    tagline: "Mathematical tools used throughout physics, with emphasis on physical intuition.",
+    description: "<p>An upper-division survey of the mathematical tools used throughout physics — linear algebra, complex analysis, Fourier methods, partial differential equations, and special functions — taught with an emphasis on building physical intuition alongside formal technique.</p><p>This course is currently a placeholder; final course assignment to be confirmed by the department.</p>",
+    isPlaceholder: true,
+    offerings: [
+      { code: "PHY 322", term: "Spring 2027", year: 2027, season: "Spring", students: null, isUpcoming: true }
+    ],
+    links: []
+  },
+  {
+    id: "uri-quantum-intro",
+    institution: "uri",
+    title: "Introduction to Quantum Mechanics",
+    tagline: "A first course in quantum mechanics for upper-division physics majors.",
+    description: "<p>A first course in quantum mechanics for upper-division physics majors. Foundations through the Schrödinger equation, angular momentum, perturbation theory, and applications to atomic and condensed-matter systems. Pairs problem-solving with conceptual development of quantum measurement, entanglement, and the role of probability in physical theory.</p><p>This course is currently a placeholder; final course assignment to be confirmed by the department.</p>",
+    isPlaceholder: true,
+    offerings: [
+      { code: "PHY 471", term: "Spring 2027", year: 2027, season: "Spring", students: null, isUpcoming: true }
+    ],
+    links: []
+  },
+
+  /* UIUC */
+  {
+    id: "uiuc-abstract-linear-algebra",
+    institution: "uiuc",
+    title: "Abstract Linear Algebra",
+    tagline: "Rigorous proof-based linear algebra, following Axler.",
+    description: "<p>A rigorous undergraduate course in abstract linear algebra for math majors. Covers vector spaces, linear transformations, eigenvalues and diagonalization, inner-product spaces, and the spectral theorem — with emphasis on proof-writing and conceptual fluency.</p><p>The course follows Sheldon Axler's <em>Linear Algebra Done Right</em>, whose operator-first approach defers determinants and treats the subject the way a working mathematician would.</p>",
+    offerings: [
+      { code: "MATH 416", term: "Fall 2026", year: 2026, season: "Fall", students: null, isCurrent: true },
+      { code: "MATH 416", term: "Fall 2025", year: 2025, season: "Fall", students: 32 }
+    ],
+    links: [
+      { icon: "§", title: "Course syllabus", sub: "PDF · most recent offering", url: "#" },
+      { icon: "📕", title: "Linear Algebra Done Right (free PDF)", sub: "Axler · 4th edition", url: "https://linear.axler.net/LADR4e.pdf" }
+    ]
+  },
+  {
+    id: "uiuc-qlt",
+    institution: "uiuc",
+    title: "Quantum Learning Theory",
+    tagline: "Graduate topics course on the modern theory of learning quantum states.",
+    description: "<p>A graduate topics course on the modern theory of learning quantum states. Topics include sample complexity of quantum state tomography, shadow protocols, classical simulation of quantum systems, and the separations between single-copy and multi-copy measurement strategies.</p><p>The course drew students from mathematics, computer science, and physics — a deliberately interdisciplinary group reflecting the field's character.</p>",
+    offerings: [
+      { code: "MATH 595", term: "Spring 2026", year: 2026, season: "Spring", students: 30 }
+    ],
+    links: [
+      { icon: "§", title: "Course materials", sub: "Lecture notes, problem sets, and reading list", url: "#" }
+    ]
+  },
+
+  /* CU Boulder */
+  {
+    id: "cu-fundamentals",
+    institution: "cu",
+    title: "The Fundamentals of Scientific Inquiry",
+    tagline: "Hands-on scientific inquiry for students under-represented in STEM.",
+    description: "<p>A small-section course designed for students historically under-represented in STEM. The course centers on what science actually is — how questions get framed, how evidence is evaluated, how knowledge changes — and on giving every student the experience of doing scientific inquiry firsthand.</p><p>This course was one of the most rewarding teaching experiences of my career, and it directly informs how I think about access and inclusion in physics education today.</p>",
+    offerings: [
+      { code: "PHYS 1400", term: "Fall 2022", year: 2022, season: "Fall", students: 18 }
+    ],
+    links: []
+  },
+  {
+    id: "cu-intro-qc",
+    institution: "cu",
+    title: "Introduction to Quantum Computing",
+    tagline: "Cross-listed intro to quantum computing — algorithms, entanglement, and error correction.",
+    description: "<p>A cross-listed introductory course on quantum computing, drawing students from physics, computer science, mathematics, and engineering. Topics included quantum gates and circuits, fundamental algorithms (Deutsch–Jozsa, Grover, Shor), entanglement and Bell inequalities, and an introduction to quantum error correction.</p>",
+    offerings: [
+      { code: "PHYS/CSCI 3090", term: "Spring 2022", year: 2022, season: "Spring", students: 75 }
+    ],
+    links: []
+  }
+];
+
+const UNIVERSITIES = [
+  {
+    key: "uri",
+    name: "University of Rhode Island",
+    detail: "Assistant Professor · Incoming, 2027"
+  },
+  {
+    key: "uiuc",
+    name: "University of Illinois Urbana-Champaign",
+    detail: "Postdoctoral Fellow · 2024–present"
+  },
+  {
+    key: "cu",
+    name: "University of Colorado, Boulder",
+    detail: "Graduate Instructor · 2019–2024"
+  }
+];
+
+const SEASON_ORDER = { "Fall": 2, "Summer": 1, "Spring": 0 };
+
+function sortOfferings(offerings) {
+  // newest first: year desc, then season desc within year
+  return [...offerings].sort((a, b) => {
+    if (b.year !== a.year) return b.year - a.year;
+    return (SEASON_ORDER[b.season] || 0) - (SEASON_ORDER[a.season] || 0);
+  });
+}
+
+function mostRecentOffering(course) {
+  return sortOfferings(course.offerings)[0];
+}
+
+function totalEnrollment(course) {
+  const known = course.offerings.filter(o => typeof o.students === 'number');
+  if (known.length === 0) return null;
+  return known.reduce((sum, o) => sum + o.students, 0);
+}
+
+/* ============ RENDER ============ */
+function renderCourseCard(c) {
+  const sorted = sortOfferings(c.offerings);
+  const latest = sorted[0];
+  const past = sorted.slice(1);
+
+  // term badge — color by season, with a current/upcoming dot if applicable
+  const seasonClass = `season-${latest.season.toLowerCase()}`;
+  const statusDot = latest.isCurrent
+    ? '<span class="status-dot current" title="Currently teaching"></span>'
+    : latest.isUpcoming
+      ? '<span class="status-dot upcoming" title="Upcoming"></span>'
+      : '';
+
+  // course code is the latest offering's code
+  const codeDisplay = latest.code;
+
+  // past offerings — quiet tail line only
+  const pastLine = past.length === 0
+    ? ''
+    : `<div class="past-offerings">Previously taught ${past.length} ${past.length === 1 ? 'time' : 'times'} — see details</div>`;
+
+  const resourceCount = c.links.length;
+  const resourceLabel = resourceCount === 0
+    ? '<span class="none">No public materials yet</span>'
+    : `${resourceCount} ${resourceCount === 1 ? 'resource' : 'resources'} available`;
+
+  return `
+    <article class="course-card" data-course="${c.id}">
+      <div class="course-card-top">
+        <div class="course-card-code">${codeDisplay}</div>
+        <div class="course-card-term ${seasonClass}">${statusDot}${latest.term}</div>
+      </div>
+      <div class="course-card-title">${c.title}</div>
+      <div class="course-card-tagline">${c.tagline}</div>
+      ${pastLine}
+      <div class="course-card-bottom">
+        <span class="course-card-resources">${resourceLabel}</span>
+        <span class="course-card-arrow">→</span>
+      </div>
+    </article>
+  `;
+}
+
+function renderUniversitySection(uni) {
+  const all = COURSES.filter(c => c.institution === uni.key);
+  if (all.length === 0) return '';
+
+  // sort courses by their most-recent offering, newest first
+  all.sort((a, b) => {
+    const aLatest = mostRecentOffering(a);
+    const bLatest = mostRecentOffering(b);
+    if (bLatest.year !== aLatest.year) return bLatest.year - aLatest.year;
+    return (SEASON_ORDER[bLatest.season] || 0) - (SEASON_ORDER[aLatest.season] || 0);
+  });
+
+  return `
+    <div class="university-section">
+      <div class="university-header">
+        <h3>${uni.name} <span class="uni-detail">${uni.detail}</span></h3>
+        <span class="university-meta">${all.length} ${all.length === 1 ? 'course' : 'courses'}</span>
+      </div>
+      <div class="courses-grid">
+        ${all.map(c => renderCourseCard(c)).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderAll() {
+  const container = document.getElementById('universitiesContainer');
+  container.innerHTML = UNIVERSITIES.map(renderUniversitySection).join('');
+  attachClickHandlers();
+}
+
+/* ============ MODAL ============ */
+function openModal(id) {
+  const c = COURSES.find(x => x.id === id);
+  if (!c) return;
+
+  const uni = UNIVERSITIES.find(u => u.key === c.institution);
+  const sorted = sortOfferings(c.offerings);
+  const latest = sorted[0];
+
+  const linksHTML = c.links.length === 0
+    ? '<div class="modal-empty">No public course materials available. If you were a student in this class and need access to materials, please get in touch.</div>'
+    : `<div class="modal-links">${c.links.map(l => `
+        <a href="${l.url}" target="_blank" rel="noopener" class="modal-link">
+          <div class="modal-link-info">
+            <div class="modal-link-icon">${l.icon}</div>
+            <div class="modal-link-text">
+              <div class="modal-link-title">${l.title}</div>
+              <div class="modal-link-sub">${l.sub}</div>
+            </div>
+          </div>
+          <span class="modal-link-arrow">→</span>
+        </a>
+      `).join('')}</div>`;
+
+  // Build offerings table — each row: term, code, enrollment, status
+  const offeringsHTML = `
+    <div class="offerings-list">
+      ${sorted.map(o => {
+        const seasonClass = `season-${o.season.toLowerCase()}`;
+        const statusDot = o.isCurrent
+          ? '<span class="status-dot current" title="Currently teaching"></span>'
+          : o.isUpcoming
+            ? '<span class="status-dot upcoming" title="Upcoming"></span>'
+            : '';
+        const enrollment = typeof o.students === 'number'
+          ? `${o.students} students`
+          : (o.isPlaceholder ? 'Enrollment TBD' : (o.isCurrent ? 'In progress' : '—'));
+        return `
+          <div class="offering-row">
+            <div class="offering-term"><span class="offering-term-badge ${seasonClass}">${statusDot}${o.term}</span></div>
+            <div class="offering-code">${o.code}</div>
+            <div class="offering-enrollment">${enrollment}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  // header tags
+  const tags = [];
+  if (latest.isCurrent) tags.push({label: "Currently teaching", gold: true});
+  if (latest.isUpcoming) tags.push({label: "Upcoming", gold: true});
+  if (sorted.length > 1) tags.push({label: `Taught ${sorted.length} times`, gold: false});
+
+  // pick code: most recent code (latest offering)
+  const codeDisplay = latest.code;
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-code">${codeDisplay}</div>
+    <h2 class="modal-title">${c.title}</h2>
+    <div class="modal-univ">${uni.name}</div>
+    ${tags.length ? `<div class="modal-tag-row">${tags.map(t => `<span class="modal-tag${t.gold ? ' gold' : ''}">${t.label}</span>`).join('')}</div>` : ''}
+
+    <div class="section-rule">About the course</div>
+    <div class="modal-description">${c.description}</div>
+
+    <div class="section-rule">Offerings</div>
+    ${offeringsHTML}
+
+    <div class="section-rule">Course materials</div>
+    ${linksHTML}
+  `;
+
+  document.getElementById('courseModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.querySelector('.modal').scrollTop = 0;
+}
+
+function closeModal() {
+  document.getElementById('courseModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function attachClickHandlers() {
+  document.querySelectorAll('[data-course]').forEach(el => {
+    el.addEventListener('click', () => openModal(el.dataset.course));
+  });
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('courseModal').addEventListener('click', e => {
+  if (e.target.id === 'courseModal') closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+renderAll();
+// also wire up the current course at the top
+document.querySelector('.current-course').addEventListener('click', () => openModal('uiuc-abstract-linear-algebra'));
+</script>
+</body>
 </html>

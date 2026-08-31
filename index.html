@@ -1,249 +1,1417 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-  </head>
-  <body>
-  <nav id="desktop-nav" class="sticky-nav">
-  <div class="logo-container" onclick="location.href='index.html'">
-    <img src="./assets/jlb-logo.svg" alt="Logo" />
-    <span class="logo-text">Jacob Beckey</span>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jacob Beckey — Department of Physics, University of Rhode Island</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4efe6;
+    --paper-deep: #ebe4d5;
+    --ink: #002147;
+    --ink-soft: #30557e;
+    --keaney: #2277b3;
+    --keaney-soft: #c0ddf2;
+    --muted: #7a7466;
+    --rule: #d8cfbd;
+    --gold: #B5985A;
+    --gold-deep: #8a7340;
+    --gold-soft: #fefada;
+    --serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter Tight', 'Helvetica Neue', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .wrap { position: relative; z-index: 2; }
+
+  /* ───────── NAV ───────── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(244, 239, 230, 0.92);
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-block;
+  }
+  /* name turns URI navy on hover; affiliation does not change */
+  .logo-name {
+    font-style: normal;
+    color: var(--gold-deep);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .logo:hover .logo-name { color: var(--ink); }
+  .logo-affil {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+  }
+
+  .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-deep); }
+  .nav-links a.cv {
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+  }
+  .nav-links a.cv:hover { background: var(--gold-deep); color: var(--paper); }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    padding: 6rem 3rem 5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    column-gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 1100px) {
+    .hero { grid-template-columns: 1fr; }
+  }
+
+  .hero-text { min-width: 0; grid-column: 1; }
+  .hero-meta-wrap { grid-column: 1 / -1; }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold-deep);
+  }
+
+  h1.hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    max-width: 950px;
+    margin-bottom: 2rem;
+  }
+  h1.hero-headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-deep);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.55;
+    max-width: 660px;
+    color: var(--ink-soft);
+    margin-bottom: 2.8rem;
+  }
+  .hero-sub a {
+    color: var(--keaney);
+    text-decoration: none;
+    border-bottom: 1px solid var(--keaney);
+  }
+  .hero-sub a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+  .hero-actions { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 0.95rem 1.7rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--gold-deep); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 0.6rem 0;
+  }
+  .btn-ghost:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+  /* headshot — now a grid cell, not absolutely positioned */
+  .hero-portrait {
+    width: 100%;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  /* on mobile, portrait moves above the text and centers at a comfortable size */
+  @media (max-width: 1100px) {
+    .hero-portrait {
+      max-width: 240px;
+      margin: 0 auto 2.5rem;
+      order: -1;
+      grid-column: auto;
+      grid-row: auto;
+    }
+  }
+
+  .hero-portrait-frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow:
+      0 1px 2px rgba(0, 33, 71, 0.08),
+      0 16px 40px rgba(0, 33, 71, 0.18);
+    background: linear-gradient(135deg, var(--ink) 0%, var(--keaney) 100%);
+  }
+  .hero-portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* subtle warmth to harmonize with cream paper */
+    filter: contrast(1.02) saturate(0.92);
+  }
+  /* gold corner mark — editorial detail */
+  .hero-portrait-frame::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 28px;
+    height: 28px;
+    border-top: 2px solid var(--gold);
+    border-left: 2px solid var(--gold);
+    opacity: 0.85;
+  }
+  .hero-portrait-caption {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: right;
+    margin-top: 0.85rem;
+    line-height: 1.4;
+  }
+  .hero-portrait-caption .pin {
+    display: inline-block;
+    width: 14px;
+    height: 1px;
+    background: var(--gold-deep);
+    vertical-align: middle;
+    margin-right: 0.4rem;
+  }
+
+  /* ───────── PAPER MODAL ───────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 33, 71, 0.55);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: overlayIn 0.3s ease;
+  }
+  .modal-overlay.open { display: flex; }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: var(--paper);
+    max-width: 880px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--ink);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .modal-content { padding: 3rem; }
+  @media (max-width: 700px) { .modal-content { padding: 2rem 1.5rem; } }
+
+  .modal-year {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold-deep);
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.8rem;
+    color: var(--ink);
+  }
+  .modal-authors {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 0.6rem;
+  }
+  .modal-authors strong {
+    color: var(--ink);
+    font-weight: 600;
+    background: var(--gold-soft);
+    padding: 0 0.2rem;
+  }
+  .modal-venue {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-rule {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin: 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .modal-abstract {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .modal-links {
+    display: grid;
+    gap: 0.6rem;
+  }
+  .modal-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+  .modal-link:hover {
+    background: var(--gold-soft);
+    border-color: var(--gold-deep);
+    transform: translateX(2px);
+  }
+  .modal-link:hover .modal-link-arrow { transform: translateX(4px); color: var(--gold-deep); }
+  .modal-link-info { display: flex; align-items: center; gap: 0.9rem; min-width: 0; }
+  .modal-link-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .modal-link-text { min-width: 0; }
+  .modal-link-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  .modal-link-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+  .modal-link-arrow {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  .modal-empty {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    padding: 0.8rem 0;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--rule);
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .hero-meta-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .hero-meta-value { font-family: var(--serif); font-size: 1rem; }
+
+  /* ───────── RESEARCH AREAS ───────── */
+  .research-areas {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-deep);
+    padding: 5rem 3rem;
+  }
+  .areas-inner { max-width: 1400px; margin: 0 auto; }
+  .areas-head { margin-bottom: 3rem; }
+  .areas-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  .areas-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .areas-head p {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    max-width: 740px;
+    font-weight: 300;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  @media (max-width: 900px) { .areas-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .area-col .num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--gold-deep);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .area-col h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 0.9rem;
+    letter-spacing: -0.015em;
+  }
+  .area-col p {
+    font-size: 0.97rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+  .area-col .area-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .area-tag {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+
+  /* ───────── SECTIONS ───────── */
+  .section { padding: 5rem 3rem; max-width: 1400px; margin: 0 auto; }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+  .section-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .section-head .section-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  .section-head .section-meta a {
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+    text-decoration: none;
+  }
+  .section-head .section-meta a:hover { color: var(--gold-deep); }
+
+  /* ───────── ABOUT / TRAINING ───────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .about-prose p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+  .about-prose p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .about-prose a {
+    color: var(--keaney);
+    text-decoration: none;
+    border-bottom: 1px solid var(--keaney);
+  }
+  .about-prose a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+  /* Training list — Education + Fellowships */
+  .training-block { margin-bottom: 2.5rem; }
+  .training-block:last-child { margin-bottom: 0; }
+  .training-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .training-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .training-item {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .training-item:last-child { border-bottom: none; }
+  .training-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .training-detail {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-top: 0.15rem;
+    font-weight: 300;
+  }
+  .training-year {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold-deep);
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+
+  /* ───────── PUBLICATIONS ───────── */
+  .pub-list { display: grid; gap: 0; }
+
+  .pub {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    cursor: pointer;
+    transition: background 0.2s, padding 0.2s;
+  }
+  .pub:hover {
+    background: rgba(255, 250, 240, 0.5);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .pub:hover .pub-arrow { transform: translateX(4px); color: var(--gold-deep); }
+
+  @media (max-width: 700px) {
+    .pub { grid-template-columns: 60px 1fr; gap: 1rem; }
+    .pub-arrow-cell { display: none; }
+  }
+
+  .pub-year {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold-deep);
+    font-weight: 400;
+    padding-top: 0.3rem;
+  }
+
+  .pub-body { min-width: 0; }
+  .pub-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.45rem;
+  }
+  .pub-star {
+    color: var(--gold-deep);
+    margin-right: 0.25rem;
+  }
+  .pub-authors {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+  .pub-authors strong {
+    color: var(--ink);
+    font-weight: 600;
+    background: var(--gold-soft);
+    padding: 0 0.2rem;
+  }
+  .pub-venue {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .pub-tags {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+    flex-wrap: wrap;
+  }
+  .pub-tag {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    background: var(--keaney-soft);
+    color: var(--ink);
+    border-radius: 2px;
+  }
+  .pub-tag.gold { background: var(--gold-soft); color: var(--gold-deep); }
+
+  .pub-arrow {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    padding-top: 0.4rem;
+  }
+  .pub-arrow a { color: inherit; text-decoration: none; }
+
+  .pub-footer { margin-top: 2.5rem; text-align: center; }
+
+  .star-key {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+  .star-key .pub-star { font-style: normal; }
+
+  /* ───────── TEACHING & OUTREACH ───────── */
+  .teaching {
+    background: var(--paper-deep);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 5rem 3rem;
+  }
+  .teaching-inner { max-width: 1400px; margin: 0 auto; }
+
+  .commitments-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 900px) { .commitments-grid { grid-template-columns: 1fr; } }
+
+  .commitment {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .commitment-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1rem;
+  }
+  .commitment h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.8rem;
+  }
+  .commitment h3 em { font-style: italic; color: var(--gold-deep); }
+  .commitment p {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+  .commitment a.commitment-link {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.15rem;
+    align-self: flex-start;
+    transition: all 0.2s;
+  }
+  .commitment a.commitment-link:hover {
+    color: var(--gold-deep);
+    border-color: var(--gold-deep);
+  }
+
+  .current-course {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold-deep);
+    border-radius: 3px;
+    padding: 1.8rem 2.2rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  @media (max-width: 700px) {
+    .current-course { grid-template-columns: 1fr; gap: 0.5rem; text-align: left; }
+  }
+  .current-course-code {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .current-course-body { min-width: 0; }
+  .current-course-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 0.3rem;
+  }
+  .current-course-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .current-course-term {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* ───────── CONTACT CTA ───────── */
+  .contact-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 3rem;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .contact-inner {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 800px) { .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  .contact-cta h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+  .contact-cta h3 em { font-style: italic; color: var(--gold); }
+  .contact-cta p {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--paper);
+    opacity: 0.85;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .contact-details { display: grid; gap: 0; }
+  .contact-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(244, 239, 230, 0.2);
+    align-items: baseline;
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .contact-value {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--paper);
+  }
+  .contact-value a {
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+  .contact-value a:hover { color: var(--gold); }
+
+  /* footer */
+  footer {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--rule);
+  }
+  footer em { font-family: var(--serif); }
+  footer .footer-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-deep);
+    margin: 0 auto 1rem;
+  }
+
+  /* mobile nav */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a:not(.cv) { display: none; }
+    .hero, .section, .research-areas, .teaching, .contact-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero { padding-top: 3.5rem; padding-bottom: 3rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-name">Jacob Beckey</span>
+    <span class="logo-affil">Quantum information theorist</span>
+  </a>
+  <div class="nav-links">
+    <a href="#">Research</a>
+    <a href="#">Teaching</a>
+    <a href="#">Resources</a>
+    <a href="#">Outreach</a>
+    <a href="assets/cv.pdf" target="_blank" rel="noopener" class="cv">CV ↓</a>
   </div>
-  <ul class="nav-links">
-    <li><a href="research.html">Research</a></li>
-    <li><a href="teaching.html">Teaching</a></li>
-    <li><a href="#projects">Outreach</a></li>
-    <li><a href="resources.html">Resources</a></li>
-  </ul>
 </nav>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+  <h1 class="hero-headline">What separates <em>classical</em> from <em>quantum?</em></h1>
+  <p class="hero-sub">
+    I am currently an NSF MSPRF and IQUIST postdoc in the math department at UIUC. In January 2027, I will join the <a href="https://web.uri.edu/physics/people/" target="_blank" rel="noopener">physics department</a> at the University of Rhode Island. 
+    My research uses tools from physics, mathematics, and computer science to solve problems in quantum learning theory, quantum sensing, and entanglement characterization.
+  </p>
+  <div class="hero-actions">
+    <a href="#" class="btn btn-primary">Explore the research →</a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+  </div>
 
-    <nav id="hamburger-nav">
-     <div class="logo-container" onclick="location.href='index.html'">
-        <img src="./assets/jlb-logo.svg" alt="Logo" />
-        <span class="logo-text">Jacob Beckey</span>
-     </div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="research.html" onclick="toggleMenu()">Research</a></li>
-          <li><a href="teaching.html" onclick="toggleMenu()">Teaching</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Outreach</a></li>
-          <li><a href="resources.html" onclick="toggleMenu()">Resources</a></li>
-        </div>
-      </div>
-    </nav>
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets/profile-pic.png" alt="Jacob Beckey profile picture" />
-      </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Jacob Beckey</h1>
-        <p class="section__text__p2">Postdoctoral Fellow @ UIUC</p>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets/cv.pdf')"
-          >
-            Download CV
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
-            Contact Info
-          </button>
-        </div>
-        <div id="socials-container">
-          <img
-            src="./assets/google-scholar.png"
-            alt="My Google scholar page"
-            class="icon"
-            onclick="location.href='https://scholar.google.com/citations?user=LLag_XoAAAAJ&hl=en&authuser=1&oi=ao'"
-          />
-          <img
-            src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="location.href='https://www.linkedin.com/in/jacob-beckey'"
-          />
-          <img
-            src="./assets/isi-logo.png"
-            alt="My non-profit's website"
-            class="icon"
-            onclick="location.href='https://www.idealizedscience.org/'"
-          />
-        </div>
-      </div>
-    </section>
-    <section id="about">
-      <p class="section__text__p1">Get to know more</p>
-      <h1 class="title">About me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/NARST.png"
-            alt="Jacob presenting at education conference"
-            class="about-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>
-                <b>Ph.D. Physics,</b> University of Colorado, Boulder, 2019-2024<br />
-                <b>M.S. Physics,</b> University of Colorado, Boulder, 2019-2022<br />
-                <b>MRes Quantum Technology,</b> University of Birmingham, 2018-2019<br />
-                <b>B.S. Physics and Math,</b> Clarion University of Pennsylvania, 2015-2018<br />
-              </p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Fellowship and Award Highlights</h3>
-              <p>
-                NSF Mathematical Sciences Postdoctoral Research Fellowship, 2024-2027<br />
-                Illinois Quantum Information Center Postdoctoral Fellowship, 2024-2027<br />
-                NSF Graduate Research Fellowship, 2019-2022<br />
-                Fulbright - University of Birmingham Postgraduate Award, 2018-2019<br />
-              </p>
-            </div>
-          </div>
-          <div class="text-container">
-            <p>
-              I am currently an <a href="https://www.nsf.gov/funding/opportunities/msprf-mathematical-sciences-postdoctoral-research-fellowships">NSF Mathematical Sciences</a> and
-            <a href="https://iquist.illinois.edu/news/iquist-postdoc-program-2024-cohort">IQUIST</a> 
-            Postdoctoral Fellow advised by <a href="https://felixleditzky.info/">Felix Leditzky</a> in the Department of Mathematics at the University of Illinois, Urbana-Champaign. Before this, I completed my
-            Ph.D. in physics advised by <a href="https://gsbsmith.ca/">Graeme Smith</a> at JILA/University of Colorado, Boulder. My current research interests lie at the intersection of entanglement theory and 
-            quantum learning theory. Through my academic career, I have been dedicated to teaching, mentorship, and outreach at the university and beyond. Towards the end of my Ph.D., I co-founded the
-            <a href="https://www.idealizedscience.org/our-story">Idealized Science Institute</a> &mdash; an educational non-profit creating free, high-quality educational resources and training to STEM teachers.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section id="projects">
-      <p class="section__text__p1">Read more about my current</p>
-      <h1 class="title">Activities</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-1.png"
-                alt="Research Picture"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Research</h2>
-            <p class="experience-sub-title text">
-              My current research utilizes tools from math, physics, and computer science to prove
-              how efficient (or inefficient) quantum algorithms are when subjected to restrictions 
-              on the allowed measurements.
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='/research.html'"
-              >
-                Learn more
-              </button>
+  <!-- headshot — pulled from existing site as source of truth; replace src when you have a higher-res file -->
+  <div class="hero-portrait">
+    <div class="hero-portrait-frame">
+      <img src="assets/headshot.jpg" alt="Jacob L. Beckey" />
+   </div>
+  </div>
 
-            </div>
+  <div class="hero-meta-wrap">
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Position</span>
+      <span class="hero-meta-value">Postdoctoral Fellow</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Department</span>
+      <span class="hero-meta-value">Math</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Office</span>
+      <span class="hero-meta-value">400B Harker Hall</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Email</span>
+      <span class="hero-meta-value">jbeckey@illinois.edu</span>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- RESEARCH AREAS -->
+<section class="research-areas" id="research">
+  <div class="areas-inner">
+    <div class="areas-head">
+      <h2>Research <em>themes</em></h2>
+      <p>The unifying goal of my research is to understand the power and limitations of quantum technologies, both current and prospective.
+        This practical motivation leads to many interesting theoretical questions whose solution often involves tools from linear algebra,
+        representation theory, and quantum information theory.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-col">
+        <span class="num">I.</span>
+        <h3>Quantum learning theory</h3>
+        <p>What resources are necessary and sufficient to learn/test properties of a quantum system? And how does the answer change when one's measurements are restricted by experimental capabilities?</p>
+      </div>
+      <div class="area-col">
+        <span class="num">II.</span>
+        <h3>Entanglement theory & characterization</h3>
+        <p>How can we use various mathematical tools to understand multipartite entanglement? Practically, how do we efficiently quantify multipartite entanglement when restricted to realistic measurements? 
+        </p>
+      </div>
+      <div class="area-col">
+        <span class="num">III.</span>
+        <h3>Quantum sensing</h3>
+        <p>Where are the fundamental limits on how precisely a quantum system can measure a signal? How do squeezing, entanglement, and non-demolition strategies actually perform in practice?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / TRAINING -->
+<section class="section" id="training">
+  <div class="section-head">
+    <h2>About <em>me</em></h2>
+    <span class="section-meta">A short version — <a href="assets/cv.pdf" target="_blank" rel="noopener">full CV</a></span>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-prose">
+      <p>In January 2027, I will join the Department of Physics at the <strong>University of Rhode Island</strong> as Assistant Professor. I am currently wrapping up a postdoctoral fellowship at the University of Illinois Urbana-Champaign, where I worked with <a href="https://felixleditzky.info/" target="_blank" rel="noopener">Felix Leditzky</a> as an NSF Mathematical Sciences Postdoctoral Research Fellow and an IQUIST Postdoctoral Fellow.</p>
+      <p>I completed my Ph.D. in physics at <strong>JILA / CU Boulder</strong> under <a href="https://gsbsmith.ca/" target="_blank" rel="noopener">Graeme Smith</a>, and a research master's in quantum technology at the <strong>University of Birmingham</strong> as a Fulbright Postgraduate Scholar.</p>
+      <p>Alongside research, I am committed to teaching, mentorship, and outreach. Toward the end of my Ph.D., I co-founded the <a href="https://www.idealizedscience.org/our-story" target="_blank" rel="noopener">Idealized Science Institute</a> — an educational non-profit that develops free, high-quality resources and professional development for STEM teachers. Many of my research projects involve undergraduate and master's students as co-authors.</p>
+    </div>
+
+    <div>
+      <div class="training-block">
+        <div class="training-label">Education</div>
+        <div class="training-item">
+          <div>
+            <div class="training-name">Ph.D. Physics</div>
+            <div class="training-detail">University of Colorado, Boulder · JILA</div>
           </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">
-              Teaching
-            </h2>
-            <p class="experience-sub-title text">
-              In the Fall 2025 semester, I will be teaching MATH 416: Abstract Linear Algebra. If you are in that class,
-              or are just interested in learning more, click below!
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='teaching.html'"
-              >
-                View course
-              </button>
-            </div>
+          <div class="training-year">2019–2024</div>
+        </div>
+        <div class="training-item">
+          <div>
+            <div class="training-name">M.S. Physics</div>
+            <div class="training-detail">University of Colorado, Boulder</div>
           </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">
-              Outreach
-            </h2>
-            <p class="experience-sub-title text">
-              I am currently leading two outreach efforts
-              that provide professional development for math and science teachers. Read more via the link below!
-            </p>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='#outreach'"
-              >
-                Read more
-              </button>
-            </div>
+          <div class="training-year">2019–2022</div>
+        </div>
+        <div class="training-item">
+          <div>
+            <div class="training-name">MRes Quantum Technology</div>
+            <div class="training-detail">University of Birmingham</div>
           </div>
+          <div class="training-year">2018–2019</div>
+        </div>
+        <div class="training-item">
+          <div>
+            <div class="training-name">B.S. Physics & Mathematics</div>
+            <div class="training-detail">Clarion University of Pennsylvania</div>
+          </div>
+          <div class="training-year">2015–2018</div>
         </div>
       </div>
-    </section>
-    <section id="contact">
-      <p class="section__text__p1">Get in touch</p>
-      <h1 class="title">Contact me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:jbeckey@illinois.edu">jbeckey@illinois.edu</a></p>
+
+      <div class="training-block">
+        <div class="training-label">Fellowships & Awards</div>
+        <div class="training-item">
+          <div>
+            <div class="training-name">NSF Mathematical Sciences Postdoctoral Research Fellowship</div>
+            <div class="training-detail">National Science Foundation</div>
+          </div>
+          <div class="training-year">2024–2027</div>
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.linkedin.com/in/jacob-beckey">LinkedIn</a></p>
+        <div class="training-item">
+          <div>
+            <div class="training-name">IQUIST Postdoctoral Fellowship</div>
+            <div class="training-detail">Illinois Quantum Information Center</div>
+          </div>
+          <div class="training-year">2024–2027</div>
+        </div>
+        <div class="training-item">
+          <div>
+            <div class="training-name">NSF Graduate Research Fellowship</div>
+            <div class="training-detail">National Science Foundation</div>
+          </div>
+          <div class="training-year">2019–2022</div>
+        </div>
+        <div class="training-item">
+          <div>
+            <div class="training-name">Fulbright Postgraduate Award</div>
+            <div class="training-detail">University of Birmingham</div>
+          </div>
+          <div class="training-year">2018–2019</div>
         </div>
       </div>
-    </section>
-    <footer>
-      <p>Copyright &#169; 2025 Jacob Beckey. All Rights Reserved.</p>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+    </div>
+  </div>
+</section>
+
+
+<!-- TEACHING & OUTREACH -->
+<section class="teaching" id="teaching">
+  <div class="teaching-inner">
+    <div class="section-head">
+      <h2>Teaching & <em>outreach</em></h2>
+      <span class="section-meta">Fostering engagement in authentic scientific practices</span>
+    </div>
+
+    <div class="commitments-grid">
+      <div class="commitment">
+        <div class="commitment-eyebrow">In the classroom</div>
+        <h3>Teaching <em>physics</em> with care.</h3>
+        <p>I believe physics education works best when students see the field as a living human practice — full of revisions, dead ends, and unfinished problems — rather than a finished set of facts. My courses combine rigorous problem-solving with the historical and conceptual context that gives the equations their meaning.</p>
+        <a href="#" class="commitment-link">View courses →</a>
+      </div>
+      <div class="commitment">
+        <div class="commitment-eyebrow">Beyond the university</div>
+        <h3>The <em>Idealized Science Institute</em>.</h3>
+        <p>I co-founded ISI to bring authentic science into K-12 classrooms — through teacher professional development, free curricular resources, and an annual regional science conference for high schoolers. The non-profit operates in-person throughout southwest Pennsylvania, but has an international presence online.</p>
+        <a href="https://www.idealizedscience.org/" target="_blank" rel="noopener" class="commitment-link">Visit ISI →</a>
+      </div>
+    </div>
+
+    <div class="current-course">
+      <div class="current-course-code">MATH 416</div>
+      <div class="current-course-body">
+        <div class="current-course-eyebrow">Currently teaching</div>
+        <div class="current-course-title">Abstract Linear Algebra</div>
+      </div>
+      <div class="current-course-term">Fall 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-cta" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h3>Questions? <em>Ask away!</em></h3>
+      <p>I welcome inquiries from prospective undergraduate and graduate students. Students interested in joining my group at URI during the spring 2027 semester are especially encouraged to get in touch.</p>
+    </div>
+    <div class="contact-details">
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <span class="contact-value"><a href="mailto:jbeckey@illinois.edu">jbeckey@illinois.edu</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Office</span>
+        <span class="contact-value">400B Harker Hall · Department of Mathematics<br>University of Illinois Urbana-Champaign</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Publications</span>
+        <span class="contact-value">
+          <a href="https://scholar.google.com/citations?user=LLag_XoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          ·
+          <a href="https://orcid.org/0000-0002-2009-8661" target="_blank" rel="noopener">ORCID</a>
+          ·
+          <a href="https://arxiv.org/search/quant-ph?searchtype=author&query=Beckey,+J" target="_blank" rel="noopener">arXiv</a>
+        </span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Socials</span>
+        <span class="contact-value">
+          <a href="https://www.linkedin.com/in/jacob-beckey" target="_blank" rel="noopener">LinkedIn</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-rule"></div>
+  <p><em>Jacob Beckey</em> · Incoming Assistant Professor, Department of Physics</p>
+  <p>University of Rhode Island · Kingston, RI 02881 · © 2026</p>
+</footer>
+
+</div>
+<!-- PAPER MODAL -->
+<div class="modal-overlay" id="paperModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+/* ============ PAPER DATA ============ */
+/* Abstracts copied verbatim from jacobbeckey.com/research */
+const PAPERS = {
+  "product-testing": {
+    year: "2025",
+    title: "Product testing with single-copy measurements",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Luke Coffman', 'Ariel Shlosberg', 'Louis Schatzki', 'Felix Leditzky'],
+    venue: "arXiv:2510.07820 · October 2025",
+    tags: [{label: "Quantum learning theory", gold: false}, {label: "Featured", gold: true}],
+    abstract: "We study the sample complexity of two variants of product testing when restricted to single-copy measurements. In particular, we consider both bipartite product testing (i.e., does there exist at least one non-trivial cut across which the state is product) and multipartite product testing (i.e., is the state fully product across every cut). For the first variant, we prove an exponential lower bound on the sample complexity of any algorithm for this task which utilizes only single-copy measurements. When comparing this with known efficient algorithms that utilize multi-copy measurements, this establishes an exponential separation for this and several related entanglement learning tasks. For the second variant, we prove another sample lower bound that establishes a separation between single- and multi-copy strategies. To obtain our results, we prove a crucial technical lemma that gives a lower bound on the overlap between tensor products of permutation operators acting on subsystems of states that themselves carry a tensor structure. Finally, we provide an algorithm for multipartite product testing using only single-copy, local measurements, and we highlight several interesting open questions arising from this work.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2510.07820", url: "https://arxiv.org/abs/2510.07820"}
+    ],
+    media: []
+  },
+  "localizing-entanglement": {
+    year: "2025",
+    title: "★ Localizing entanglement in high-dimensional states",
+    authors: ['Christopher Vairogs', 'Akanksha Chablani', 'Leo Lee', 'Hanyang Sha', 'Abigail Vaughan-Lee', '<strong>Jacob L. Beckey</strong>'],
+    venue: "arXiv:2510.08501 · October 2025",
+    tags: [{label: "Entanglement theory & characterization", gold: false}, {label: "Undergraduate mentorship", gold: true}],
+    abstract: "We study the asymptotic behavior of protocols that localize entanglement in large multi-qubit states onto a subset of qubits by measuring the remaining qubits. We use the maximal average n-tangle that can be generated on a fixed subsystem by measuring its complement — either with local or global measurements — as our key figure of merit. These quantities are known respectively as the localizable entanglement (LE) and the entanglement of assistance (EA). We build upon the work of arXiv:2411.04080 that proposed a polynomial-time test, based on the EA, for whether it is possible to transform certain graph states into others using local measurements. We show, using properties of the EA, that this test is effective and useful in large systems for a wide range of sizes of the measured subsystem. In particular, we use this test to demonstrate the surprising result that general local unitaries and global measurements will typically not provide an advantage over the more experimentally feasible local Clifford unitaries and local Pauli measurements in transforming large linear cluster states into GHZ states. Finally, we derive concentration inequalities for the LE and EA over Haar-random states which indicate that the localized entanglement structure has a striking dependence on the locality of the measurement.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2510.08501", url: "https://arxiv.org/abs/2510.08501"}
+    ],
+    media: []
+  },
+  "impulse-squeezed": {
+    year: "2025",
+    title: "Impulse measurements enhanced with squeezed readout light",
+    authors: ['Tsai-Chen Lee', '<strong>Jacob L. Beckey</strong>', 'Giacomo Marocco', 'Daniel Carney'],
+    venue: "Phys. Rev. Research 7, 033041 · July 2025",
+    tags: [{label: "Quantum sensing", gold: false}],
+    abstract: "We quantify how squeezed light can reduce quantum measurement noise to levels below the standard quantum limit in impulse measurements with mechanical detectors. The broadband nature of the signal implies that frequency-dependent squeezing performs better than frequency-independent squeezing. We calculate the optimal scaling of the impulse sensitivity with the squeezing strength, and quantify degradations due to photodetection losses. Even for lossless measurement, we find there exists a fundamental limit to the benefit of squeezing that depends only on the system's mechanical properties.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2502.05168", url: "https://arxiv.org/abs/2502.05168"},
+      {icon: "PR", title: "Published version", sub: "Phys. Rev. Research", url: "https://journals.aps.org/prresearch/abstract/10.1103/kcm9-bqs8"}
+    ],
+    media: []
+  },
+  "local-measurement": {
+    year: "2024",
+    title: "★ Local measurement strategies for multipartite entanglement quantification",
+    authors: ['Luke Coffman', 'Akshay Seshadri', 'Graeme Smith', '<strong>Jacob L. Beckey</strong>'],
+    venue: "Phys. Rev. A 110, 012454 · July 2024",
+    tags: [{label: "Entanglement theory & characterization", gold: false}, {label: "Undergraduate mentorship", gold: true}],
+    abstract: "Despite multipartite entanglement being a global property of a quantum state, a number of recent works have made it clear that it can be quantified using only local measurements. This is appealing because local measurements are the easiest to implement on current quantum hardware. However, it remains an open question what protocol one should use in order to minimize the resources required to estimate multipartite entanglement from local measurements alone. In this work, we construct and compare several estimators of multipartite entanglement based solely on the data from local measurements. We first construct statistical estimators for a broad family of entanglement measures using local randomized measurement (LRM) data before providing a general criterion for the construction of such estimators in terms of projective 2-designs. Importantly, this allows us to derandomize the multipartite estimation protocol based on LRMs. In particular, we show how local symmetric, informationally complete positive operator-valued measures enable multipartite entanglement quantification with only a single measurement setting. For all estimators, we provide both the classical postprocessing cost and rigorous performance guarantees in the form of analytical upper bounds on the number of measurements needed to estimate the measures to any desired precision.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2401.08065", url: "https://arxiv.org/abs/2401.08065"},
+      {icon: "PR", title: "Published version", sub: "Phys. Rev. A", url: "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.110.012454"}
+    ],
+    media: []
+  },
+  "users-manual": {
+    year: "2023",
+    title: "Quantum measurements in fundamental physics: a user's manual",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Daniel Carney', 'Giacomo Marocco'],
+    venue: "arXiv:2311.07270 · November 2023",
+    tags: [{label: "Quantum sensing", gold: false}, {label: "Review", gold: true}],
+    abstract: "We give a systematic theoretical treatment of linear quantum detectors used in modern high energy physics experiments, including dark matter cavity haloscopes, gravitational wave detectors, and impulsive mechanical sensors. We show how to derive the coupling of signals of interest to these devices, and how to calculate noise spectra, signal-to-noise ratios, and detection sensitivities. We emphasize the role of quantum vacuum and thermal noise in these systems. Finally, we review ways in which advanced quantum techniques — squeezing, non-demolition measurements, and entanglement — can be or currently are used to enhance these searches.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2311.07270", url: "https://arxiv.org/abs/2311.07270"}
+    ],
+    media: []
+  },
+  "bell-basis": {
+    year: "2023",
+    title: "Multipartite entanglement measures via Bell basis measurements",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Gerard Pelegrí', 'Steph Foulds', 'Natalie J. Pearson'],
+    venue: "Phys. Rev. A 107, 062425 · June 2023",
+    tags: [{label: "Entanglement theory & characterization", gold: false}],
+    abstract: "We show how to estimate a broad class of multipartite entanglement measures from Bell basis measurement data. In addition to lowering the experimental requirements relative to previously known methods of estimating these measures, our proposed scheme also enables a simpler analysis of the number of measurement repetitions required to achieve an ε-close approximation of the measures, which we provide for each. We focus our analysis on the recently introduced Concentratable Entanglements because many other well-known multipartite entanglement measures are recovered as special cases of this family of measures. We extend the definition of the Concentratable Entanglements to mixed states and show how to construct lower bounds on the mixed state Concentratable Entanglements that can also be estimated using only Bell basis measurement data. Finally, we demonstrate the feasibility of our methods by classically simulating their implementation on a noisy Rydberg atom quantum computer.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2210.02575", url: "https://arxiv.org/abs/2210.02575"},
+      {icon: "PR", title: "Published version", sub: "Phys. Rev. A", url: "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.107.062425"}
+    ],
+    media: []
+  },
+  "concentratable": {
+    year: "2021",
+    title: "Computable and operationally meaningful multipartite entanglement measures",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'N. Gigena', 'Patrick J. Coles', 'M. Cerezo'],
+    venue: "Phys. Rev. Lett. 127, 140501 · September 2021",
+    tags: [{label: "Entanglement theory & characterization", gold: false}, {label: "Concentratable Entanglements", gold: true}],
+    abstract: "Multipartite entanglement is an essential resource for quantum communication, quantum computing, quantum sensing, and quantum networks. The utility of a quantum state |ψ⟩ for these applications is often directly related to the degree or type of entanglement present in |ψ⟩. Therefore, efficiently quantifying and characterizing multipartite entanglement is of paramount importance. In this work, we introduce a family of multipartite entanglement measures, called Concentratable Entanglements. Several well-known entanglement measures are recovered as special cases of our family of measures, and hence we provide a general framework for quantifying multipartite entanglement. We prove that the entire family does not increase, on average, under Local Operations and Classical Communications. We also provide an operational meaning for these measures in terms of probabilistic concentration of entanglement into Bell pairs. Finally, we show that these quantities can be efficiently estimated on a quantum computer by implementing a parallelized SWAP test, opening up a research direction for measuring multipartite entanglement on quantum devices.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2104.06923", url: "https://arxiv.org/abs/2104.06923"},
+      {icon: "PR", title: "Published version", sub: "Phys. Rev. Lett.", url: "https://link.aps.org/doi/10.1103/PhysRevLett.127.140501"}
+    ],
+    media: []
+  },
+  "epr-gw": {
+    year: "2019",
+    title: "Broadband quantum noise reduction in future long-baseline gravitational-wave detectors via EPR entanglement",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Yiqiu Ma', 'Vincent Boyer', 'Haixing Miao'],
+    venue: "Phys. Rev. D 100, 083011 · October 2019",
+    tags: [{label: "Quantum sensing", gold: false}, {label: "Gravitational waves", gold: false}],
+    abstract: "Broadband quantum noise reduction can be achieved in gravitational-wave detectors by injecting frequency-dependent squeezed light into the dark port of the interferometer. This frequency-dependent squeezing can be generated by combining squeezed light with external filter cavities. However, in future long baseline interferometers (LBIs), the filter cavity required to achieve the broadband squeezing has a low bandwidth — necessitating a very long cavity to mitigate the issue from optical loss. It has been shown recently that by taking advantage of Einstein-Podolsky-Rosen (EPR) entanglement in the squeezed light source, the interferometer can simultaneously act as a detector and a filter cavity. This is an attractive broadband squeezing scheme for LBIs because the length requirement for the filter cavity is naturally satisfied by the length of the interferometer arms. In this paper we present a systematic way of finding the working points for this broadband squeezing scheme in LBIs. We also show that in LBIs, the EPR scheme achieves nearly perfect ellipse rotation as compared to 4-km interferometers which have appreciable error around the intermediate frequency. Finally, we show that an approximation for the optomechanical coupling constant in the 4-km case can break down for longer baselines. These results are applicable to future detectors such as the 10-km Einstein Telescope and the 40-km Cosmic Explorer.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:1909.03603", url: "https://arxiv.org/abs/1909.03603"},
+      {icon: "PR", title: "Published version", sub: "Phys. Rev. D", url: "https://link.aps.org/doi/10.1103/PhysRevD.100.083011"}
+    ],
+    media: []
+  }
+};
+
+/* ============ MODAL ============ */
+function openPaperModal(id) {
+  const p = PAPERS[id];
+  if (!p) return;
+
+  const tagHTML = p.tags.map(t => `<span class="pub-tag${t.gold ? ' gold' : ''}">${t.label}</span>`).join('');
+  const linksHTML = p.links.map(l => `
+    <a href="${l.url}" target="_blank" rel="noopener" class="modal-link">
+      <div class="modal-link-info">
+        <div class="modal-link-icon">${l.icon}</div>
+        <div class="modal-link-text">
+          <div class="modal-link-title">${l.title}</div>
+          <div class="modal-link-sub">${l.sub}</div>
+        </div>
+      </div>
+      <span class="modal-link-arrow">→</span>
+    </a>
+  `).join('');
+
+  const mediaHTML = p.media && p.media.length
+    ? p.media.map(m => `
+        <a href="${m.url}" target="_blank" rel="noopener" class="modal-link">
+          <div class="modal-link-info">
+            <div class="modal-link-icon">${m.icon}</div>
+            <div class="modal-link-text">
+              <div class="modal-link-title">${m.title}</div>
+              <div class="modal-link-sub">${m.sub}</div>
+            </div>
+          </div>
+          <span class="modal-link-arrow">→</span>
+        </a>
+      `).join('')
+    : '<div class="modal-empty">No talks or press coverage listed for this paper yet.</div>';
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-year">${p.year}</div>
+    <h2 class="modal-title">${p.title}</h2>
+    <div class="modal-authors">${p.authors.join(', ')}</div>
+    <div class="modal-venue">${p.venue}</div>
+    <div class="modal-tag-row">${tagHTML}</div>
+
+    <div class="section-rule">Abstract</div>
+    <div class="modal-abstract">${p.abstract}</div>
+
+    <div class="section-rule">Read the paper</div>
+    <div class="modal-links">${linksHTML}</div>
+
+    <div class="section-rule">Associated talks & media</div>
+    <div class="modal-links">${mediaHTML}</div>
+  `;
+
+  document.getElementById('paperModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.querySelector('.modal').scrollTop = 0;
+}
+
+function closePaperModal() {
+  document.getElementById('paperModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.pub[data-paper]').forEach(card => {
+  card.addEventListener('click', () => openPaperModal(card.dataset.paper));
+});
+document.getElementById('modalClose').addEventListener('click', closePaperModal);
+document.getElementById('paperModal').addEventListener('click', e => {
+  if (e.target.id === 'paperModal') closePaperModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaperModal(); });
+</script>
+
+</body>
 </html>
