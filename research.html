@@ -839,16 +839,16 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index-uri.html" class="logo">
-    <span class="logo-name">Jacob L. Beckey</span>
-    <span class="logo-affil">Physics · University of Rhode Island</span>
+  <a href="index.html" class="logo">
+    <span class="logo-name">Jacob Beckey</span>
+    <span class="logo-affil">Quantum Information Theorist</span>
   </a>
   <div class="nav-links">
-    <a href="research-uri.html" class="active">Research</a>
-    <a href="teaching-uri.html">Teaching</a>
-    <a href="resources-uri.html">Resources</a>
-    <a href="outreach-uri.html">Outreach</a>
-    <a href="#" class="cv">CV ↓</a>
+    <a href="research.html" class="active">Research</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="resources.html">Resources</a>
+    <a href="outreach.html">Outreach</a>
+    <a href="assets/cv.pdf" target="_blank" rel="noopener" class="cv">CV ↓</a>
   </div>
 </nav>
 
@@ -906,7 +906,7 @@
 <section class="publications" id="publications">
   <div class="pub-head">
     <h2><em>Publications</em></h2>
-    <span class="pub-count" id="pubCount">14 papers</span>
+    <span class="pub-count" id="pubCount">17 papers</span>
   </div>
 
   <div class="filter-bar">
@@ -932,7 +932,7 @@
 
   <div class="star-key"><span class="pub-star">★</span> Denotes technical mentorship of undergraduate students leading to co-authorship.</div>
 
-  <div class="results-meta" id="resultsMeta">Showing all 14 papers</div>
+  <div class="results-meta" id="resultsMeta">Showing all 17 papers</div>
 
   <div id="resultsContainer"></div>
   <div class="empty-state hidden" id="emptyState">No papers match those filters. Try clearing the search or selecting different filters.</div>
@@ -967,6 +967,48 @@
 /* ============ PAPER DATA ============ */
 /* Full publication list from jacobbeckey.com/research */
 const PAPERS = [
+  {
+    id: "werner-data-hiding",
+    year: 2026,
+    month: "September 2026",
+    title: "Tight Universal Bounds on Quantum Data Hiding with Multipartite Werner States",
+    authors: ['Oren Akresh', '<strong>Jacob L. Beckey</strong>', 'Felix Leditzky'],
+    venue: "arXiv:2609.40332",
+    topic: "Entanglement Theory & Characterization",
+    starred: false,
+    abstract: "Quantum data hiding concerns pairs of states which are highly distinguishable with global measurements, yet nearly indistinguishable when restricted to local operations and classical communication. More than two decades after Eggeling and Werner introduced a multipartite hiding scheme based on Werner states, the optimal dependence of its uniform security guarantee on the number of parties and local dimension remained unknown. We resolve this problem by showing that the distinguishing bias of any pair of n-qudit Werner states is O(n²/d) under measurements whose effects remain positive under partial transposition (PPT) across every bipartition. An explicit pair attains this scaling using only nonadaptive local measurements, establishing worst-case optimality and showing that the PPT relaxation preserves the optimal dependence on both the number of parties and the local dimension. At fixed security, this extends the certified hiding regime from n=O(d^(1/4)) to n=O(√d). Beyond data hiding, the same bound implies that testing any nontrivial unitarily invariant property with adaptive single-copy measurements requires Ω(√d) copies, yielding separations for any property with dimension-independent sample complexity under collective measurements. Our proof reduces the distinguishing bias to trace norms of partially transposed operators and analyzes them using mixed Schur-Weyl duality, demonstrating the utility of representation theoretic methods developed for port-based teleportation to data hiding and quantum property testing.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2609.40332", url: "https://arxiv.org/abs/2609.40332"}
+    ]
+  },
+  {
+    id: "ppt-purity-product-testing",
+    year: 2026,
+    month: "August 2026",
+    title: "Tight Bounds for Purity and Product Testing from Partial Transposition",
+    authors: ['Oren Akresh', '<strong>Jacob L. Beckey</strong>'],
+    venue: "arXiv:2608.27217",
+    topic: "Quantum Learning Theory",
+    starred: false,
+    abstract: "Coherent measurements across multiple copies of an unknown quantum state can substantially reduce the number of samples required to learn its properties, but remain experimentally challenging. Current experiments typically prepare and measure one copy at a time, potentially adapting later measurements to earlier outcomes. A central challenge is adaptivity, which makes the space of possible measurement strategies difficult to characterize. The positive-partial-transpose (PPT) relaxation bypasses this complexity by considering a larger, mathematically tractable class of measurements, at the risk of weakening the resulting bounds. Here we show, surprisingly, that the relaxation loses nothing at the level of asymptotic sample complexity for two fundamental tasks: purity testing and product testing. In both cases, lower bounds against the full class of PPT measurements are matched by nonadaptive single-copy protocols. Moreover, our proof requires only basic symmetric subspace identities, providing a simple route to sharp lower bounds for adaptive single-copy measurements.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2608.27217", url: "https://arxiv.org/abs/2608.27217"}
+    ]
+  },
+  {
+    id: "optimal-product-test",
+    year: 2026,
+    month: "July 2026",
+    title: "An Optimal Analysis of the Product Test",
+    authors: ['<strong>Jacob L. Beckey</strong>', 'Fernando Granha Jeronimo', 'Pei Wu'],
+    venue: "arXiv:2607.21477",
+    topic: "Quantum Learning Theory",
+    starred: false,
+    abstract: "Product testing, i.e., deciding whether a pure multipartite quantum state is fully unentangled across a specified tensor decomposition, serves as a bridge between quantum property testing, unentangled quantum proof systems, and tensor optimization. Despite being a fundamental property testing task and having many applications, the product test's exact (worst-case) acceptance probability curve has yet to be fully determined. In this work, we determine this curve exactly. Let ω be the maximum squared overlap of the input with a product state, and let PT_n(ω) be the largest possible acceptance probability of the product test over all n-partite pure states with product overlap ω, allowing arbitrary finite local dimensions. We prove that, for every n ≥ 2 and every ω ∈ (0,1], PT_n(ω) = ½(1 + mω² + (1 − mω)²), where m = ⌊1/ω⌋. The formula recovers the previously known tight section of the curve for ω ≥ 1/2, resolves all low-overlap regimes ω < 1/2, and implies PT_n(ω) → 1/2 as ω → 0, answering an open problem in [Soleimanifar and Wright, SODA 2022]. As a complexity-theoretic application, our results improve the one-shot soundness parameter in the Harrow-Montanaro reduction from QMA(k) to QMA(2). Our techniques, built upon those of Soleimanifar and Wright, allow us to resolve these open questions while remaining surprisingly elementary.",
+    links: [
+      {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2607.21477", url: "https://arxiv.org/abs/2607.21477"}
+    ]
+  },
   {
     id: "product-testing",
     year: 2025,
