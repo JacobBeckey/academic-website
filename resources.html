@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Resources for Students — Jacob L. Beckey</title>
+<title>Resources for Students — Jacob Beckey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -868,15 +868,15 @@
 <!-- NAV -->
 <nav>
   <a href="index-uri.html" class="logo">
-    <span class="logo-name">Jacob L. Beckey</span>
-    <span class="logo-affil">Physics · University of Rhode Island</span>
+    <span class="logo-name">Jacob Beckey</span>
+    <span class="logo-affil">Quantum Information Theorist</span>
   </a>
   <div class="nav-links">
     <a href="research-uri.html">Research</a>
     <a href="teaching-uri.html">Teaching</a>
     <a href="resources-uri.html" class="active">Resources</a>
     <a href="outreach-uri.html">Outreach</a>
-    <a href="#" class="cv">CV ↓</a>
+    <a href="assets/cv.pdf" target="_blank" rel="noopener" class="cv">CV ↓</a>
   </div>
 </nav>
 
@@ -1023,7 +1023,7 @@ const RESOURCES = [
     indispensable: true,
     teaser: "For a second course in linear algebra, I agree with the title whole-heartedly.",
     note: "<p>For a second course in linear algebra, I agree with the title whole-heartedly. Axler's defining choice is to defer the determinant until very late in the book — building the theory around operators, eigenvalues, and inner-product spaces in a way that's both more rigorous and more illuminating than the matrix-first approach most students see first.</p>",
-    specs: { depth: 4, formality: 4, difficulty: 3, time: 4 },
+    specs: { depth: 4, formality: 4, difficulty: 2, time: 3 },
     links: [
       { icon: "📕", title: "Free PDF (4th edition)", sub: "linear.axler.net", url: "https://linear.axler.net/LADR4e.pdf" }
     ],
@@ -1056,7 +1056,7 @@ const RESOURCES = [
     indispensable: true,
     teaser: "The perfect follow-up to Susskind's theoretical minimum and an essential reference for upper-undergraduate QM courses.",
     note: "<p>David Tong is a world-renowned theoretical physicist and a prolific writer of <em>excellent</em> lecture notes. I think these notes are the perfect follow-up to Susskind's theoretical minimum and an essential reference for upper-undergraduate QM courses.</p>",
-    specs: { depth: 3, formality: 3, difficulty: 3, time: 3 },
+    specs: { depth: 3, formality: 3, difficulty: 2, time: 3 },
     links: [
       { icon: "📄", title: "Lecture notes (DAMTP)", sub: "damtp.cam.ac.uk/user/tong", url: "https://www.damtp.cam.ac.uk/user/tong/quantum.html" }
     ],
@@ -1072,7 +1072,7 @@ const RESOURCES = [
     indispensable: true,
     teaser: "Developed through many years of Barton's 8.05 course at MIT, with free lecture videos and courseware online.",
     note: "<p>This book was developed through many years of Barton's 8.05 course at MIT. The lecture videos and courseware are freely available, making this an even better resource to learn from.</p><p>The book is expensive, so unless you want or need a hardcopy, I recommend using the freely available lecture notes from MIT OpenCourseWare.</p>",
-    specs: { depth: 4, formality: 4, difficulty: 4, time: 4 },
+    specs: { depth: 4, formality: 4, difficulty: 3, time: 4 },
     links: [
       { icon: "📕", title: "Textbook — Mastering Quantum Mechanics", sub: "MIT Press", url: "https://mitpress.mit.edu/9780262046138/mastering-quantum-mechanics/" },
       { icon: "🎥", title: "MIT 8.05 lecture videos & courseware", sub: "MIT OpenCourseWare", url: "https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/video_galleries/video-lectures/" }
@@ -1089,7 +1089,7 @@ const RESOURCES = [
     indispensable: false,
     teaser: "Legendary lecture notes by UC Berkeley professor Robert Littlejohn — the perfect supplement to Sakurai.",
     note: "<p>Legendary lecture notes by UC Berkeley professor Robert Littlejohn. They are the perfect supplement to the standard graduate quantum textbook in the United States (<em>Modern Quantum Mechanics</em> by J. J. Sakurai).</p>",
-    specs: { depth: 4, formality: 4, difficulty: 4, time: 4 },
+    specs: { depth: 4, formality: 4, difficulty: 3, time: 4 },
     links: [
       { icon: "📄", title: "Physics 221 lecture notes", sub: "bohr.physics.berkeley.edu", url: "https://bohr.physics.berkeley.edu/classes/221/2021/221.html" }
     ],
@@ -1155,14 +1155,14 @@ const RESOURCES = [
     note: "<p>Also known as \"Mike and Ike\" or \"The Bible.\" This is the classic text in the field. It is pedagogical, rigorous, and thorough. If you want to get into quantum computation and quantum information, this is a great place to start.</p>",
     specs: { depth: 4, formality: 3, difficulty: 3, time: 4 },
     links: [
-      { icon: "📕", title: "Textbook — Quantum Computation & QI", sub: "Cambridge University Press", url: "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE" }
+      { icon: "📕", title: "Textbook — Quantum Computation & QI", sub: "Cambridge University Press", url: "https://www.amazon.com/Quantum-Computation-Information-10th-Anniversary/dp/1107002176" }
     ],
     plateStyle: 3
   },
   {
     topic: "Quantum Information Theory",
     type: "Lecture Notes",
-    title: "Quantum Computation and Information",
+    title: "Quantum Computation",
     author: "John Preskill",
     difficulty: "Advanced",
     audiences: ["Physics"],
@@ -1171,7 +1171,7 @@ const RESOURCES = [
     note: "<p>A classic set of lecture notes that develops quantum information and basic quantum computing from a physics point of view. Good for students who are comfortable with linear algebra and Dirac notation and want a more conceptual, calculation-oriented introduction.</p>",
     specs: { depth: 4, formality: 3, difficulty: 4, time: 4 },
     links: [
-      { icon: "📄", title: "Ph 229 lecture notes", sub: "theory.caltech.edu/~preskill", url: "http://theory.caltech.edu/~preskill/ph229/" }
+      { icon: "📄", title: "Ph 229 lecture notes", sub: "theory.caltech.edu/~preskill", url: "https://preskill.caltech.edu/ph219/ph219_2026.html" }
     ],
     plateStyle: 4
   },
@@ -1271,22 +1271,33 @@ function generatePlate(r, idx) {
   const author = escapeXML(r.author);
   const type = r.type.toUpperCase();
 
-  // Title — split into two lines if too long
+  // Title — greedy word-wrap into at most two lines. If somehow still overflowing,
+  // trail the second line with an ellipsis rather than silently dropping words.
+  const MAX_CHARS_PER_LINE = 24;
   const titleWords = r.title.split(' ');
-  const line1Words = [], line2Words = [];
-  let line1Len = 0;
+  const lines = [[], []];
+  let curLine = 0;
+  let curLen = 0;
+  let overflow = false;
   for (const w of titleWords) {
-    if (line1Len + w.length <= 22 || line2Words.length > 0) {
-      if (line1Len + w.length <= 22) {
-        line1Words.push(w);
-        line1Len += w.length + 1;
-      } else {
-        line2Words.push(w);
-      }
+    const addLen = curLen === 0 ? w.length : curLen + 1 + w.length;
+    if (addLen <= MAX_CHARS_PER_LINE) {
+      lines[curLine].push(w);
+      curLen = addLen;
+    } else if (curLine === 0) {
+      curLine = 1;
+      lines[1].push(w);
+      curLen = w.length;
+    } else {
+      overflow = true;
+      break;
     }
   }
-  const line1 = escapeXML(line1Words.join(' '));
-  const line2 = escapeXML(line2Words.join(' '));
+  let line1Raw = lines[0].join(' ');
+  let line2Raw = lines[1].join(' ');
+  if (overflow && line2Raw.length > 0) line2Raw = line2Raw.replace(/\s+\S*$/, '') + '…';
+  const line1 = escapeXML(line1Raw);
+  const line2 = escapeXML(line2Raw);
 
   // Suppress the type glyph when an indispensable star will overlay the same corner.
   // The star already signals "noteworthy" — two marks in the same spot would collide.
