@@ -495,7 +495,8 @@
   .pub-topic.entanglement { background: var(--keaney-soft); color: var(--ink); }
   .pub-topic.learning { background: var(--gold-soft); color: var(--gold-deep); }
   .pub-topic.sensing { background: var(--paper-deep); color: var(--ink); border: 1px solid var(--rule); }
-  .pub-star {
+  .pub-star,
+  .pub-dagger {
     color: var(--gold-deep);
     font-weight: 600;
     font-size: 0.95rem;
@@ -562,7 +563,8 @@
     font-size: 0.92rem;
     margin-bottom: 1.5rem;
   }
-  .star-key .pub-star { font-style: normal; }
+  .star-key .pub-star,
+  .star-key .pub-dagger { font-style: normal; }
 
   /* ───────── MODAL ───────── */
   .modal-overlay {
@@ -839,15 +841,15 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="logo">
+  <a href="index-uri.html" class="logo">
     <span class="logo-name">Jacob Beckey</span>
     <span class="logo-affil">Quantum Information Theorist</span>
   </a>
   <div class="nav-links">
-    <a href="research.html" class="active">Research</a>
-    <a href="#">Teaching</a>
-    <a href="resources.html">Resources</a>
-    <a href="#">Outreach</a>
+    <a href="research-uri.html" class="active">Research</a>
+    <a href="teaching-uri.html">Teaching</a>
+    <a href="resources-uri.html">Resources</a>
+    <a href="outreach-uri.html">Outreach</a>
     <a href="assets/cv.pdf" target="_blank" rel="noopener" class="cv">CV ↓</a>
   </div>
 </nav>
@@ -857,11 +859,10 @@
   <div class="eyebrow">Research</div>
   <h1 class="hero-headline">What separates <em>classical</em> from <em>quantum?</em></h1>
   <p class="hero-sub">
-    My research interests include entanglement theory and quantification, quantum learning theory, and quantum sensing. I use tools from quantum information theory, representation theory, and probability to develop protocols with rigorous performance guarantees — especially when measurements are subject to realistic constraints. I enjoy working in an interdisciplinary fashion 
-    with people from phyiscs, math, and computer science. I enjoy research most when it is with motivated students. If you are interested in my research program, please reach out!
+    My research interests include entanglement theory and quantification, quantum learning theory, and quantum sensing. I use tools from quantum information theory, representation theory, and probability to develop methods with rigorous performance guarantees — especially when measurements are subject to realistic constraints. I enjoy working in a highly interdisciplinary fashion, and many of my projects involve undergraduate, master's, and PhD student collaborators.
   </p>
   <div class="scholar-links">
-    <a href="https://scholar.google.com/citations?user=LLag_XoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a>
+    <a href="https://scholar.google.com/citations?user=OoGGmYwAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a>
     <a href="https://orcid.org/0000-0002-2009-8661" target="_blank" rel="noopener">ORCID →</a>
     <a href="https://arxiv.org/a/beckey_j_1" target="_blank" rel="noopener">arXiv →</a>
   </div>
@@ -931,7 +932,7 @@
     </div>
   </div>
 
-  <div class="star-key"><span class="pub-star">★</span> Denotes technical mentorship of undergraduate students leading to co-authorship.</div>
+  <div class="star-key"><span class="pub-star">★</span> Denotes technical mentorship of an undergraduate student leading to co-authorship. &nbsp; <span class="pub-dagger">†</span> Denotes technical mentorship of a high-school student leading to co-authorship.</div>
 
   <div class="results-meta" id="resultsMeta">Showing all 17 papers</div>
 
@@ -977,6 +978,7 @@ const PAPERS = [
     venue: "arXiv:2609.40332",
     topic: "Entanglement Theory & Characterization",
     starred: false,
+    hsMentor: true,
     abstract: "Quantum data hiding concerns pairs of states which are highly distinguishable with global measurements, yet nearly indistinguishable when restricted to local operations and classical communication. More than two decades after Eggeling and Werner introduced a multipartite hiding scheme based on Werner states, the optimal dependence of its uniform security guarantee on the number of parties and local dimension remained unknown. We resolve this problem by showing that the distinguishing bias of any pair of n-qudit Werner states is O(n²/d) under measurements whose effects remain positive under partial transposition (PPT) across every bipartition. An explicit pair attains this scaling using only nonadaptive local measurements, establishing worst-case optimality and showing that the PPT relaxation preserves the optimal dependence on both the number of parties and the local dimension. At fixed security, this extends the certified hiding regime from n=O(d^(1/4)) to n=O(√d). Beyond data hiding, the same bound implies that testing any nontrivial unitarily invariant property with adaptive single-copy measurements requires Ω(√d) copies, yielding separations for any property with dimension-independent sample complexity under collective measurements. Our proof reduces the distinguishing bias to trace norms of partially transposed operators and analyzes them using mixed Schur-Weyl duality, demonstrating the utility of representation theoretic methods developed for port-based teleportation to data hiding and quantum property testing.",
     links: [
       {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2609.40332", url: "https://arxiv.org/abs/2609.40332"}
@@ -991,6 +993,7 @@ const PAPERS = [
     venue: "arXiv:2608.27217",
     topic: "Quantum Learning Theory",
     starred: false,
+    hsMentor: true,
     abstract: "Coherent measurements across multiple copies of an unknown quantum state can substantially reduce the number of samples required to learn its properties, but remain experimentally challenging. Current experiments typically prepare and measure one copy at a time, potentially adapting later measurements to earlier outcomes. A central challenge is adaptivity, which makes the space of possible measurement strategies difficult to characterize. The positive-partial-transpose (PPT) relaxation bypasses this complexity by considering a larger, mathematically tractable class of measurements, at the risk of weakening the resulting bounds. Here we show, surprisingly, that the relaxation loses nothing at the level of asymptotic sample complexity for two fundamental tasks: purity testing and product testing. In both cases, lower bounds against the full class of PPT measurements are matched by nonadaptive single-copy protocols. Moreover, our proof requires only basic symmetric subspace identities, providing a simple route to sharp lower bounds for adaptive single-copy measurements.",
     links: [
       {icon: "𝛂", title: "arXiv preprint", sub: "arXiv:2608.27217", url: "https://arxiv.org/abs/2608.27217"}
@@ -1391,12 +1394,23 @@ function render() {
   });
 }
 
+/* Build the mentorship marker prefix for a paper.
+   ★ = undergraduate mentorship, † = high-school mentorship.
+   When both apply, star comes first (standard academic footnote ordering).
+   Returns an HTML string with a trailing space, or '' if neither applies. */
+function mentorshipMarkers(p) {
+  let out = '';
+  if (p.starred) out += '<span class="pub-star" title="Undergraduate mentorship">★</span>';
+  if (p.hsMentor) out += '<span class="pub-dagger" title="High-school mentorship">†</span>';
+  return out ? out + ' ' : '';
+}
+
 function renderPubCard(p, delay) {
   const q = state.search;
   const title = highlight(p.title, q);
   const authors = p.authors.map(a => highlight(a, q)).join(', ');
   const venue = highlight(p.venue, q);
-  const star = p.starred ? '<span class="pub-star" title="Undergraduate mentorship">★</span> ' : '';
+  const markers = mentorshipMarkers(p);
 
   return `
     <article class="pub" data-paper="${p.id}" style="animation-delay: ${delay}ms">
@@ -1405,7 +1419,7 @@ function renderPubCard(p, delay) {
           <span class="pub-month">${p.month}</span>
           <span class="pub-topic ${topicClass(p.topic)}">${p.topic}</span>
         </div>
-        <div class="pub-title">${star}${title}</div>
+        <div class="pub-title">${markers}${title}</div>
         <div class="pub-authors">${authors}</div>
         <div class="pub-venue">${venue}</div>
       </div>
@@ -1432,16 +1446,17 @@ function openModal(id) {
     </a>
   `).join('');
 
-  const starPrefix = p.starred ? '<span class="pub-star">★</span> ' : '';
+  const markers = mentorshipMarkers(p);
 
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-year">${p.month}</div>
-    <h2 class="modal-title">${starPrefix}${p.title}</h2>
+    <h2 class="modal-title">${markers}${p.title}</h2>
     <div class="modal-authors">${p.authors.join(', ')}</div>
     <div class="modal-venue">${p.venue}</div>
     <div class="modal-tag-row">
       <span class="modal-tag">${p.topic}</span>
       ${p.starred ? '<span class="modal-tag gold">Undergraduate mentorship</span>' : ''}
+      ${p.hsMentor ? '<span class="modal-tag gold">High-school mentorship</span>' : ''}
     </div>
 
     <div class="section-rule">Abstract</div>
