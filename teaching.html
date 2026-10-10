@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Teaching — Jacob L. Beckey</title>
+<title>Teaching — Jacob Beckey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -442,76 +442,95 @@
     font-size: 0.95rem;
   }
 
-  .courses-grid {
+  /* ── Course ledger: one row per course, scannable at a glance ── */
+  .course-ledger { border-top: 1px solid var(--rule); }
+
+  .ledger-row {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    grid-template-columns: 150px minmax(0, 1fr) 150px 80px 24px;
+    grid-template-areas: "code course term count arrow";
     gap: 1.5rem;
+    align-items: center;
+    padding: 1.1rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
   }
-
-  .course-card {
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    padding: 1.8rem 2rem;
+  .ledger-row.is-course {
     cursor: pointer;
-    transition: all 0.25s;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    animation: fadeUp 0.5s ease backwards;
+    transition: background 0.2s;
   }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .course-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--gold-deep);
-    box-shadow: 0 10px 24px rgba(0, 33, 71, 0.10);
-  }
-  .course-card:hover .course-card-arrow { transform: translateX(4px); color: var(--gold-deep); }
+  .ledger-row.is-course:hover { background: rgba(255, 250, 240, 0.6); }
+  .ledger-row.is-course:hover .ledger-arrow { transform: translateX(4px); color: var(--gold-deep); }
 
-  .course-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-  }
-  .course-card-code {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.4rem;
-    color: var(--ink);
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    line-height: 1;
-  }
-  /* term badge — color coded by season; status dot signals current/upcoming */
-  .course-card-term {
+  /* column labels */
+  .ledger-row.ledger-head {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
     font-family: var(--sans);
-    font-size: 0.7rem;
+    font-size: 0.66rem;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
+    color: var(--muted);
+  }
+
+  .ledger-code {
+    grid-area: code;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .ledger-course { grid-area: course; min-width: 0; }
+  .ledger-title {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .ledger-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-top: 0.15rem;
+  }
+  .ledger-term { grid-area: term; }
+  .ledger-count {
+    grid-area: count;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .ledger-arrow {
+    grid-area: arrow;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+  }
+
+  /* term badge — color coded by season; status dot signals current/upcoming */
+  .term-badge {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
     border-radius: 2px;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
   }
-  .course-card-term.season-fall {
-    background: var(--gold-soft);
-    color: var(--gold-deep);
-  }
-  .course-card-term.season-spring {
-    background: var(--keaney-soft);
-    color: var(--ink);
-  }
-  .course-card-term.season-summer {
-    background: var(--paper-deep);
-    color: var(--ink-soft);
-  }
+  .term-badge.season-fall { background: var(--gold-soft); color: var(--gold-deep); }
+  .term-badge.season-spring { background: var(--keaney-soft); color: var(--ink); }
+  .term-badge.season-summer { background: var(--paper-deep); color: var(--ink-soft); }
 
   /* status dot — small filled circle when current/upcoming, sits inside the season badge */
   .status-dot {
@@ -535,54 +554,17 @@
     50% { box-shadow: 0 0 0 4px rgba(0, 33, 71, 0.08); }
   }
 
-  .course-card-title {
-    font-family: var(--serif);
-    font-size: 1.18rem;
-    font-weight: 500;
-    line-height: 1.3;
-    letter-spacing: -0.005em;
-    color: var(--ink);
-  }
-  /* tagline — short descriptive line, one of the card's most-read elements */
-  .course-card-tagline {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 0.98rem;
-    color: var(--ink-soft);
-    line-height: 1.45;
-    font-weight: 300;
-  }
-
-  /* small, understated note that past offerings exist (details in modal) */
-  .past-offerings {
-    font-family: var(--sans);
-    font-size: 0.78rem;
-    color: var(--muted);
-    font-style: italic;
-    padding-top: 0.2rem;
-  }
-
-  .course-card-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0.4rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--rule);
-  }
-  .course-card-resources {
-    font-family: var(--sans);
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--ink-soft);
-    letter-spacing: 0.02em;
-  }
-  .course-card-resources .none { color: var(--muted); font-style: italic; }
-  .course-card-arrow {
-    font-family: var(--serif);
-    font-size: 1.3rem;
-    color: var(--ink-soft);
-    transition: all 0.2s;
+  /* mobile: code + term on top line, course beneath; column labels and count hidden */
+  @media (max-width: 760px) {
+    .ledger-row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: "code term" "course course";
+      gap: 0.5rem 1rem;
+      padding: 1rem 0.4rem;
+    }
+    .ledger-row.ledger-head,
+    .ledger-count,
+    .ledger-arrow { display: none; }
   }
 
   /* ───────── MODAL ───────── */
@@ -902,16 +884,16 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index-uri.html" class="logo">
-    <span class="logo-name">Jacob L. Beckey</span>
-    <span class="logo-affil">Physics · University of Rhode Island</span>
+  <a href="index.html" class="logo">
+    <span class="logo-name">Jacob Beckey</span>
+    <span class="logo-affil">Quantum Information Theorist</span>
   </a>
   <div class="nav-links">
-    <a href="research-uri.html">Research</a>
-    <a href="teaching-uri.html" class="active">Teaching</a>
-    <a href="resources-uri.html">Resources</a>
-    <a href="outreach-uri.html">Outreach</a>
-    <a href="#" class="cv">CV ↓</a>
+    <a href="research.html">Research</a>
+    <a href="teaching.html" class="active">Teaching</a>
+    <a href="resources.html">Resources</a>
+    <a href="#">Outreach</a>
+    <a href="assets/cv.pdf" target="_blank" rel="noopener" class="cv">CV ↓</a>
   </div>
 </nav>
 
@@ -920,7 +902,11 @@
   <div class="eyebrow">Teaching</div>
   <h1 class="hero-headline">Teaching <em>science</em> is teaching how to <em>think.</em></h1>
   <p class="hero-sub">
-    Every student who passes through a physics or math classroom — not just those headed for STEM careers — deserves to learn what science actually is, how knowledge gets made and contested, and how to think clearly with evidence. My courses are built on that conviction.
+  I believe an understanding of science benefits every student, whatever their intended career, and is essential 
+  to being an informed member of a democratic society. I also believe that no one can truly 
+  <em>understand</em> science without <em>doing</em> science. So in every course I teach, students engage in the actual practices 
+  of scientists, and we place that work in its historical, philosophical, and sociocultural context, so 
+  that students come away understanding what science is and what scientists do.
   </p>
 </section>
 
@@ -930,16 +916,16 @@
     <div class="philosophy-text">
       <h2>Teaching <em>philosophy</em></h2>
       <p>My approach to teaching is informed by decades of educational research and a core belief: <strong>science literacy is not optional, and it is not only for future scientists.</strong> Every student needs to understand what science is and what scientists actually do, because those tools serve them in any career — and because a functioning democracy requires a populace that can assess claims, engage in fact-based dialogue, exercise appropriate skepticism, and interpret data effectively.</p>
-      <p>That commitment shapes how I design every course I teach. I draw heavily on the <a href="https://www.idealizedscience.org/" target="_blank" rel="noopener">Idealized Science Framework</a> — a research-informed model my colleagues and I have developed at the Idealized Science Institute — which centers the actual practices of science and mathematics: how questions get framed, how evidence is gathered and evaluated, how disagreement is resolved, and how knowledge evolves.</p>
-      <p>In practice, this means students in my courses don't just solve problem sets — they argue, model, write, and revise. They encounter not just the polished results in their textbooks but the messy, contested process that produced them.</p>
+      <p>That commitment shapes how I design every course I teach. I draw heavily on the Idealized Science Framework — a research-backed model developed by Dr. Brian M. Wargo at the <a href="https://www.idealizedscience.org/" target="_blank" rel="noopener">Idealized Science Institute</a> — which centers the actual practices of science and mathematics: how questions get framed, how evidence is gathered and evaluated, how disagreement is resolved, and how knowledge evolves.</p>
+      <p>In practice, this means students in my courses don't just solve problems, they ask questions, make claims, engage in dialogic discourse, and are active participants in the social construction of knowledge. They encounter not just the polished results in their textbooks but the messy, non-linear, and deeply human process that led to their discovery.</p>
     </div>
 
     <aside class="pull-quote">
       <div class="pull-quote-text">
-        A functioning democracy requires a society that can <em>assess claims, engage in fact-based dialogue, and interpret data.</em> Teaching science well is teaching those skills.
+        Science has been taught too much as an accumulation of ready-made material with which students are to be made familiar, not enough as a method of thinking, an attitude of mind, after the pattern of which mental habits are to be transformed.
       </div>
       <div class="pull-quote-attribution">
-        <a href="https://www.idealizedscience.org/" target="_blank" rel="noopener">The Idealized Science Framework →</a>
+        <a href="https://www.jstor.org/stable/1634781?seq=1" target="_blank" rel="noopener">John Dewey, 1910 address to the AAAS</a>
       </div>
     </aside>
   </div>
@@ -948,9 +934,11 @@
 <!-- INCLUSIVITY -->
 <section class="inclusivity">
   <div class="inclusivity-inner">
-    <div class="inclusivity-label">A commitment to every student</div>
+    <div class="inclusivity-label">A commitment to inclusivity</div>
     <div class="inclusivity-text">
-      <p>My classroom is open to every student — regardless of background, identity, prior preparation, or career path. <strong>I take my obligation to inclusive teaching seriously,</strong> and I work to make sure that students who have historically been underrepresented in physics and mathematics know that they belong here. If you are a URI student curious about quantum physics, mathematics, or science more broadly — whether you've taken three courses or none — I want to hear from you. Come to office hours. Send me an email. Ask the question you think is too basic. It almost certainly isn't.</p>
+      <p>My classroom is open to every student — regardless of background, identity, prior preparation, or career path. 
+        <em>I take my obligation to inclusive teaching seriously,</em> and I work to make sure that all students, especially those who have 
+        historically been underrepresented in physics and mathematics, know that they belong.</p>
     </div>
   </div>
 </section>
@@ -1014,31 +1002,17 @@
    `offerings` is the list of times that course has been taught — sorted newest first.
    Different course codes for the same course across offerings (e.g., MATH 416 → MATH 460)
    are tracked per offering.
-   Spring 2027 courses are placeholders to be confirmed.
 */
 const COURSES = [
-  /* URI — Spring 2027 placeholders */
+  /* URI */
   {
-    id: "uri-math-methods",
+    id: "uri-phy111",
     institution: "uri",
-    title: "Mathematical Methods in Physics",
-    tagline: "Mathematical tools used throughout physics, with emphasis on physical intuition.",
-    description: "<p>An upper-division survey of the mathematical tools used throughout physics — linear algebra, complex analysis, Fourier methods, partial differential equations, and special functions — taught with an emphasis on building physical intuition alongside formal technique.</p><p>This course is currently a placeholder; final course assignment to be confirmed by the department.</p>",
-    isPlaceholder: true,
+    title: "General Physics I",
+    tagline: "Introductory mechanics — motion, forces, energy, and momentum.",
+    description: "<p>A first course in physics covering kinematics, Newton's laws, work and energy, momentum, rotational motion, and oscillations. The emphasis is on building physical reasoning and quantitative problem-solving skills that serve students in any field — not just those headed for a physics degree.</p>",
     offerings: [
-      { code: "PHY 322", term: "Spring 2027", year: 2027, season: "Spring", students: null, isUpcoming: true }
-    ],
-    links: []
-  },
-  {
-    id: "uri-quantum-intro",
-    institution: "uri",
-    title: "Introduction to Quantum Mechanics",
-    tagline: "A first course in quantum mechanics for upper-division physics majors.",
-    description: "<p>A first course in quantum mechanics for upper-division physics majors. Foundations through the Schrödinger equation, angular momentum, perturbation theory, and applications to atomic and condensed-matter systems. Pairs problem-solving with conceptual development of quantum measurement, entanglement, and the role of probability in physical theory.</p><p>This course is currently a placeholder; final course assignment to be confirmed by the department.</p>",
-    isPlaceholder: true,
-    offerings: [
-      { code: "PHY 471", term: "Spring 2027", year: 2027, season: "Spring", students: null, isUpcoming: true }
+      { code: "PHY 111", term: "Spring 2027", year: 2027, season: "Spring", students: null, isUpcoming: true }
     ],
     links: []
   },
@@ -1137,46 +1111,30 @@ function totalEnrollment(course) {
 }
 
 /* ============ RENDER ============ */
-function renderCourseCard(c) {
-  const sorted = sortOfferings(c.offerings);
-  const latest = sorted[0];
-  const past = sorted.slice(1);
-
-  // term badge — color by season, with a current/upcoming dot if applicable
-  const seasonClass = `season-${latest.season.toLowerCase()}`;
-  const statusDot = latest.isCurrent
+function termBadge(o) {
+  const dot = o.isCurrent
     ? '<span class="status-dot current" title="Currently teaching"></span>'
-    : latest.isUpcoming
+    : o.isUpcoming
       ? '<span class="status-dot upcoming" title="Upcoming"></span>'
       : '';
+  return `<span class="term-badge season-${o.season.toLowerCase()}">${dot}${o.term}</span>`;
+}
 
-  // course code is the latest offering's code
-  const codeDisplay = latest.code;
-
-  // past offerings — quiet tail line only
-  const pastLine = past.length === 0
-    ? ''
-    : `<div class="past-offerings">Previously taught ${past.length} ${past.length === 1 ? 'time' : 'times'} — see details</div>`;
-
-  const resourceCount = c.links.length;
-  const resourceLabel = resourceCount === 0
-    ? '<span class="none">No public materials yet</span>'
-    : `${resourceCount} ${resourceCount === 1 ? 'resource' : 'resources'} available`;
-
+function renderCourseRow(c) {
+  const sorted = sortOfferings(c.offerings);
+  const latest = sorted[0];
+  const n = sorted.length;
   return `
-    <article class="course-card" data-course="${c.id}">
-      <div class="course-card-top">
-        <div class="course-card-code">${codeDisplay}</div>
-        <div class="course-card-term ${seasonClass}">${statusDot}${latest.term}</div>
+    <div class="ledger-row is-course" data-course="${c.id}" role="button" tabindex="0">
+      <div class="ledger-code">${latest.code}</div>
+      <div class="ledger-course">
+        <div class="ledger-title">${c.title}</div>
+        <div class="ledger-tagline">${c.tagline}</div>
       </div>
-      <div class="course-card-title">${c.title}</div>
-      <div class="course-card-tagline">${c.tagline}</div>
-      ${pastLine}
-      <div class="course-card-bottom">
-        <span class="course-card-resources">${resourceLabel}</span>
-        <span class="course-card-arrow">→</span>
-      </div>
-    </article>
+      <div class="ledger-term">${termBadge(latest)}</div>
+      <div class="ledger-count">${n} ${n === 1 ? 'term' : 'terms'}</div>
+      <div class="ledger-arrow">→</div>
+    </div>
   `;
 }
 
@@ -1198,8 +1156,11 @@ function renderUniversitySection(uni) {
         <h3>${uni.name} <span class="uni-detail">${uni.detail}</span></h3>
         <span class="university-meta">${all.length} ${all.length === 1 ? 'course' : 'courses'}</span>
       </div>
-      <div class="courses-grid">
-        ${all.map(c => renderCourseCard(c)).join('')}
+      <div class="course-ledger">
+        <div class="ledger-row ledger-head">
+          <div>Code</div><div>Course</div><div>Most recent</div><div>Taught</div><div></div>
+        </div>
+        ${all.map(renderCourseRow).join('')}
       </div>
     </div>
   `;
@@ -1247,7 +1208,7 @@ function openModal(id) {
             : '';
         const enrollment = typeof o.students === 'number'
           ? `${o.students} students`
-          : (o.isPlaceholder ? 'Enrollment TBD' : (o.isCurrent ? 'In progress' : '—'));
+          : (o.isUpcoming ? 'Enrollment TBD' : (o.isCurrent ? 'In progress' : '—'));
         return `
           <div class="offering-row">
             <div class="offering-term"><span class="offering-term-badge ${seasonClass}">${statusDot}${o.term}</span></div>
@@ -1297,6 +1258,9 @@ function closeModal() {
 function attachClickHandlers() {
   document.querySelectorAll('[data-course]').forEach(el => {
     el.addEventListener('click', () => openModal(el.dataset.course));
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(el.dataset.course); }
+    });
   });
 }
 
