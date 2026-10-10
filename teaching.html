@@ -401,6 +401,106 @@
   }
   .current-course:hover .current-course-arrow { transform: translateX(6px); }
 
+  /* ───────── LECTURE NOTES ───────── */
+  .notes-section {
+    padding: 3rem 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+  .note-card {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 1.3rem;
+    align-items: start;
+    padding: 1.5rem 1.6rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.25s;
+  }
+  .note-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold-deep);
+    box-shadow: 0 10px 24px rgba(0, 33, 71, 0.10);
+  }
+  .note-card:hover .note-open { color: var(--gold-deep); }
+  .note-card:hover .note-open .arrow { transform: translateX(4px); }
+  /* Keaney-blue tile with § — the same color code as lecture notes on the resources page */
+  .note-tile {
+    width: 64px;
+    height: 80px;
+    background: var(--keaney);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--gold-soft);
+    box-shadow: 0 4px 12px rgba(0, 33, 71, 0.15);
+  }
+  .note-context {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 0.4rem;
+  }
+  .note-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+  }
+  .note-desc {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 0.8rem;
+  }
+  .note-open {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+  .note-open .arrow { display: inline-block; transition: transform 0.2s; }
+  /* small marker on ledger rows for courses that have public notes */
+  .ledger-notes-flag {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--keaney);
+    border: 1px solid var(--keaney-soft);
+    border-radius: 2px;
+    padding: 0.1rem 0.4rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  @media (max-width: 700px) {
+    .notes-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .notes-grid { grid-template-columns: 1fr; }
+  }
+
   /* ───────── HISTORY ───────── */
   .history {
     padding: 4rem 3rem 6rem;
@@ -961,6 +1061,15 @@
   </div>
 </section>
 
+<!-- LECTURE NOTES -->
+<section class="notes-section" id="lecture-notes">
+  <div class="section-head">
+    <h2>Lecture <em>notes</em></h2>
+    <span class="section-meta">PDF notes from my courses and beyond</span>
+  </div>
+  <div class="notes-grid" id="notesContainer"></div>
+</section>
+
 <!-- TEACHING HISTORY -->
 <section class="history">
   <div class="section-head">
@@ -1003,6 +1112,21 @@
    Different course codes for the same course across offerings (e.g., MATH 416 → MATH 460)
    are tracked per offering.
 */
+/* ============ LECTURE NOTES ============ */
+/* Every set of notes listed here appears in the "Lecture notes" section.
+   If `course` matches a course id below, the notes also appear in that course's
+   modal and its row gets a small "Notes" marker. Leave `course` out for notes
+   that aren't tied to a course. PDFs live in the same folder as this page. */
+const LECTURE_NOTES = [
+  {
+    title: "Quantum Learning Theory",
+    description: "Lecture notes on the modern theory of learning quantum states: tomography, shadows, and single- versus multi-copy measurement.",
+    context: "MATH 595 · UIUC · Spring 2026",
+    course: "uiuc-qlt",
+    file: "quantum-learning-theory.pdf"
+  }
+];
+
 const COURSES = [
   /* URI */
   {
@@ -1042,9 +1166,7 @@ const COURSES = [
     offerings: [
       { code: "MATH 595", term: "Spring 2026", year: 2026, season: "Spring", students: 30 }
     ],
-    links: [
-      { icon: "§", title: "Course materials", sub: "Lecture notes, problem sets, and reading list", url: "#" }
-    ]
+    links: []
   },
 
   /* CU Boulder */
@@ -1111,6 +1233,24 @@ function totalEnrollment(course) {
 }
 
 /* ============ RENDER ============ */
+function notesFor(courseId) {
+  return LECTURE_NOTES.filter(n => n.course === courseId);
+}
+
+function renderNotes() {
+  document.getElementById('notesContainer').innerHTML = LECTURE_NOTES.map(n => `
+    <a class="note-card" href="${n.file}" target="_blank" rel="noopener">
+      <div class="note-tile">§</div>
+      <div>
+        ${n.context ? `<div class="note-context">${n.context}</div>` : ''}
+        <div class="note-title">${n.title}</div>
+        <div class="note-desc">${n.description}</div>
+        <span class="note-open">Open PDF <span class="arrow">→</span></span>
+      </div>
+    </a>
+  `).join('');
+}
+
 function termBadge(o) {
   const dot = o.isCurrent
     ? '<span class="status-dot current" title="Currently teaching"></span>'
@@ -1128,7 +1268,7 @@ function renderCourseRow(c) {
     <div class="ledger-row is-course" data-course="${c.id}" role="button" tabindex="0">
       <div class="ledger-code">${latest.code}</div>
       <div class="ledger-course">
-        <div class="ledger-title">${c.title}</div>
+        <div class="ledger-title">${c.title}${notesFor(c.id).length ? '<span class="ledger-notes-flag">§ Notes</span>' : ''}</div>
         <div class="ledger-tagline">${c.tagline}</div>
       </div>
       <div class="ledger-term">${termBadge(latest)}</div>
@@ -1181,9 +1321,13 @@ function openModal(id) {
   const sorted = sortOfferings(c.offerings);
   const latest = sorted[0];
 
-  const linksHTML = c.links.length === 0
+  const allLinks = [
+    ...notesFor(c.id).map(n => ({ icon: "§", title: "Lecture notes", sub: `PDF · ${n.title}`, url: n.file })),
+    ...c.links
+  ];
+  const linksHTML = allLinks.length === 0
     ? '<div class="modal-empty">No public course materials available. If you were a student in this class and need access to materials, please get in touch.</div>'
-    : `<div class="modal-links">${c.links.map(l => `
+    : `<div class="modal-links">${allLinks.map(l => `
         <a href="${l.url}" target="_blank" rel="noopener" class="modal-link">
           <div class="modal-link-info">
             <div class="modal-link-icon">${l.icon}</div>
@@ -1270,6 +1414,7 @@ document.getElementById('courseModal').addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+renderNotes();
 renderAll();
 // also wire up the current course at the top
 document.querySelector('.current-course').addEventListener('click', () => openModal('uiuc-abstract-linear-algebra'));
