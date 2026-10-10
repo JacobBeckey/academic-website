@@ -566,6 +566,211 @@
   .star-key .pub-star,
   .star-key .pub-dagger { font-style: normal; }
 
+  /* ───────── MENTORSHIP ───────── */
+  .mentorship {
+    background: var(--paper-deep);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 5rem 3rem;
+  }
+  .mentorship-inner { max-width: 1400px; margin: 0 auto; }
+
+  .mentor-intro {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3.5rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 900px) { .mentor-intro { grid-template-columns: 1fr; gap: 1.8rem; } }
+
+  .mentor-intro-prose {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .mentor-intro-prose p { margin-bottom: 1rem; }
+  .mentor-intro-prose p:last-child { margin-bottom: 0; }
+  .mentor-intro-prose a {
+    color: var(--keaney);
+    text-decoration: none;
+    border-bottom: 1px solid var(--keaney);
+  }
+  .mentor-intro-prose a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+  .mentor-stats {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.8rem 2rem;
+    display: grid;
+    gap: 1.2rem;
+    align-content: start;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .stat-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--gold-deep);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.3;
+    max-width: 180px;
+  }
+
+  /* mentee list */
+  .mentee-group { margin-bottom: 2rem; }
+  .mentee-group:last-child { margin-bottom: 0; }
+  .mentee-group-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .mentee-group-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .mentee-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.6rem 1.5rem;
+  }
+  .mentee {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.95rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem 1rem;
+    align-items: center;
+  }
+  .mentee-name {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .mentee-name .star {
+    color: var(--gold-deep);
+    margin-right: 0.25rem;
+    font-style: normal;
+  }
+  .mentee-details {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.85rem;
+    grid-column: 1 / -1;
+    margin-top: -0.1rem;
+  }
+  .mentee-term {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .mentee-term.current {
+    background: var(--ink);
+    color: var(--gold);
+  }
+
+  .mentee-star-key {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-top: 1.5rem;
+  }
+  .mentee-star-key .star { color: var(--gold-deep); font-style: normal; }
+  .mentee-name .dagger {
+    color: var(--gold-deep);
+    margin-right: 0.25rem;
+    font-style: normal;
+  }
+  .mentee-star-key .dagger { color: var(--gold-deep); font-style: normal; }
+
+  .mentorship .section-head {
+    margin-bottom: 2.5rem;
+  }
+  .mentorship .section-head .section-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 0.7rem;
+  }
+  .mentorship .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  .mentorship .section-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .mentorship .section-head p {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 720px;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .star-key a {
+    color: var(--keaney);
+    text-decoration: none;
+    border-bottom: 1px solid var(--keaney);
+    font-style: normal;
+    margin-left: 0.5rem;
+  }
+  .star-key a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+  @media (max-width: 700px) {
+    .mentorship { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
   /* ───────── MODAL ───────── */
   .modal-overlay {
     position: fixed;
@@ -849,7 +1054,7 @@
     <a href="research.html" class="active">Research</a>
     <a href="teaching.html">Teaching</a>
     <a href="resources.html">Resources</a>
-    <a href="#">Outreach</a> 
+    <a href="outreach.html">Outreach</a> 
     <a href="assets/cv.pdf" target="_blank" rel="noopener" class="cv">CV ↓</a>
   </div>
 </nav>
@@ -932,12 +1137,106 @@
     </div>
   </div>
 
-  <div class="star-key"><span class="pub-star">★</span> Denotes technical mentorship of an undergraduate student leading to co-authorship. &nbsp; <span class="pub-dagger">†</span> Denotes technical mentorship of a high-school student leading to co-authorship.</div>
+  <div class="star-key"><span class="pub-star">★</span> Denotes technical mentorship of an undergraduate student leading to co-authorship. &nbsp; <span class="pub-dagger">†</span> Denotes technical mentorship of a high-school student leading to co-authorship. <a href="#students">Meet my student co-authors ↓</a></div>
 
   <div class="results-meta" id="resultsMeta">Showing all 17 papers</div>
 
   <div id="resultsContainer"></div>
   <div class="empty-state hidden" id="emptyState">No papers match those filters. Try clearing the search or selecting different filters.</div>
+</section>
+
+<!-- STUDENT RESEARCH MENTORSHIP -->
+<section class="mentorship" id="students">
+  <div class="mentorship-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Mentorship</div>
+      <h2>Student <em>research</em> mentorship</h2>
+    </div>
+
+    <div class="mentor-intro">
+      <div class="mentor-intro-prose">
+        <p>I take student research seriously. The students I mentor do real work — proving theorems, running simulations, deriving bounds, writing and revising drafts — and several have become co-authors on papers with me.</p>
+        <p>I'm happy to work with any student who is motivated to learn, has the time to dedicate to a project, and is genuinely interested in the questions my research program explores.</p>
+        <p>In addition to quantum mechanics and quantum information theory, most of my projects utilize abstract linear algebra, probability, group theory, and representation theory. If you'd like to build that background, my <a href="resources.html">resources page</a> collects the books and lecture notes I recommend to students getting started. When you're ready, <a href="mailto:jbeckey@uri.edu?subject=Student%20research%20inquiry">send me an email</a> with a little about yourself and what draws you to this work.</p>
+      </div>
+
+      <div class="mentor-stats">
+        <div class="stat-row">
+          <span class="stat-num">9</span>
+          <span class="stat-label">High-School, Undergraduate &amp; Master's Mentees</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Co-authored Publications with Mentees</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Years of Research Mentorship</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current mentees -->
+    <div class="mentee-group">
+      <div class="mentee-group-label">Current mentees</div>
+      <div class="mentee-list">
+        <div class="mentee">
+          <span class="mentee-name">Yuna Shin</span>
+          <span class="mentee-term current">Active</span>
+          <span class="mentee-details">Physics &amp; Math · UIUC · Spring 2026–present</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name">Mihir Mehta</span>
+          <span class="mentee-term current">Active</span>
+          <span class="mentee-details">Mathematics · UIUC · Spring 2026–present</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name">Diana Lopez</span>
+          <span class="mentee-term current">Active</span>
+          <span class="mentee-details">Mathematics · UIUC · Spring 2026–present</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="dagger">†</span>Oren Akresh</span>
+          <span class="mentee-term current">Active</span>
+          <span class="mentee-details">Central High School · Spring 2026–present</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Past mentees -->
+    <div class="mentee-group">
+      <div class="mentee-group-label">Past mentees</div>
+      <div class="mentee-list">
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Akanksha Chablani</span>
+          <span class="mentee-term">Spring 2025</span>
+          <span class="mentee-details">Math &amp; Computer Science · UIUC</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Abbie Lee-Vaughan-Lee</span>
+          <span class="mentee-term">Spring 2025</span>
+          <span class="mentee-details">Math &amp; Computer Science · UIUC</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Hanyang Sha</span>
+          <span class="mentee-term">Spring 2025</span>
+          <span class="mentee-details">Mathematics · UIUC</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Leo Lee</span>
+          <span class="mentee-term">Spring 2025</span>
+          <span class="mentee-details">Mathematics · UIUC</span>
+        </div>
+        <div class="mentee">
+          <span class="mentee-name"><span class="star">★</span>Luke Coffman</span>
+          <span class="mentee-term">2022–2024</span>
+          <span class="mentee-details">Physics &amp; Math · CU Boulder</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentee-star-key"><span class="star">★</span> Indicates an undergraduate mentee who became a co-author on a publication. &nbsp; <span class="dagger">†</span> Indicates a high-school mentee who became a co-author on a publication.</div>
+  </div>
 </section>
 
 <!-- CTA -->
